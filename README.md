@@ -302,14 +302,10 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @article{distributed_multiagent_scheduling_2024,
-  title={Distributed Multi-Agent Scheduling for Resilient High-Performance Computing: Experimental Evaluation},
-  author={Authors},
-  journal={Journal Name},
-  year={2024},
-  volume={XX},
-  number={X},
-  pages={XXX-XXX},
-  doi={10.xxxx/xxxxxx}
+  title={Fault-Tolerant Distributed Multi-Agent Scheduling for High-Performance Computing: A Resilience-Centric Approach},
+  author={Prachi Jadhav, Fred Sutter, Ewa Deelman, Prasanna Balaprakash},
+  journal={TBD},
+  year={2025}
 }
 ```
 
@@ -319,9 +315,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Research supported by [Funding Agency]
-- Computational resources provided by [Computing Center]
-- Special thanks to the HPC scheduling research community
+- Research conducted through SWARM project supported by the Department of Energy Award #DE-SC0024387.
 
 ## 📞 Support
 
