@@ -1,0 +1,44 @@
+# Include documentation and configuration files
+include README.md
+include LICENSE
+include CONTRIBUTING.md
+include requirements.txt
+include requirements-dev.txt
+include *.py
+
+# Include all source code
+recursive-include src *.py
+
+# Include evaluation scripts
+recursive-include evaluation *.py
+
+# Include demo scripts
+recursive-include demos *.py
+
+# Include documentation
+recursive-include docs *.md *.rst *.txt
+
+# Include configuration files
+recursive-include config *.json
+
+# Include generated figures (but not result data)
+recursive-include bw_figures *.png
+recursive-include figures *.png
+
+# Include LaTeX document
+include resilience_evaluation_results.tex
+include bw_figure_descriptions.md
+include figure_descriptions.md
+
+# Exclude temporary and generated files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.orig
+global-exclude *.rej
+global-exclude *~
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.so
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
