@@ -321,13 +321,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/username/distributed-multiagent-scheduling/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/username/distributed-multiagent-scheduling/discussions)
-- **Email**: [authors@institution.edu](mailto:authors@institution.edu)
-
-## 🔄 Version History
-
-- **v1.0.0** (2024-01-XX): Initial release with complete evaluation framework
-- **v0.9.0** (2023-12-XX): Beta release with systematic evaluation
-- **v0.8.0** (2023-11-XX): Alpha release with basic multi-agent implementation
 
 ---
 
