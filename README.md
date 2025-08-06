@@ -6,6 +6,97 @@
 
 A comprehensive implementation and evaluation framework for distributed multi-agent job scheduling in high-performance computing (HPC) environments. This repository contains the complete codebase for the paper **"Distributed Multi-Agent Scheduling for Resilient High-Performance Computing: Experimental Evaluation"**.
 
+## 🎯 Method Overview
+
+### **Core Concept**
+The system implements a **decentralized scheduling architecture** where multiple autonomous agents collaborate to schedule jobs across distributed computing resources, replacing traditional centralized schedulers that create single points of failure.
+
+### **Key Components**
+
+**1. Multi-Agent Architecture**
+- **Resource Agents**: Autonomous agents managing individual compute nodes/clusters
+- **Distributed Coordination**: No central scheduler - agents negotiate directly
+- **Competitive Bidding**: Agents bid for jobs based on resource availability and capability matching
+
+**2. Event-Driven Scheduling**
+- **Discrete Event Simulation**: Pure event-driven approach (no polling)
+- **Priority Queue Management**: O(log n) complexity for scalable event processing
+- **Message-Passing Protocol**: Asynchronous communication between agents
+
+**3. Fault Tolerance Mechanisms**
+- **Heartbeat Monitoring**: Continuous health checking of all agents
+- **Automatic Recovery**: Failed jobs automatically redistributed
+- **No Single Point of Failure**: System continues operating even if multiple agents fail
+
+### **Scheduling Algorithm**
+
+**Phase 1: Job Arrival**
+```
+1. Job submitted to system
+2. Resource agents evaluate job requirements
+3. Capable agents generate competitive bids
+4. Bids include resource availability scores
+```
+
+**Phase 2: Competitive Selection**
+```
+1. Agents compete based on multi-factor scoring:
+   - CPU/Memory/GPU availability match
+   - Current workload and utilization  
+   - Historical performance metrics
+2. Best-fit agent selected automatically
+3. Job assignment and execution initiated
+```
+
+**Phase 3: Fault Handling**
+```
+1. Continuous monitoring via heartbeat protocol
+2. Failure detection triggers automatic recovery
+3. Failed jobs redistributed to available agents
+4. System maintains >95% availability under failures
+```
+
+### **Technical Innovations**
+
+**1. Scalable Event Processing**
+- Heap-based priority queue for O(log n) event scheduling
+- No time-driven polling - purely reactive system
+- Efficient message routing and processing
+
+**2. Intelligent Resource Matching**
+- Multi-dimensional scoring algorithm considering CPU, memory, GPU requirements
+- Dynamic capability assessment and load balancing
+- Preference-based job placement optimization
+
+**3. Resilience Through Redundancy**
+- Distributed state management across multiple agents
+- Automatic job retry and rescheduling mechanisms
+- Cascading failure prevention through isolation
+
+### **Performance Characteristics**
+
+**Scalability**: Linear performance scaling up to 500+ jobs and 50+ agents  
+**Fault Tolerance**: 96.2% completion rate under 30% agent failure scenarios  
+**Throughput**: 10+ jobs/second sustained processing capability  
+**Recovery Time**: <160 seconds average recovery from major failures
+
+### **Advantages Over Centralized Approaches**
+
+1. **Eliminates Single Point of Failure**: No central scheduler to fail
+2. **Better Fault Tolerance**: System degrades gracefully under failures
+3. **Improved Scalability**: Distributed decision-making reduces bottlenecks
+4. **Adaptive Resource Management**: Agents respond dynamically to changing conditions
+5. **Lower Latency**: Direct agent-to-agent communication reduces delays
+
+### **Research Contributions**
+
+- **Novel distributed coordination protocol** for HPC job scheduling
+- **Competitive bidding mechanism** optimizing resource utilization
+- **Comprehensive fault tolerance framework** with automatic recovery
+- **Scalable event-driven architecture** supporting large-scale deployments
+
+This approach represents a paradigm shift from traditional centralized HPC schedulers to resilient, self-organizing distributed systems that maintain performance even under significant infrastructure failures.
+
 ## 🚀 Key Features
 
 - **Distributed Multi-Agent Architecture**: Autonomous agents with competitive bidding and fault tolerance
