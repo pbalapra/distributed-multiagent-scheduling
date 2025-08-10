@@ -172,40 +172,178 @@ Core dependencies:
 - `pandas >= 1.4.0` - Data analysis and manipulation
 - `seaborn >= 0.11.0` - Statistical visualization
 - `dataclasses` - Data structure definitions (Python 3.7+)
-- `langchain-community` - LangChain SambaNova integration for LLM consensus
+- `langchain-community` - **Required** for SambaNova LLM integration
+- `python-dotenv` - Environment variable management (.env file support)
+
+### **Important: LLM Integration Setup**
+
+**For SambaNova LLM features, you MUST install:**
+```bash
+# Required for LLM consensus protocols
+pip install langchain-community python-dotenv
+```
+
+**Environment Variable Setup:**
+```bash
+# Option 1: Add to ~/.bashrc (permanent)
+echo 'export SAMBASTUDIO_URL=your_sambanova_endpoint' >> ~/.bashrc
+echo 'export SAMBASTUDIO_API_KEY=your_api_key' >> ~/.bashrc
+source ~/.bashrc
+
+# Option 2: Create .env file (project-specific)
+echo 'SAMBASTUDIO_URL=your_sambanova_endpoint' > .env
+echo 'SAMBASTUDIO_API_KEY=your_api_key' >> .env
+
+# Option 3: Get interactive help
+python main.py --setup-env
+```
+
+## 🎆 New: Unified Command Interface
+
+The system now features a **streamlined command-line interface** through `main.py` that provides easy access to all major features:
+
+🔗 **Single Entry Point**: `python main.py` with multiple modes  
+🔍 **Environment Validation**: `--check` flag verifies setup and dependencies  
+🎯 **Interactive Demos**: `--interactive` launches full LLM fault tolerance demonstration  
+🔬 **Research Evaluation**: `--evaluate` runs comprehensive experimental campaigns  
+📚 **Educational**: Rich colored output with step-by-step guidance  
+
+```bash
+# See all available options and examples
+python main.py --help
+
+# Quick environment check
+python main.py --check
+
+# Setup environment variables (SambaNova credentials)
+python main.py --setup-env
+
+# Run basic system overview
+python main.py
+```
+
+### **🔐 Environment Variables**
+
+The system automatically loads environment variables from:
+- `.env` file in the project directory
+- `~/.env` file in your home directory  
+- System environment variables
+
+For **SambaNova LLM integration**, set:
+```bash
+SAMBASTUDIO_URL=your_sambanova_endpoint
+SAMBASTUDIO_API_KEY=your_api_key
+```
+
+**Recommended setup:**
+```bash
+# Create .env file in project directory
+echo 'SAMBASTUDIO_URL=your_endpoint' > .env
+echo 'SAMBASTUDIO_API_KEY=your_key' >> .env
+
+# Or get interactive help
+python main.py --setup-env
+```
+
+### **⚠️ Troubleshooting Common Issues**
+
+**1. "No module named 'langchain_community'" Error:**
+```bash
+# Install the required package
+pip install langchain-community python-dotenv
+
+# Verify installation
+python -c "from langchain_community.llms.sambanova import SambaStudio; print('✅ Installation successful')"
+```
+
+**2. Environment Variables Not Loading:**
+```bash
+# If using .bashrc, ensure it's sourced
+source ~/.bashrc
+
+# Or run demos with explicit sourcing
+source ~/.bashrc && python demos/hybrid_llm_demo.py
+
+# Verify variables are loaded
+echo $SAMBASTUDIO_URL
+echo $SAMBASTUDIO_API_KEY
+```
+
+**3. LLM Demos Show "Fallback Mode":**
+```bash
+# Check environment variables
+python main.py --check
+
+# Set up credentials properly
+python main.py --setup-env
+```
+
+**4. Permission Errors with Virtual Environment:**
+```bash
+# Ensure virtual environment is activated
+source venv/bin/activate  # Linux/Mac
+# or
+venv\Scripts\activate     # Windows
+
+# Then install packages
+pip install langchain-community python-dotenv
+```
 
 ## 🚀 Quick Start
 
-### Basic Usage
+### **New Unified Interface**
 
-```python
-from src.scheduler.discrete_event_scheduler import DiscreteEventScheduler
-from src.agents.resource_agent import ResourceAgent
-from src.resources.resource import Resource, ResourceCapacity, ResourceType
-
-# Create scheduler and agents
-scheduler = DiscreteEventScheduler()
-agent = ResourceAgent("agent-1", resource, scheduler, failure_rate=0.1)
-
-# Run simulation
-scheduler.start()
-# Submit jobs and monitor results
-```
-
-### Run Evaluation Suite
+The system now provides a single entry point with multiple demonstration modes:
 
 ```bash
-# Quick evaluation (2-3 minutes)
-python evaluation/quick_resilience_test.py
+# Basic system overview and capabilities
+python main.py
 
-# Ultra-quick demo (30 seconds)
-python evaluation/ultra_quick_test.py
+# Check environment and setup
+python main.py --check
 
-# Full systematic evaluation (30-45 minutes)
-python evaluation/systematic_resilience_evaluation.py
+# Interactive LLM fault tolerance demo
+python main.py --interactive
 
-# Generate publication figures
-python create_bw_publication_figures.py
+# Full evaluation campaign
+python main.py --evaluate
+
+# Show all available options
+python main.py --help
+```
+
+### **Step-by-Step Getting Started**
+
+1. **Environment Check** - Verify setup and dependencies:
+```bash
+python main.py --check
+```
+
+2. **Basic Demo** - System overview and capabilities:
+```bash
+python main.py
+```
+
+3. **Interactive Demo** - Full LLM fault tolerance demonstration:
+```bash
+python main.py --interactive
+```
+
+4. **Evaluation Suite** - Comprehensive research evaluation:
+```bash
+python main.py --evaluate
+```
+
+### **Advanced Usage Examples**
+
+```bash
+# Direct access to specific demos
+python demos/hybrid_llm_demo.py                    # LLM fault tolerance
+python demos/consensus_experiment_runner.py        # Consensus experiments
+
+# Evaluation components
+python evaluation/run_experimental_campaign.py     # Full campaign
+python evaluation/systematic_resilience_evaluation.py  # Core evaluation
 ```
 
 ### SambaNova LLM Consensus Demo
@@ -368,6 +506,157 @@ python demos/sambanova_consensus_demo.py
 - **Consensus Quality Metrics**: Quantitative agreement measurements
 - **Performance Ranking**: Automated protocol performance comparison
 - **Visual Indicators**: Color-coded status and progress tracking
+
+## 🛡️ Interactive Fault Tolerance Demo with LLM Integration
+
+### **Hybrid LLM Fault Tolerance Demo**
+
+This advanced demo showcases multi-agent fault-tolerant consensus with full **LLM prompt and response visibility**, Byzantine fault injection, and system recovery monitoring.
+
+### **Key Features**
+
+- **Real SambaNova LLM Integration**: Uses LangChain SambaStudio client for authentic LLM consensus
+- **Full Prompt/Response Transparency**: Every LLM query and response is displayed for educational insight
+- **Byzantine Fault Simulation**: Realistic malicious agent behavior with compromised LLM responses
+- **Intelligent Fallback**: Graceful degradation to simulated responses if API unavailable
+- **Visual Recovery Monitoring**: Real-time fault injection and recovery progress tracking
+- **Consensus Protocol Analysis**: Detailed breakdown of voting, proposals, and consensus outcomes
+
+### **Setup Requirements**
+
+```bash
+# 1. Configure SambaNova environment variables
+export SAMBASTUDIO_URL=your_sambanova_endpoint
+export SAMBASTUDIO_API_KEY=your_api_key
+
+# Add to ~/.bashrc for persistence
+echo 'export SAMBASTUDIO_URL=your_sambanova_endpoint' >> ~/.bashrc
+echo 'export SAMBASTUDIO_API_KEY=your_api_key' >> ~/.bashrc
+
+# 2. Source environment variables
+source ~/.bashrc
+
+# 3. Install required dependencies
+pip install langchain-community
+```
+
+### **Running the Demo**
+
+```bash
+# Navigate to demos directory
+cd demos/
+
+# Run the hybrid LLM fault tolerance demo
+python hybrid_llm_demo.py
+```
+
+### **Demo Scenarios**
+
+**Scenario 1: Healthy System Baseline**
+- All 5 specialized agents (GPU, Memory, Compute, Storage, General) operate normally
+- Demonstrates successful consensus on scientific job scheduling
+- Shows full LLM prompt engineering and structured JSON responses
+
+**Scenario 2: Byzantine Fault Injection**
+- Selected agents become malicious and provide compromised proposals/votes
+- System detects Byzantine behavior and rejects malicious consensus attempts
+- Demonstrates 2/3 majority voting enforcement and fault tolerance
+
+**Scenario 3: System Recovery**
+- Faulty agents automatically recover after fault period
+- System resumes normal consensus operations
+- Shows resilience and self-healing capabilities
+
+### **Sample Output**
+
+```
+🎯 DEMO: Multi-Agent Fault Tolerance with LLM Integration
+
+🔧 Initializing 5 specialized agents with SambaNova LLM integration...
+✅ All agents initialized successfully
+
+📋 SCENARIO 1: Healthy System Baseline
+
+🤖 GPU-Agent generating proposal for Climate-Modeling-Job...
+💬 LLM QUERY [GPU-Agent-Proposal]:
+```
+You are a GPU specialist agent evaluating job placement. 
+Job: Climate-Modeling-Job (Nodes: 4, CPU/node: 8, Memory/node: 32GB, GPUs: 2)
+Available nodes: [detailed node specs...]
+Generate a JSON proposal with job placement decision.
+```
+
+🤖 LLM RESPONSE:
+```json
+{
+  "decision": "accept", 
+  "assigned_nodes": ["n1", "n2", "n3", "n4"],
+  "confidence": 0.92,
+  "reasoning": "Excellent GPU match for climate modeling workload..."
+}
+```
+
+🗳️ Consensus Result: ✅ ACCEPTED (4/5 votes)
+
+⚠️ SCENARIO 2: Byzantine Fault Injection
+[Agent-02] has been compromised (Byzantine fault)
+
+🤖 Compromised agent generating malicious proposal...
+💬 LLM RESPONSE (Malicious):
+```json
+{
+  "decision": "accept",
+  "assigned_nodes": ["invalid_node", "overloaded_node"],
+  "confidence": 1.0,
+  "reasoning": "Malicious placement to cause system failure"
+}
+```
+
+🗳️ Consensus Result: ❌ REJECTED (2/5 votes) - Byzantine fault detected!
+
+🔄 SCENARIO 3: System Recovery
+✅ All agents recovered. Resuming normal operations...
+🗳️ Consensus Result: ✅ ACCEPTED (5/5 votes)
+```
+
+### **Educational Value**
+
+- **LLM Engineering**: See exactly how prompts are constructed for different agent specializations
+- **Consensus Protocols**: Observe Byzantine fault tolerance in action with majority voting
+- **Fault Injection**: Understand how malicious agents can compromise distributed systems
+- **System Resilience**: Watch automatic recovery and consensus restoration
+- **Practical Application**: Real-world HPC job scheduling with intelligent agent reasoning
+
+### **Customization Options**
+
+```python
+# Modify demo parameters in hybrid_llm_demo.py
+NUM_AGENTS = 7              # Increase agent count
+NUM_JOBS = 3                # Adjust job scenarios
+FAULT_DURATION = 30.0       # Fault injection period
+RECOVERY_TIME = 10.0        # Recovery monitoring time
+
+# LLM parameters
+LLM_TEMPERATURE = 0.3       # Response determinism
+MAX_TOKENS = 1000           # Response length limit
+```
+
+### **Troubleshooting**
+
+**API Authentication Issues:**
+```bash
+# Verify environment variables are set
+echo $SAMBASTUDIO_URL
+echo $SAMBASTUDIO_API_KEY
+
+# Re-source bashrc if variables missing
+source ~/.bashrc
+```
+
+**Fallback Mode:**
+- If SambaNova API is unavailable, demo automatically uses simulated responses
+- All educational features remain functional with realistic LLM-style outputs
+- No functionality is lost in fallback mode
 
 ## ⚙️ Configurable Experiment Runners
 

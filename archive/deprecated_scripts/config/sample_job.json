@@ -1,0 +1,27 @@
+{
+  "requirement": {
+    "cpu_cores": 4,
+    "memory_gb": 8.0,
+    "gpu_count": 1,
+    "storage_gb": 20.0,
+    "network_bandwidth_mbps": 100,
+    "estimated_runtime_minutes": 120
+  },
+  "submit_time": "2025-08-01T21:01:00",
+  "priority": "medium",
+  "command": "python simulate.py",
+  "working_directory": "/workdir",
+  "environment_vars": {
+    "ENV_VAR1": "value1"
+  },
+  "input_files": [
+    "/data/input1.dat",
+    "/data/input2.dat"
+  ],
+  "output_files": [
+    "/data/output1.dat",
+    "/data/output2.dat"
+  ],
+  "dependencies": []
+}
+

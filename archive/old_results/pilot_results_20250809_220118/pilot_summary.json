@@ -1,0 +1,17 @@
+{
+  "pilot_summary": {
+    "total_experiments": 3,
+    "successful": 0,
+    "failed": 0,
+    "timeouts": 3,
+    "errors": 0,
+    "success_rate": 0.0
+  },
+  "performance_metrics": {
+    "average_duration_seconds": 0,
+    "min_duration_seconds": 0,
+    "max_duration_seconds": 0
+  },
+  "protocol_performance": {},
+  "timestamp": "2025-08-09T22:16:18.130670"
+}

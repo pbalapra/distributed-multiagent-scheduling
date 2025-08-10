@@ -1,0 +1,88 @@
+# Sample Experimental Campaign Configuration
+# ==========================================
+# 
+# This configuration file defines the parameters for executing the comprehensive
+# LLM-enhanced consensus evaluation campaign.
+
+# Campaign identification
+campaign_id: "llm_consensus_evaluation_2025"
+campaign_description: "Comprehensive evaluation of LLM-enhanced distributed consensus protocols for HPC job scheduling"
+
+# Resource allocation
+total_budget_hours: 2500
+max_parallel_experiments: 8
+computational_priority: "high"
+
+# Experimental control
+log_level: "INFO"
+save_intermediate_results: true
+validate_data_quality: true
+enable_monitoring: true
+enable_fault_injection: true
+
+# Data management
+output_compression: true
+backup_enabled: true
+cleanup_temporary_files: true
+generate_visualizations: true
+
+# Quality assurance
+min_data_quality_threshold: 0.8
+statistical_significance_level: 0.05
+effect_size_threshold: 0.2
+reproducibility_seed: 42
+
+# Performance optimization
+cache_llm_responses: true
+batch_size_optimization: true
+resource_usage_monitoring: true
+
+# Reporting
+generate_executive_summary: true
+generate_technical_reports: true
+generate_statistical_analysis: true
+create_publication_figures: true
+
+# Notification settings
+notify_on_completion: true
+notify_on_errors: true
+progress_reporting_interval: 50  # experiments
+
+# Advanced settings
+experimental_variance_tolerance: 0.1
+outlier_detection_method: "IQR"
+missing_data_handling: "interpolate"
+cross_validation_folds: 5
+
+# Infrastructure requirements
+cluster_requirements:
+  minimum_nodes: 8
+  minimum_memory_gb: 512
+  minimum_cpu_cores: 128
+  network_bandwidth_gbps: 10
+  storage_capacity_tb: 5
+
+# SambaNova LLM configuration
+llm_settings:
+  model: "Meta-Llama-3-70B-Instruct"
+  temperature_range: [0.0, 0.3]
+  max_tokens_range: [100, 1000]
+  retry_attempts: 3
+  timeout_seconds: 30
+  fallback_enabled: true
+
+# Fault injection settings
+fault_injection:
+  byzantine_probability: 0.3
+  crash_probability: 0.2
+  network_fault_probability: 0.25
+  performance_degradation_factor: 0.5
+  recovery_time_range: [5, 30]
+
+# Statistical analysis configuration
+statistical_analysis:
+  confidence_level: 0.95
+  power_analysis: true
+  effect_size_calculation: true
+  multiple_comparisons_correction: "bonferroni"
+  bootstrap_samples: 1000
