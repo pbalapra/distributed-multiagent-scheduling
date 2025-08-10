@@ -104,15 +104,12 @@ This approach represents a paradigm shift from traditional centralized HPC sched
 - **Discrete Event Simulation**: High-performance event-driven scheduling simulation
 - **Comprehensive Evaluation Framework**: 26 test configurations across 5 experimental dimensions
 - **Fault Injection & Recovery**: Configurable failure patterns and autonomous recovery mechanisms
-- **Publication-Ready Results**: Automated generation of research figures and statistical analysis
-- **96.2% Win Rate**: Demonstrated superiority over centralized scheduling approaches
 
 ## 📊 Performance Highlights
 
 - **25x better completion rate** under extreme load (400 concurrent jobs)
 - **Graceful degradation**: Maintains 82% completion vs 28% centralized at 35% failure rates
 - **Superior scalability**: 81-96% completion across varying workload sizes
-- **Statistical significance**: p < 0.001, Cohen's d = 2.84 (large effect size)
 
 ## 🏗️ Architecture Overview
 
@@ -121,22 +118,37 @@ multiagent/
 ├── src/                          # Core implementation
 │   ├── agents/                   # Multi-agent system
 │   │   ├── base_agent.py        # Base agent with heartbeat monitoring
-│   │   └── resource_agent.py    # Resource management and job execution
+│   │   ├── resource_agent.py    # Resource management and job execution
+│   │   └── llm_resource_agent.py # LLM-enhanced agent implementation
 │   ├── communication/           # Message passing infrastructure
 │   │   └── protocol.py          # Pub-sub messaging with fault tolerance
 │   ├── scheduler/               # Scheduling algorithms
-│   │   └── discrete_event_scheduler.py  # Event-driven coordination
+│   │   ├── discrete_event_scheduler.py  # Event-driven coordination
+│   │   ├── llm_enhanced_scheduler.py    # LLM-powered scheduling
+│   │   ├── scheduler.py         # Base scheduler interface
+│   │   └── job_pool.py          # Job queue management
 │   ├── jobs/                    # Job management
 │   │   └── job.py              # Job lifecycle and dependencies
-│   └── resources/              # Resource modeling
-│       └── resource.py         # HPC resource abstraction
+│   ├── resources/              # Resource modeling
+│   │   └── resource.py         # HPC resource abstraction
+│   └── llm/                    # LLM integration
+│       ├── llm_interface.py    # LLM service interface
+│       ├── context_manager.py  # LLM context management
+│       └── ollama_provider.py  # Ollama LLM provider
 ├── evaluation/                  # Evaluation framework
 │   ├── systematic_resilience_evaluation.py  # Main evaluation suite
+│   ├── run_experimental_campaign.py         # Comprehensive experiments
 │   ├── fault_tolerant_test.py   # Fault tolerance testing
-│   └── high_throughput_test.py  # Performance benchmarking
-├── demos/                       # Example implementations
-├── figures/                     # Generated evaluation results
-└── docs/                       # Documentation
+│   ├── high_throughput_test.py  # Performance benchmarking
+│   └── EVALUATION.md            # Evaluation documentation
+├── demos/                       # Interactive demonstrations
+│   ├── hybrid_llm_demo.py      # LLM fault tolerance demo
+│   └── DEMO.md                 # Demo documentation
+├── archive/                     # Archived materials
+│   ├── deprecated_scripts/     # Legacy evaluation scripts
+│   ├── publication_materials/  # Research figures and reports
+│   └── old_demos/             # Previous demonstration versions
+└── main.py                     # Unified CLI entry point
 ```
 
 ## 🛠️ Installation
@@ -154,8 +166,8 @@ git clone https://github.com/username/distributed-multiagent-scheduling.git
 cd distributed-multiagent-scheduling
 
 # Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv multi-agent
+source multi-agent/bin/activate  # On Windows: multi-agent\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -176,12 +188,6 @@ Core dependencies:
 - `python-dotenv` - Environment variable management (.env file support)
 
 ### **Important: LLM Integration Setup**
-
-**For SambaNova LLM features, you MUST install:**
-```bash
-# Required for LLM consensus protocols
-pip install langchain-community python-dotenv
-```
 
 **Environment Variable Setup:**
 ```bash
@@ -249,8 +255,8 @@ python main.py --setup-env
 
 **1. "No module named 'langchain_community'" Error:**
 ```bash
-# Install the required package
-pip install langchain-community python-dotenv
+# Reinstall requirements (should already be included)
+pip install -r requirements.txt
 
 # Verify installation
 python -c "from langchain_community.llms.sambanova import SambaStudio; print('✅ Installation successful')"
@@ -281,12 +287,12 @@ python main.py --setup-env
 **4. Permission Errors with Virtual Environment:**
 ```bash
 # Ensure virtual environment is activated
-source venv/bin/activate  # Linux/Mac
+source multi-agent/bin/activate  # Linux/Mac
 # or
-venv\Scripts\activate     # Windows
+multi-agent\Scripts\activate     # Windows
 
-# Then install packages
-pip install langchain-community python-dotenv
+# Then reinstall requirements
+pip install -r requirements.txt
 ```
 
 ## 🚀 Quick Start
@@ -491,8 +497,7 @@ This repository includes a cutting-edge implementation of **LLM-enhanced consens
 export SAMBASTUDIO_URL=your_sambanova_endpoint
 export SAMBASTUDIO_API_KEY=your_api_key
 
-# Install LangChain SambaNova integration
-pip install langchain-community
+# Dependencies already included in requirements.txt
 
 # Run the demo
 source ~/.bashrc
@@ -536,8 +541,7 @@ echo 'export SAMBASTUDIO_API_KEY=your_api_key' >> ~/.bashrc
 # 2. Source environment variables
 source ~/.bashrc
 
-# 3. Install required dependencies
-pip install langchain-community
+# 3. Dependencies already included in requirements.txt
 ```
 
 ### **Running the Demo**
