@@ -73,13 +73,6 @@ The system implements a **decentralized scheduling architecture** where multiple
 - Automatic job retry and rescheduling mechanisms
 - Cascading failure prevention through isolation
 
-### **Performance Characteristics**
-
-**Scalability**: Linear performance scaling up to 500+ jobs and 50+ agents  
-**Fault Tolerance**: 96.2% completion rate under 30% agent failure scenarios  
-**Throughput**: 10+ jobs/second sustained processing capability  
-**Recovery Time**: <160 seconds average recovery from major failures
-
 ### **Advantages Over Centralized Approaches**
 
 1. **Eliminates Single Point of Failure**: No central scheduler to fail
@@ -104,12 +97,6 @@ This approach represents a paradigm shift from traditional centralized HPC sched
 - **Discrete Event Simulation**: High-performance event-driven scheduling simulation
 - **Comprehensive Evaluation Framework**: 26 test configurations across 5 experimental dimensions
 - **Fault Injection & Recovery**: Configurable failure patterns and autonomous recovery mechanisms
-
-## 📊 Performance Highlights
-
-- **25x better completion rate** under extreme load (400 concurrent jobs)
-- **Graceful degradation**: Maintains 82% completion vs 28% centralized at 35% failure rates
-- **Superior scalability**: 81-96% completion across varying workload sizes
 
 ## 🏗️ Architecture Overview
 
@@ -297,47 +284,23 @@ pip install -r requirements.txt
 
 ## 🚀 Quick Start
 
-### **New Unified Interface**
-
-The system now provides a single entry point with multiple demonstration modes:
+The system provides a unified command-line interface through `main.py`:
 
 ```bash
-# Basic system overview and capabilities
-python main.py
-
-# Check environment and setup
+# 1. Check environment and setup
 python main.py --check
 
-# Interactive LLM fault tolerance demo
+# 2. Basic system overview and capabilities  
+python main.py
+
+# 3. Interactive LLM fault tolerance demo
 python main.py --interactive
 
-# Full evaluation campaign
+# 4. Full evaluation campaign
 python main.py --evaluate
 
 # Show all available options
 python main.py --help
-```
-
-### **Step-by-Step Getting Started**
-
-1. **Environment Check** - Verify setup and dependencies:
-```bash
-python main.py --check
-```
-
-2. **Basic Demo** - System overview and capabilities:
-```bash
-python main.py
-```
-
-3. **Interactive Demo** - Full LLM fault tolerance demonstration:
-```bash
-python main.py --interactive
-```
-
-4. **Evaluation Suite** - Comprehensive research evaluation:
-```bash
-python main.py --evaluate
 ```
 
 ### **Advanced Usage Examples**
@@ -377,41 +340,6 @@ python demos/enhanced_consensus_experiment_runner.py --config experiment_config.
 
 # Run all consensus methods with custom parameters
 python demos/consensus_experiment_runner.py --methods all --agents 9 --jobs 10 --repetitions 5
-```
-
-## 📈 Reproducing Paper Results
-
-### Complete Evaluation Reproduction
-
-```bash
-# 1. Run systematic resilience evaluation
-python evaluation/systematic_resilience_evaluation.py
-
-# 2. Run fault tolerance tests  
-python evaluation/fault_tolerant_test.py
-
-# 3. Run high throughput benchmarks
-python evaluation/high_throughput_test.py
-
-# 4. Generate all publication figures
-python create_bw_publication_figures.py
-
-# 5. Compile LaTeX results document
-pdflatex resilience_evaluation_results.tex
-```
-
-### Expected Runtime
-- **Quick test**: 2-3 minutes (5 configurations)
-- **Systematic evaluation**: 30-45 minutes (26 configurations) 
-- **Complete reproduction**: 60-90 minutes (all tests + figures)
-
-### Output Files
-```
-Generated Results:
-├── bw_figures/                   # Black & white publication figures (11 files)
-├── figures/                      # Color figures and statistical tables
-├── resilience_study_results_*.json  # Raw evaluation data
-└── resilience_evaluation_results.pdf  # LaTeX compiled results
 ```
 
 ## 🧪 Experimental Framework
@@ -780,19 +708,6 @@ experiment_results/
 └── fault_results_per_method.json # Method-specific fault impact
 ```
 
-## 📊 Key Results Summary
-
-| Experimental Dimension | Configs | Distributed Wins | Win Rate | Avg Advantage |
-|------------------------|---------|------------------|----------|---------------|
-| Scale Testing          | 12      | 11               | 91.7%    | +52.3%        |
-| Failure Rate Testing   | 4       | 4                | 100%     | +38.5%        |
-| Failure Pattern Testing| 3       | 3                | 100%     | +55.7%        |
-| Load Pattern Testing   | 3       | 3                | 100%     | +41.3%        |
-| High Load Performance  | 4       | 4                | 100%     | +47.8%        |
-| **Overall Results**    | **26**  | **25**           | **96.2%**| **+47.1%**    |
-
-**Statistical Significance**: p < 0.001, Cohen's d = 2.84, Effect Size: Large
-
 ## 🔬 Advanced Usage
 
 ### Custom Evaluation Scenarios
@@ -842,61 +757,6 @@ def custom_failure_pattern(simulation, pattern, tracker, simulation_time):
     for agent in agents:
         agent.failure_time = custom_failure_schedule()
 ```
-
-## 📚 Documentation
-
-- **API Documentation**: See `docs/` directory
-- **Architecture Guide**: `docs/ARCHITECTURE.md`
-- **Evaluation Guide**: `docs/EVALUATION.md` 
-- **Figure Descriptions**: `bw_figure_descriptions.md`
-- **LaTeX Results**: `resilience_evaluation_results.tex`
-
-## 🧪 Testing
-
-```bash
-# Run unit tests
-python -m pytest tests/
-
-# Run integration tests
-python -m pytest tests/integration/
-
-# Run evaluation validation
-python tests/validate_evaluation.py
-```
-
-## 📈 Benchmarking
-
-Performance benchmarks on standard hardware (Intel i7, 16GB RAM):
-
-- **Simulation Rate**: ~10,000 events/second
-- **Agent Scalability**: Up to 50 agents efficiently
-- **Job Throughput**: 1,000+ jobs per simulation
-- **Memory Usage**: <2GB for largest configurations
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
-
-### Development Setup
-
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Install pre-commit hooks
-pre-commit install
-
-# Run tests before committing
-python -m pytest
-```
-
-### Contribution Areas
-
-- **New evaluation scenarios** and metrics
-- **Performance optimizations** for large-scale simulations
-- **Additional scheduling algorithms** for comparison
-- **Visualization improvements** and interactive dashboards
-- **Documentation** and tutorial improvements
 
 ## 📄 Citation
 
