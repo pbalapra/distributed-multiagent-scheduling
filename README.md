@@ -100,6 +100,7 @@ This approach represents a paradigm shift from traditional centralized HPC sched
 ## 🚀 Key Features
 
 - **Distributed Multi-Agent Architecture**: Autonomous agents with competitive bidding and fault tolerance
+- **LLM-Enhanced Consensus Protocols**: SambaNova-powered intelligent consensus with 4 protocol implementations
 - **Discrete Event Simulation**: High-performance event-driven scheduling simulation
 - **Comprehensive Evaluation Framework**: 26 test configurations across 5 experimental dimensions
 - **Fault Injection & Recovery**: Configurable failure patterns and autonomous recovery mechanisms
@@ -171,6 +172,7 @@ Core dependencies:
 - `pandas >= 1.4.0` - Data analysis and manipulation
 - `seaborn >= 0.11.0` - Statistical visualization
 - `dataclasses` - Data structure definitions (Python 3.7+)
+- `langchain-community` - LangChain SambaNova integration for LLM consensus
 
 ## 🚀 Quick Start
 
@@ -204,6 +206,33 @@ python evaluation/systematic_resilience_evaluation.py
 
 # Generate publication figures
 python create_bw_publication_figures.py
+```
+
+### SambaNova LLM Consensus Demo
+
+```bash
+# Set up SambaNova environment variables (if not in .bashrc)
+export SAMBASTUDIO_URL=your_sambanova_url
+export SAMBASTUDIO_API_KEY=your_api_key
+
+# Or source from .bashrc
+source ~/.bashrc
+
+# Run LLM-enhanced consensus protocols demo
+python demos/sambanova_consensus_demo.py
+```
+
+### Consensus Experiment Runners
+
+```bash
+# Basic consensus experiment runner
+python demos/consensus_experiment_runner.py --methods pbft tendermint multi_paxos
+
+# Enhanced experiment runner with fault injection
+python demos/enhanced_consensus_experiment_runner.py --config experiment_config.yaml
+
+# Run all consensus methods with custom parameters
+python demos/consensus_experiment_runner.py --methods all --agents 9 --jobs 10 --repetitions 5
 ```
 
 ## 📈 Reproducing Paper Results
@@ -268,6 +297,195 @@ All results include:
 - **Statistical significance testing** (p-values, effect sizes)
 - **Confidence intervals** and variance analysis
 - **Reproducible random seeds** for consistency
+
+## 🧠 LLM-Enhanced Consensus Protocols
+
+### **SambaNova Integration**
+
+This repository includes a cutting-edge implementation of **LLM-enhanced consensus protocols** using SambaNova's Meta-Llama-3-70B model for intelligent job scheduling decisions.
+
+### **Four Consensus Protocol Implementations**
+
+**1. Byzantine Fault Tolerant (BFT)**
+- Multi-phase proposal and voting system
+- Requires 2/3+ agent agreement for consensus
+- Robust against malicious or faulty agents
+- LLM-powered proposal generation and intelligent voting
+
+**2. Raft Consensus**
+- Leader-based distributed consensus
+- Leader election with term management
+- Log replication across follower agents
+- LLM-enhanced leader decision making
+
+**3. Multi-round Negotiation**
+- Iterative proposal refinement (up to 3 rounds)
+- Convergence detection and consensus measurement
+- Adaptive negotiation strategies
+- LLM-driven proposal evolution
+
+**4. Weighted Voting**
+- Specialist agent expertise weighting
+- Multi-factor scoring with confidence levels
+- Domain-specific knowledge integration
+- LLM-based specialized reasoning
+
+### **Agent Specializations**
+
+- **GPU Specialist** (Weight: 1.2): Optimizes GPU-intensive workloads
+- **Memory Expert** (Weight: 1.1): Focuses on high-memory applications
+- **Compute Manager** (Weight: 1.0): Manages CPU-intensive tasks
+- **Storage Coordinator** (Weight: 0.9): Handles I/O-heavy operations
+- **General Coordinator** (Weight: 0.8): Provides balanced decisions
+
+### **LLM Features**
+
+- **Intelligent Proposal Generation**: Context-aware job placement suggestions
+- **Adaptive Voting**: Specialist-informed consensus decisions
+- **Fallback Mechanisms**: Graceful degradation when LLM unavailable
+- **Enhanced Error Handling**: Retry logic with exponential backoff
+- **JSON Response Parsing**: Robust extraction from LLM responses
+
+### **Setup Requirements**
+
+```bash
+# Environment variables (add to ~/.bashrc)
+export SAMBASTUDIO_URL=your_sambanova_endpoint
+export SAMBASTUDIO_API_KEY=your_api_key
+
+# Install LangChain SambaNova integration
+pip install langchain-community
+
+# Run the demo
+source ~/.bashrc
+python demos/sambanova_consensus_demo.py
+```
+
+### **Demo Output Features**
+
+- **Real-time Protocol Comparison**: Side-by-side performance analysis
+- **LLM Failure Analysis**: Detailed statistics on API call success rates
+- **Consensus Quality Metrics**: Quantitative agreement measurements
+- **Performance Ranking**: Automated protocol performance comparison
+- **Visual Indicators**: Color-coded status and progress tracking
+
+## ⚙️ Configurable Experiment Runners
+
+### **Consensus Experiment Runner**
+
+A flexible framework for systematic consensus protocol evaluation with configurable parameters.
+
+**Supported Consensus Methods:**
+- **PBFT**: Practical Byzantine Fault Tolerance
+- **Multi-Paxos**: Crash fault tolerant consensus
+- **Tendermint**: Modern Byzantine consensus with finality
+- **Raft**: Leader-based distributed consensus
+- **Negotiation**: Multi-round iterative consensus
+- **Weighted Voting**: Expertise-based decision making
+- **Bidding**: Economic consensus mechanisms
+- **Gossip**: Epidemic-style information propagation
+
+**Agent Decision Modes:**
+- **Heuristic**: Traditional rule-based agents
+- **LLM**: Large language model enhanced agents
+- **Hybrid**: Mixed pool of heuristic and LLM agents
+
+### **Enhanced Experiment Runner with Fault Injection**
+
+Advanced experiment runner integrating comprehensive fault injection capabilities.
+
+**Fault Scenarios:**
+- **Byzantine Faults**: Malicious agent behavior
+- **Crash Faults**: Agent failures and restarts
+- **Network Partitions**: Communication isolation
+- **Message Delays**: Network latency simulation
+- **Performance Degradation**: Resource exhaustion
+- **Message Corruption**: Communication errors
+
+**Fault Intensity Levels:**
+- **Light**: 1 fault, 20% targets, low severity
+- **Medium**: 2 faults, 30% targets, medium severity
+- **Heavy**: 3 faults, 40% targets, high severity
+- **Chaos**: 5 faults, 60% targets, critical severity
+
+### **Configuration Options**
+
+```yaml
+# Example experiment configuration
+methods: ["pbft", "tendermint", "multi_paxos"]
+agent_decision_mode: "hybrid"  # "heuristic", "llm", "hybrid"
+num_agents: 7
+byzantine_faults: 2
+crash_faults: 1
+num_jobs: 5
+job_types: ["ai", "climate", "genomics", "physics"]
+repetitions: 3
+timeout_seconds: 30
+enable_faults: true
+
+# Fault injection parameters
+fault_scenarios: ["byzantine_cascade", "network_partition"]
+fault_intensity: "medium"
+fault_target_fraction: 0.3
+fault_start_delay: 5.0
+recovery_enabled: true
+recovery_time: 5.0
+```
+
+### **Command Line Usage**
+
+```bash
+# Basic experiment with specific methods
+python demos/consensus_experiment_runner.py \
+  --methods pbft tendermint multi_paxos \
+  --agents 9 --jobs 8 --repetitions 3
+
+# LLM-enhanced agents experiment
+python demos/consensus_experiment_runner.py \
+  --methods all --agent-mode llm \
+  --llm-temperature 0.2 --llm-max-tokens 150
+
+# Hybrid agent experiment
+python demos/consensus_experiment_runner.py \
+  --methods pbft raft weighted_voting \
+  --agent-mode hybrid --detailed-logging
+
+# Fault injection experiment
+python demos/enhanced_consensus_experiment_runner.py \
+  --config demos/fault_experiment_config.yaml \
+  --fault-intensity heavy --save-fault-logs
+
+# Custom fault scenarios
+python demos/enhanced_consensus_experiment_runner.py \
+  --methods tendermint pbft \
+  --fault-scenarios byzantine_cascade network_partition \
+  --fault-target-fraction 0.4 --recovery-time 10.0
+```
+
+### **Output Analysis**
+
+**Standard Metrics:**
+- Success rates and completion percentages
+- Average consensus time and message counts
+- Round complexity and convergence analysis
+- Statistical significance testing
+
+**Fault-Aware Metrics:**
+- Fault resistance and recovery capabilities
+- Impact analysis by fault type
+- Agent availability during consensus
+- Fault correlation with performance degradation
+
+**Generated Files:**
+```
+experiment_results/
+├── experiment_config.json       # Configuration snapshot
+├── experiment_summary.json      # High-level results
+├── raw_results.json            # Detailed per-job results
+├── fault_aware_summary.json    # Fault injection analysis
+├── fault_logs.json             # Detailed fault timeline
+└── fault_results_per_method.json # Method-specific fault impact
+```
 
 ## 📊 Key Results Summary
 
