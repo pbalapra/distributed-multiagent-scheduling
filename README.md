@@ -289,34 +289,6 @@ python main.py --evaluate
 python main.py --help
 ```
 
-## 🧪 Experimental Framework
-
-### Test Configurations
-
-The evaluation framework includes 26 test configurations across 5 dimensions:
-
-1. **Scale Testing** (12 configs): 50-500 jobs, 5-20 agents
-2. **Failure Rate Testing** (4 configs): 5%-35% failure rates
-3. **Failure Pattern Testing** (3 configs): Random, cascading, network partition
-4. **Load Pattern Testing** (3 configs): Constant, burst, Poisson arrivals
-5. **High Load Testing** (4 configs): 50-400 concurrent job bursts
-
-### Evaluation Metrics
-
-- **Job Completion Rate**: Primary success metric (%)
-- **System Availability**: Operational uptime (%)
-- **Fault Tolerance Score**: Composite resilience index (0-100)
-- **Mean Time to Recovery**: Average failure recovery duration
-- **Throughput**: Jobs completed per time unit
-
-### Statistical Analysis
-
-All results include:
-- **Multiple repetitions** (3-5 per configuration)
-- **Statistical significance testing** (p-values, effect sizes)
-- **Confidence intervals** and variance analysis
-- **Reproducible random seeds** for consistency
-
 ## 🛡️ Interactive Fault Tolerance Demo with LLM Integration
 
 ### **Hybrid LLM Fault Tolerance Demo**
