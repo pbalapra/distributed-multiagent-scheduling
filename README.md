@@ -308,38 +308,6 @@ python main.py --help
 ```bash
 # Direct access to specific demos
 python demos/hybrid_llm_demo.py                    # LLM fault tolerance
-python demos/consensus_experiment_runner.py        # Consensus experiments
-
-# Evaluation components
-python evaluation/run_experimental_campaign.py     # Full campaign
-python evaluation/systematic_resilience_evaluation.py  # Core evaluation
-```
-
-### SambaNova LLM Consensus Demo
-
-```bash
-# Set up SambaNova environment variables (if not in .bashrc)
-export SAMBASTUDIO_URL=your_sambanova_url
-export SAMBASTUDIO_API_KEY=your_api_key
-
-# Or source from .bashrc
-source ~/.bashrc
-
-# Run LLM-enhanced consensus protocols demo
-python demos/sambanova_consensus_demo.py
-```
-
-### Consensus Experiment Runners
-
-```bash
-# Basic consensus experiment runner
-python demos/consensus_experiment_runner.py --methods pbft tendermint multi_paxos
-
-# Enhanced experiment runner with fault injection
-python demos/enhanced_consensus_experiment_runner.py --config experiment_config.yaml
-
-# Run all consensus methods with custom parameters
-python demos/consensus_experiment_runner.py --methods all --agents 9 --jobs 10 --repetitions 5
 ```
 
 ## 🧪 Experimental Framework
@@ -429,7 +397,7 @@ export SAMBASTUDIO_API_KEY=your_api_key
 
 # Run the demo
 source ~/.bashrc
-python demos/sambanova_consensus_demo.py
+# Note: sambanova_consensus_demo.py not available in current version
 ```
 
 ### **Demo Output Features**
@@ -656,31 +624,7 @@ recovery_time: 5.0
 ### **Command Line Usage**
 
 ```bash
-# Basic experiment with specific methods
-python demos/consensus_experiment_runner.py \
-  --methods pbft tendermint multi_paxos \
-  --agents 9 --jobs 8 --repetitions 3
-
-# LLM-enhanced agents experiment
-python demos/consensus_experiment_runner.py \
-  --methods all --agent-mode llm \
-  --llm-temperature 0.2 --llm-max-tokens 150
-
-# Hybrid agent experiment
-python demos/consensus_experiment_runner.py \
-  --methods pbft raft weighted_voting \
-  --agent-mode hybrid --detailed-logging
-
-# Fault injection experiment
-python demos/enhanced_consensus_experiment_runner.py \
-  --config demos/fault_experiment_config.yaml \
-  --fault-intensity heavy --save-fault-logs
-
-# Custom fault scenarios
-python demos/enhanced_consensus_experiment_runner.py \
-  --methods tendermint pbft \
-  --fault-scenarios byzantine_cascade network_partition \
-  --fault-target-fraction 0.4 --recovery-time 10.0
+# Note: Consensus experiment runners not available in current version
 ```
 
 ### **Output Analysis**
