@@ -93,7 +93,6 @@ This approach represents a paradigm shift from traditional centralized HPC sched
 ## 🚀 Key Features
 
 - **Distributed Multi-Agent Architecture**: Autonomous agents with competitive bidding and fault tolerance
-- **LLM-Enhanced Consensus Protocols**: SambaNova-powered intelligent consensus with 4 protocol implementations
 - **Discrete Event Simulation**: High-performance event-driven scheduling simulation
 - **Comprehensive Evaluation Framework**: 26 test configurations across 5 experimental dimensions
 - **Fault Injection & Recovery**: Configurable failure patterns and autonomous recovery mechanisms
@@ -201,19 +200,6 @@ The system now features a **streamlined command-line interface** through `main.p
 🔬 **Research Evaluation**: `--evaluate` runs comprehensive experimental campaigns  
 📚 **Educational**: Rich colored output with step-by-step guidance  
 
-```bash
-# See all available options and examples
-python main.py --help
-
-# Quick environment check
-python main.py --check
-
-# Setup environment variables (SambaNova credentials)
-python main.py --setup-env
-
-# Run basic system overview
-python main.py
-```
 
 ### **🔐 Environment Variables**
 
@@ -303,13 +289,6 @@ python main.py --evaluate
 python main.py --help
 ```
 
-### **Advanced Usage Examples**
-
-```bash
-# Direct access to specific demos
-python demos/hybrid_llm_demo.py                    # LLM fault tolerance
-```
-
 ## 🧪 Experimental Framework
 
 ### Test Configurations
@@ -338,76 +317,6 @@ All results include:
 - **Confidence intervals** and variance analysis
 - **Reproducible random seeds** for consistency
 
-## 🧠 LLM-Enhanced Consensus Protocols
-
-### **SambaNova Integration**
-
-This repository includes a cutting-edge implementation of **LLM-enhanced consensus protocols** using SambaNova's Meta-Llama-3-70B model for intelligent job scheduling decisions.
-
-### **Four Consensus Protocol Implementations**
-
-**1. Byzantine Fault Tolerant (BFT)**
-- Multi-phase proposal and voting system
-- Requires 2/3+ agent agreement for consensus
-- Robust against malicious or faulty agents
-- LLM-powered proposal generation and intelligent voting
-
-**2. Raft Consensus**
-- Leader-based distributed consensus
-- Leader election with term management
-- Log replication across follower agents
-- LLM-enhanced leader decision making
-
-**3. Multi-round Negotiation**
-- Iterative proposal refinement (up to 3 rounds)
-- Convergence detection and consensus measurement
-- Adaptive negotiation strategies
-- LLM-driven proposal evolution
-
-**4. Weighted Voting**
-- Specialist agent expertise weighting
-- Multi-factor scoring with confidence levels
-- Domain-specific knowledge integration
-- LLM-based specialized reasoning
-
-### **Agent Specializations**
-
-- **GPU Specialist** (Weight: 1.2): Optimizes GPU-intensive workloads
-- **Memory Expert** (Weight: 1.1): Focuses on high-memory applications
-- **Compute Manager** (Weight: 1.0): Manages CPU-intensive tasks
-- **Storage Coordinator** (Weight: 0.9): Handles I/O-heavy operations
-- **General Coordinator** (Weight: 0.8): Provides balanced decisions
-
-### **LLM Features**
-
-- **Intelligent Proposal Generation**: Context-aware job placement suggestions
-- **Adaptive Voting**: Specialist-informed consensus decisions
-- **Fallback Mechanisms**: Graceful degradation when LLM unavailable
-- **Enhanced Error Handling**: Retry logic with exponential backoff
-- **JSON Response Parsing**: Robust extraction from LLM responses
-
-### **Setup Requirements**
-
-```bash
-# Environment variables (add to ~/.bashrc)
-export SAMBASTUDIO_URL=your_sambanova_endpoint
-export SAMBASTUDIO_API_KEY=your_api_key
-
-# Dependencies already included in requirements.txt
-
-# Run the demo
-source ~/.bashrc
-# Note: sambanova_consensus_demo.py not available in current version
-```
-
-### **Demo Output Features**
-
-- **Real-time Protocol Comparison**: Side-by-side performance analysis
-- **LLM Failure Analysis**: Detailed statistics on API call success rates
-- **Consensus Quality Metrics**: Quantitative agreement measurements
-- **Performance Ranking**: Automated protocol performance comparison
-- **Visual Indicators**: Color-coded status and progress tracking
-
 ## 🛡️ Interactive Fault Tolerance Demo with LLM Integration
 
 ### **Hybrid LLM Fault Tolerance Demo**
@@ -423,31 +332,14 @@ This advanced demo showcases multi-agent fault-tolerant consensus with full **LL
 - **Visual Recovery Monitoring**: Real-time fault injection and recovery progress tracking
 - **Consensus Protocol Analysis**: Detailed breakdown of voting, proposals, and consensus outcomes
 
-### **Setup Requirements**
-
-```bash
-# 1. Configure SambaNova environment variables
-export SAMBASTUDIO_URL=your_sambanova_endpoint
-export SAMBASTUDIO_API_KEY=your_api_key
-
-# Add to ~/.bashrc for persistence
-echo 'export SAMBASTUDIO_URL=your_sambanova_endpoint' >> ~/.bashrc
-echo 'export SAMBASTUDIO_API_KEY=your_api_key' >> ~/.bashrc
-
-# 2. Source environment variables
-source ~/.bashrc
-
-# 3. Dependencies already included in requirements.txt
-```
-
 ### **Running the Demo**
 
 ```bash
-# Navigate to demos directory
-cd demos/
+# Option 1: Using main.py (recommended)
+python main.py --interactive
 
-# Run the hybrid LLM fault tolerance demo
-python hybrid_llm_demo.py
+# Option 2: Direct execution
+python demos/hybrid_llm_demo.py
 ```
 
 ### **Demo Scenarios**
@@ -541,22 +433,18 @@ LLM_TEMPERATURE = 0.3       # Response determinism
 MAX_TOKENS = 1000           # Response length limit
 ```
 
-### **Troubleshooting**
+### **Environment Setup**
 
-**API Authentication Issues:**
+For full LLM functionality, configure SambaNova credentials:
 ```bash
-# Verify environment variables are set
-echo $SAMBASTUDIO_URL
-echo $SAMBASTUDIO_API_KEY
+# Check current setup
+python main.py --check
 
-# Re-source bashrc if variables missing
-source ~/.bashrc
+# Interactive environment setup  
+python main.py --setup-env
 ```
 
-**Fallback Mode:**
-- If SambaNova API is unavailable, demo automatically uses simulated responses
-- All educational features remain functional with realistic LLM-style outputs
-- No functionality is lost in fallback mode
+**Fallback Mode**: If SambaNova API is unavailable, the demo automatically uses simulated responses with full educational functionality.
 
 ## ⚙️ Configurable Experiment Runners
 
@@ -650,56 +538,6 @@ experiment_results/
 ├── fault_aware_summary.json    # Fault injection analysis
 ├── fault_logs.json             # Detailed fault timeline
 └── fault_results_per_method.json # Method-specific fault impact
-```
-
-## 🔬 Advanced Usage
-
-### Custom Evaluation Scenarios
-
-```python
-from evaluation.systematic_resilience_evaluation import ExperimentConfig, run_resilience_experiment
-
-# Define custom experiment
-config = ExperimentConfig(
-    name="Custom-Test",
-    num_jobs=100,
-    num_agents=10,
-    agent_failure_rate=0.2,
-    scheduler_failure_rate=0.1,
-    job_arrival_pattern='burst',
-    failure_pattern='cascading',
-    simulation_time=150.0,
-    repetitions=5
-)
-
-# Run evaluation
-results = run_resilience_experiment(config)
-```
-
-### Custom Agent Behavior
-
-```python
-from src.agents.resource_agent import ResourceAgent
-
-class CustomAgent(ResourceAgent):
-    def _calculate_job_score(self, job_data):
-        # Custom scoring algorithm
-        score = super()._calculate_job_score(job_data)
-        # Add custom logic
-        return modified_score
-```
-
-### Fault Injection Patterns
-
-```python
-from evaluation.systematic_resilience_evaluation import inject_failure_pattern
-
-# Custom failure injection
-def custom_failure_pattern(simulation, pattern, tracker, simulation_time):
-    agents = list(simulation.agents.values())
-    # Implement custom failure timing and patterns
-    for agent in agents:
-        agent.failure_time = custom_failure_schedule()
 ```
 
 ## 📄 Citation
