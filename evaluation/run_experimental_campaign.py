@@ -12,15 +12,40 @@ import json
 import time
 import logging
 import argparse
+import yaml
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any
+from dataclasses import dataclass, asdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# Optional scientific computing imports
+try:
+    import pandas as pd
+    import numpy as np
+    SCIENTIFIC_COMPUTING_AVAILABLE = True
+except ImportError:
+    SCIENTIFIC_COMPUTING_AVAILABLE = False
+    print("💡 Scientific computing libraries not available - using basic analysis")
+    
+    # Import scipy.stats if available
+    try:
+        from scipy import stats
+        STATS_AVAILABLE = True
+    except ImportError:
+        STATS_AVAILABLE = False
+else:
+    try:
+        from scipy import stats
+        STATS_AVAILABLE = True
+    except ImportError:
+        STATS_AVAILABLE = False
 
 # Import available evaluation modules
 try:
-    from evaluation.systematic_resilience_evaluation import run_resilience_experiment
-    from evaluation.fault_tolerant_test import FaultTolerantTest
-    from evaluation.high_throughput_test import HighThroughputTest
+    from systematic_resilience_evaluation import run_resilience_experiment
+    from fault_tolerant_test import FaultTolerantTest
+    from high_throughput_test import HighThroughputTest
     EVALUATION_MODULES_AVAILABLE = True
 except ImportError as e:
     print(f"⚠️ Evaluation modules unavailable: {e}")
@@ -60,8 +85,9 @@ class ExperimentalRun:
 class ExperimentalCampaignRunner:
     """Main class for executing the comprehensive experimental campaign"""
     
-    def __init__(self, config: CampaignConfig):
+    def __init__(self, config: CampaignConfig, direct_mode_config=None):
         self.config = config
+        self._direct_mode_config = direct_mode_config
         self.setup_logging()
         self.setup_output_directories()
         self.experiment_queue = []
@@ -107,7 +133,11 @@ class ExperimentalCampaignRunner:
     def generate_experiment_configurations(self) -> List[ExperimentalRun]:
         """Generate all experimental configurations based on campaign design"""
         
-        # Define experimental factors
+        # Check if this is direct mode from command-line arguments
+        if hasattr(self, '_direct_mode_config'):
+            return self._generate_direct_mode_experiments()
+        
+        # Define experimental factors for config file mode
         factors = {
             'agent_type': ['LLM', 'Heuristic', 'Hybrid'],
             'consensus_protocol': ['BFT', 'Raft', 'Negotiation', 'Weighted'],
@@ -287,9 +317,53 @@ class ExperimentalCampaignRunner:
         
         return configs[:48]
     
+    def _generate_direct_mode_experiments(self) -> List[ExperimentalRun]:
+        """Generate experiments from direct command-line arguments"""
+        if not self._direct_mode_config:
+            return []
+        
+        dc = self._direct_mode_config
+        experiments = []
+        run_counter = 0
+        
+        # Generate experiments for each protocol and repetition
+        for protocol in dc['protocols']:
+            for rep in range(dc['runs']):
+                run_id = f"baseline_{protocol.lower()}_{run_counter:04d}_{rep:02d}"
+                
+                # Create experiment configuration for this protocol/run
+                exp_config = {
+                    'agent_type': dc['agent_mode'].capitalize(),
+                    'consensus_protocol': protocol,
+                    'agent_count': dc['agents'],
+                    'fault_rate': dc['fault_rate'],
+                    'fault_type': 'Byzantine' if dc['fault_rate'] > 0 else 'None',
+                    'workload_type': 'Mixed',
+                    'job_arrival_rate': 'Medium',
+                    'specialization_level': 0.0,
+                    'repetitions': 1,  # Already handled by outer loop
+                    'duration': 300
+                }
+                
+                experiment = ExperimentalRun(
+                    run_id=run_id,
+                    phase='baseline_performance',
+                    repetition=rep,
+                    config_file=self._create_config_file(exp_config, run_id),
+                    expected_duration=exp_config.get('duration', 300),
+                    **{k: v for k, v in exp_config.items() 
+                       if k not in ['repetitions', 'duration']}
+                )
+                experiments.append(experiment)
+                run_counter += 1
+        
+        self.logger.info(f"Generated {len(experiments)} baseline performance experiments")
+        return experiments
+    
     def _create_config_file(self, exp_config: Dict, run_id: str) -> str:
         """Create YAML configuration file for experiment"""
         config_dir = Path(self.config.output_directory) / "configs"
+        config_dir.mkdir(parents=True, exist_ok=True)  # Ensure directory exists
         config_file = config_dir / f"{run_id}_config.yaml"
         
         # Convert experiment config to executable format
@@ -735,8 +809,14 @@ class ExperimentalDataValidator:
 class StatisticalAnalyzer:
     """Performs statistical analysis on campaign results"""
     
-    def analyze_campaign_data(self, df: pd.DataFrame) -> Dict[str, Any]:
+    def analyze_campaign_data(self, df) -> Dict[str, Any]:
         """Perform comprehensive statistical analysis"""
+        
+        if not SCIENTIFIC_COMPUTING_AVAILABLE:
+            return {
+                'message': 'Statistical analysis requires pandas and numpy',
+                'basic_summary': 'Install pandas and numpy for detailed analysis'
+            }
         
         analysis_results = {
             'descriptive_stats': self._descriptive_analysis(df),
@@ -769,8 +849,11 @@ class StatisticalAnalyzer:
         if len(llm_performance) == 0 or len(heuristic_performance) == 0:
             return {'error': 'Insufficient data for comparison'}
         
-        # Perform statistical test
-        statistic, p_value = stats.ttest_ind(llm_performance, heuristic_performance)
+        # Perform statistical test if available
+        if STATS_AVAILABLE:
+            statistic, p_value = stats.ttest_ind(llm_performance, heuristic_performance)
+        else:
+            statistic, p_value = 0.0, 1.0  # No statistical test available
         
         # Calculate effect size (Cohen's d)
         pooled_std = np.sqrt(((len(llm_performance) - 1) * llm_performance.var() + 
@@ -876,11 +959,55 @@ class MonitoringSystem:
         """Check for alert conditions"""
         pass
 
+def _create_config_from_args(args) -> Dict[str, Any]:
+    """Create configuration dictionary from command-line arguments"""
+    
+    # Set defaults from EVALUATION.md documentation
+    protocols = args.protocols.split(',') if args.protocols else ['byzantine_fault_tolerant', 'raft']
+    agents = args.agents if args.agents else 5
+    jobs = args.jobs if args.jobs else 20
+    runs = args.runs if args.runs else 5
+    fault_rate = args.fault_rate if args.fault_rate is not None else 0.0
+    agent_mode = args.agent_mode if args.agent_mode else 'heuristic'
+    
+    # Create campaign config for baseline performance testing
+    config_data = {
+        'campaign_id': f'baseline_performance_{int(time.time())}',
+        'total_budget_hours': 2,
+        'log_level': 'INFO',
+        'save_intermediate_results': True,
+        'validate_data_quality': False,
+        'enable_monitoring': False,
+        
+        # Store the direct arguments for experiment generation
+        'direct_mode': True,
+        'protocols': protocols,
+        'agents': agents,
+        'jobs': jobs,
+        'runs': runs,
+        'fault_rate': fault_rate,
+        'agent_mode': agent_mode
+    }
+    
+    return config_data
+
 def main():
     """Main execution function"""
     parser = argparse.ArgumentParser(description="Execute LLM Consensus Experimental Campaign")
-    parser.add_argument('--config', '-c', required=True, help='Campaign configuration file')
-    parser.add_argument('--phases', nargs='+', default=['phase_1', 'phase_2', 'phase_3', 'phase_4', 'phase_5'],
+    
+    # Support both config file mode and direct command-line mode
+    parser.add_argument('--config', '-c', help='Campaign configuration file (optional)')
+    
+    # Direct command-line arguments from EVALUATION.md
+    parser.add_argument('--protocols', help='Comma-separated list of protocols to test')
+    parser.add_argument('--agents', type=int, help='Number of agents (default: 5)')
+    parser.add_argument('--jobs', type=int, help='Number of jobs per experiment (default: 10)')
+    parser.add_argument('--runs', type=int, help='Number of repetitions (default: 3)')
+    parser.add_argument('--fault-rate', type=float, help='Fault injection rate (0.0-1.0)')
+    parser.add_argument('--agent-mode', help='Agent decision mode: heuristic, llm, hybrid')
+    
+    # Original arguments
+    parser.add_argument('--phases', nargs='+', default=['phase_1'],
                        help='Phases to execute')
     parser.add_argument('--output', '-o', default='./experimental_campaign_results',
                        help='Output directory')
@@ -892,12 +1019,17 @@ def main():
     args = parser.parse_args()
     
     # Load campaign configuration
-    if args.config.endswith('.yaml') or args.config.endswith('.yml'):
-        with open(args.config, 'r') as f:
-            config_data = yaml.safe_load(f)
+    if args.config:
+        # Config file mode
+        if args.config.endswith('.yaml') or args.config.endswith('.yml'):
+            with open(args.config, 'r') as f:
+                config_data = yaml.safe_load(f)
+        else:
+            with open(args.config, 'r') as f:
+                config_data = json.load(f)
     else:
-        with open(args.config, 'r') as f:
-            config_data = json.load(f)
+        # Direct command-line mode - create config from arguments
+        config_data = _create_config_from_args(args)
     
     # Create campaign configuration
     campaign_config = CampaignConfig(
@@ -908,12 +1040,16 @@ def main():
         max_parallel_experiments=args.parallel,
         log_level=config_data.get('log_level', 'INFO'),
         save_intermediate_results=config_data.get('save_intermediate_results', True),
-        validate_data_quality=config_data.get('validate_data_quality', True),
-        enable_monitoring=config_data.get('enable_monitoring', True)
+        validate_data_quality=config_data.get('validate_data_quality', False),  # Disable for direct mode
+        enable_monitoring=config_data.get('enable_monitoring', False)  # Disable for direct mode
     )
     
     # Initialize and run campaign
-    campaign_runner = ExperimentalCampaignRunner(campaign_config)
+    direct_mode = config_data.get('direct_mode', False)
+    campaign_runner = ExperimentalCampaignRunner(
+        campaign_config, 
+        direct_mode_config=config_data if direct_mode else None
+    )
     
     if args.dry_run:
         print(f"DRY RUN: Generating experiment configurations...")

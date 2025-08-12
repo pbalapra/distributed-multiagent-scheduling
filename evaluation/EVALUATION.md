@@ -23,7 +23,7 @@ The evaluation system provides:
 
 2. **Dependencies**: Install required packages:
    ```bash
-   pip install pyyaml numpy matplotlib seaborn pandas
+   pip install pyyaml numpy matplotlib seaborn pandas langchain-community python-dotenv
    ```
 
 ### Basic Evaluation Run
@@ -35,11 +35,83 @@ python run_experimental_campaign.py
 
 This runs a basic evaluation campaign with default settings.
 
+### 🧪 **LLM Experimental Framework** (Recommended)
+
+For comprehensive experimental campaigns following the EXPERIMENTS.md design:
+
+```bash
+# Quick test to verify setup
+python llm_experimental_framework.py --quick
+
+# LLM vs Heuristic comparison
+python llm_experimental_framework.py --llm-vs-heuristic
+
+# Complete 5-phase experimental campaign (1620 experiments)
+python llm_experimental_framework.py --full-campaign
+```
+
 ## Evaluation Scripts
+
+### `llm_experimental_framework.py` ⭐ **Primary Framework**
+
+The advanced LLM-enhanced experimental framework implementing the comprehensive 5-phase design from EXPERIMENTS.md.
+
+#### **🔬 5-Phase Experimental Design**
+
+| Phase | Focus | Duration | Experiments | Repetitions |
+|-------|-------|----------|-------------|-------------|
+| **Phase 1** | Baseline Establishment | 2 weeks | 120 | 5 |
+| **Phase 2** | LLM Performance Evaluation | 4 weeks | 240 | 3 |
+| **Phase 3** | Specialization Impact Analysis | 2 weeks | 120 | 5 |
+| **Phase 4** | Scalability and Stress Testing | 2 weeks | 96 | 2 |
+| **Phase 5** | Cross-Validation and Robustness | 1 week | 48 | 10 |
+
+**Total: 624 configurations × repetitions = 1,620 experimental runs**
+
+#### **🎯 Research Questions**
+
+- **RQ1**: LLM vs. Heuristic Performance (15-25% improvement expected)
+- **RQ2**: Consensus Protocol Effectiveness (BFT vs Raft comparison)
+- **RQ3**: Agent Specialization Impact (30-40% accuracy improvement)
+- **RQ4**: Scalability & Fault Resilience (>80% at 50+ agents, >70% at 40% faults)
+
+#### **Key Features:**
+- **5-phase experimental design** following EXPERIMENTS.md specifications
+- **Real SambaNova LLM integration** with intelligent fallbacks
+- **Research question tracking** and statistical analysis
+- **Agent specialization** (GPU, Memory, Compute, Storage, Network)
+- **Comprehensive fault injection** (Byzantine, Crash, Network, Performance)
+- **Publication-ready results** with statistical validation
+
+#### **Usage:**
+```bash
+# Quick verification test (5 jobs, 3 agents)
+python llm_experimental_framework.py --quick
+
+# LLM vs Heuristic comparison (focused evaluation)
+python llm_experimental_framework.py --llm-vs-heuristic
+
+# Complete 5-phase campaign (full EXPERIMENTS.md design)
+python llm_experimental_framework.py --full-campaign
+
+# Custom campaign with specific name and output directory
+python llm_experimental_framework.py --full-campaign \
+  --campaign-name "my_experiment_2025" \
+  --output-dir "./my_results"
+```
+
+#### **Command Line Options:**
+```
+--campaign-name NAME        Name for the experimental campaign
+--output-dir DIR           Results output directory (default: ./experimental_results)
+--quick                    Run quick test (5 jobs, 3 agents)
+--llm-vs-heuristic        Run focused LLM vs Heuristic comparison
+--full-campaign           Run complete 5-phase campaign (1620 experiments)
+```
 
 ### `run_experimental_campaign.py`
 
-The main experimental campaign runner that orchestrates comprehensive evaluations.
+Legacy experimental campaign runner for basic evaluations.
 
 **Key Features:**
 - Multiple consensus protocol testing (BFT, Raft, Negotiation, Weighted Voting)
@@ -130,27 +202,59 @@ python run_experimental_campaign.py --config example_config.yaml
 
 ## Evaluation Scenarios
 
-### 1. Baseline Performance Testing
-Tests consensus protocols under normal operating conditions:
+### **Recommended: 5-Phase Experimental Campaign**
+
+Following the comprehensive EXPERIMENTS.md design:
+
 ```bash
+# Complete research-grade evaluation (1620 experiments)
+python llm_experimental_framework.py --full-campaign
+
+# This automatically runs all 5 phases:
+# Phase 1: Baseline (120 experiments × 5 reps = 600 runs)
+# Phase 2: LLM Evaluation (240 experiments × 3 reps = 720 runs) 
+# Phase 3: Specialization (120 experiments × 5 reps = 600 runs)
+# Phase 4: Scalability (96 experiments × 2 reps = 192 runs)
+# Phase 5: Validation (48 experiments × 10 reps = 480 runs)
+```
+
+### **Quick Evaluation Scenarios**
+
+#### 1. Baseline Performance Testing
+```bash
+# Using new framework (recommended)
+python llm_experimental_framework.py --quick
+
+# Using legacy framework  
 python run_experimental_campaign.py \
   --protocols "byzantine_fault_tolerant,raft" \
   --agents 5 --jobs 20 --runs 5 \
   --fault-rate 0.0
 ```
 
-### 2. Fault Tolerance Evaluation
-Injects various fault types to test resilience:
+#### 2. LLM vs Heuristic Comparison  
 ```bash
+# Comprehensive LLM vs Heuristic analysis (recommended)
+python llm_experimental_framework.py --llm-vs-heuristic
+
+# Legacy approach with separate runs
+python run_experimental_campaign.py --agent-mode heuristic --output-dir "results/heuristic"
+python run_experimental_campaign.py --agent-mode llm --output-dir "results/llm"
+python run_experimental_campaign.py --agent-mode hybrid --output-dir "results/hybrid"
+```
+
+#### 3. Fault Tolerance Evaluation
+```bash
+# Legacy framework fault injection
 python run_experimental_campaign.py \
   --protocols "byzantine_fault_tolerant,raft" \
   --agents 7 --jobs 15 --runs 10 \
   --fault-rate 0.3
 ```
 
-### 3. Scalability Testing
-Tests performance with increasing agent counts:
+#### 4. Scalability Testing  
 ```bash
+# Legacy framework scalability sweep
 for agents in 3 5 7 10 15; do
   python run_experimental_campaign.py \
     --agents $agents --jobs 10 --runs 3 \
@@ -158,30 +262,55 @@ for agents in 3 5 7 10 15; do
 done
 ```
 
-### 4. LLM vs Heuristic Comparison
-Compares AI-enhanced vs traditional decision making:
-```bash
-# Heuristic agents
-python run_experimental_campaign.py \
-  --agent-mode heuristic \
-  --output-dir "results/heuristic"
-
-# LLM agents  
-python run_experimental_campaign.py \
-  --agent-mode llm \
-  --output-dir "results/llm"
-
-# Hybrid agents
-python run_experimental_campaign.py \
-  --agent-mode hybrid \
-  --output-dir "results/hybrid"
-```
+**Note**: The new `llm_experimental_framework.py` includes comprehensive fault injection, scalability testing, and LLM comparison as part of the 5-phase design.
 
 ## Results and Analysis
 
-### Output Structure
+### **5-Phase Campaign Output Structure**
 
-Each evaluation run creates:
+The `llm_experimental_framework.py` creates comprehensive results following EXPERIMENTS.md:
+
+```
+experimental_results_TIMESTAMP/
+├── campaign_config.yaml           # Complete campaign configuration
+├── phase_summaries/               # Phase-specific analysis
+│   ├── phase_1_baseline_report.json
+│   ├── phase_2_llm_evaluation_report.json
+│   ├── phase_3_specialization_report.json
+│   ├── phase_4_scalability_report.json
+│   └── phase_5_validation_report.json
+├── research_questions/            # RQ-specific analysis
+│   ├── rq1_llm_vs_heuristic_analysis.json
+│   ├── rq2_protocol_effectiveness.json
+│   ├── rq3_specialization_impact.json
+│   └── rq4_scalability_resilience.json
+├── statistical_analysis/         # Comprehensive statistical tests
+│   ├── anova_results.json
+│   ├── t_test_comparisons.json
+│   ├── effect_sizes.json
+│   └── confidence_intervals.json
+├── visualizations/               # Publication-ready plots
+│   ├── llm_vs_heuristic_comparison.png
+│   ├── protocol_effectiveness_radar.png
+│   ├── specialization_benefits.png
+│   ├── scalability_curves.png
+│   └── fault_tolerance_heatmap.png
+├── raw_data/                     # All experimental data
+│   ├── phase_1/
+│   ├── phase_2/
+│   ├── phase_3/
+│   ├── phase_4/
+│   └── phase_5/
+├── campaign_summary.md           # Executive summary
+├── detailed_results.csv          # Combined dataset  
+└── logs/
+    ├── campaign_execution.log
+    └── phase_logs/
+```
+
+### **Legacy Output Structure**
+
+Each `run_experimental_campaign.py` evaluation creates:
 ```
 results/
 ├── experiment_TIMESTAMP/
