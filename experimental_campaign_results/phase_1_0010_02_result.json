@@ -1,0 +1,233 @@
+{
+  "experiment_id": "phase_1_0010_02",
+  "config": {
+    "experiment_id": "phase_1_0010_02",
+    "test_type": "TestType.PHASE_1_BASELINE",
+    "agent_type": "AgentType.HEURISTIC",
+    "consensus_protocol": "ConsensusProtocol.BYZANTINE_FAULT_TOLERANT",
+    "agent_count": 10,
+    "job_count": 15,
+    "fault_type": "FaultType.BYZANTINE",
+    "fault_intensity": 0.4,
+    "duration_seconds": 300,
+    "specialization_enabled": true,
+    "llm_temperature": 0.0,
+    "repetition": 2
+  },
+  "success_rate": 0.0,
+  "consensus_time_avg": 2.773602803548177e-05,
+  "consensus_time_std": 1.3810910540408106e-06,
+  "throughput": 33341.049284578694,
+  "fault_detection_rate": 0.0,
+  "recovery_time_avg": 0.0,
+  "llm_response_time_avg": 0.0,
+  "llm_success_rate": 0.0,
+  "resource_utilization": 0.0,
+  "agent_performance": {
+    "Agent-01-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-02-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-03-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-04-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-05-Network": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-06-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-07-Memory": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-08-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-09-Storage": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-10-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    }
+  },
+  "timeline": [
+    {
+      "timestamp": 1754972992.3933709,
+      "event": "job_processed",
+      "job_id": "job_001",
+      "success": false,
+      "consensus_time": 3.123283386230469e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.3934028,
+      "event": "job_processed",
+      "job_id": "job_002",
+      "success": false,
+      "consensus_time": 2.8133392333984375e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.3934321,
+      "event": "job_processed",
+      "job_id": "job_003",
+      "success": false,
+      "consensus_time": 2.6941299438476562e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393461,
+      "event": "job_processed",
+      "job_id": "job_004",
+      "success": false,
+      "consensus_time": 2.6941299438476562e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393493,
+      "event": "job_processed",
+      "job_id": "job_005",
+      "success": false,
+      "consensus_time": 2.9087066650390625e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393522,
+      "event": "job_processed",
+      "job_id": "job_006",
+      "success": false,
+      "consensus_time": 2.6702880859375e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.3935518,
+      "event": "job_processed",
+      "job_id": "job_007",
+      "success": false,
+      "consensus_time": 2.7179718017578125e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393582,
+      "event": "job_processed",
+      "job_id": "job_008",
+      "success": false,
+      "consensus_time": 2.8133392333984375e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393611,
+      "event": "job_processed",
+      "job_id": "job_009",
+      "success": false,
+      "consensus_time": 2.7894973754882812e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.39364,
+      "event": "job_processed",
+      "job_id": "job_010",
+      "success": false,
+      "consensus_time": 2.6702880859375e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.3936691,
+      "event": "job_processed",
+      "job_id": "job_011",
+      "success": false,
+      "consensus_time": 2.7179718017578125e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393698,
+      "event": "job_processed",
+      "job_id": "job_012",
+      "success": false,
+      "consensus_time": 2.7179718017578125e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.3937259,
+      "event": "job_processed",
+      "job_id": "job_013",
+      "success": false,
+      "consensus_time": 2.574920654296875e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.393756,
+      "event": "job_processed",
+      "job_id": "job_014",
+      "success": false,
+      "consensus_time": 2.6941299438476562e-05,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972992.3937879,
+      "event": "job_processed",
+      "job_id": "job_015",
+      "success": false,
+      "consensus_time": 3.0040740966796875e-05,
+      "decision": null
+    }
+  ],
+  "error_log": [],
+  "start_time": "2025-08-12 00:29:52.393338",
+  "end_time": "2025-08-12 00:29:52.393789"
+}

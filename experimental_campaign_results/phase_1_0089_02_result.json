@@ -1,0 +1,553 @@
+{
+  "experiment_id": "phase_1_0089_02",
+  "config": {
+    "experiment_id": "phase_1_0089_02",
+    "test_type": "TestType.PHASE_1_BASELINE",
+    "agent_type": "AgentType.HEURISTIC",
+    "consensus_protocol": "ConsensusProtocol.WEIGHTED_VOTING",
+    "agent_count": 50,
+    "job_count": 15,
+    "fault_type": "FaultType.BYZANTINE",
+    "fault_intensity": 0.5,
+    "duration_seconds": 300,
+    "specialization_enabled": true,
+    "llm_temperature": 0.0,
+    "repetition": 2
+  },
+  "success_rate": 0.0,
+  "consensus_time_avg": 0.00012378692626953126,
+  "consensus_time_std": 4.598615839654747e-06,
+  "throughput": 7861.371985505435,
+  "fault_detection_rate": 0.0,
+  "recovery_time_avg": 0.0,
+  "llm_response_time_avg": 0.0,
+  "llm_success_rate": 0.0,
+  "resource_utilization": 0.0,
+  "agent_performance": {
+    "Agent-01-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-02-Memory": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-03-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-04-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-05-Network": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-06-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-07-Memory": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-08-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-09-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-10-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-11-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-12-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-13-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-14-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-15-Network": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-16-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-17-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-18-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-19-Storage": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-20-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-21-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-22-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-23-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-24-Storage": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-25-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-26-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-27-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-28-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-29-Storage": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-30-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-31-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-32-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-33-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-34-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-35-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-36-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-37-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-38-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-39-Storage": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-40-Network": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-41-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-42-Memory": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-43-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-44-Storage": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-45-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-46-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-47-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-48-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-49-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-50-Network": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    }
+  },
+  "timeline": [
+    {
+      "timestamp": 1754972993.106681,
+      "event": "job_processed",
+      "job_id": "job_001",
+      "success": false,
+      "consensus_time": 0.00012803077697753906,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.106806,
+      "event": "job_processed",
+      "job_id": "job_002",
+      "success": false,
+      "consensus_time": 0.00012087821960449219,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.1069288,
+      "event": "job_processed",
+      "job_id": "job_003",
+      "success": false,
+      "consensus_time": 0.0001201629638671875,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.107051,
+      "event": "job_processed",
+      "job_id": "job_004",
+      "success": false,
+      "consensus_time": 0.00011897087097167969,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.1071901,
+      "event": "job_processed",
+      "job_id": "job_005",
+      "success": false,
+      "consensus_time": 0.00013494491577148438,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.1073148,
+      "event": "job_processed",
+      "job_id": "job_006",
+      "success": false,
+      "consensus_time": 0.00012111663818359375,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.107442,
+      "event": "job_processed",
+      "job_id": "job_007",
+      "success": false,
+      "consensus_time": 0.00012421607971191406,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.107566,
+      "event": "job_processed",
+      "job_id": "job_008",
+      "success": false,
+      "consensus_time": 0.00012111663818359375,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.107693,
+      "event": "job_processed",
+      "job_id": "job_009",
+      "success": false,
+      "consensus_time": 0.00012302398681640625,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.10782,
+      "event": "job_processed",
+      "job_id": "job_010",
+      "success": false,
+      "consensus_time": 0.0001227855682373047,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.107955,
+      "event": "job_processed",
+      "job_id": "job_011",
+      "success": false,
+      "consensus_time": 0.00013184547424316406,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.108086,
+      "event": "job_processed",
+      "job_id": "job_012",
+      "success": false,
+      "consensus_time": 0.0001270771026611328,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.108212,
+      "event": "job_processed",
+      "job_id": "job_013",
+      "success": false,
+      "consensus_time": 0.00012373924255371094,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.108334,
+      "event": "job_processed",
+      "job_id": "job_014",
+      "success": false,
+      "consensus_time": 0.00011897087097167969,
+      "decision": null
+    },
+    {
+      "timestamp": 1754972993.108458,
+      "event": "job_processed",
+      "job_id": "job_015",
+      "success": false,
+      "consensus_time": 0.00011992454528808594,
+      "decision": null
+    }
+  ],
+  "error_log": [],
+  "start_time": "2025-08-12 00:29:53.106549",
+  "end_time": "2025-08-12 00:29:53.108458"
+}

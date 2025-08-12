@@ -1,0 +1,11 @@
+{
+  "campaign_id": "baseline_performance_1754971251",
+  "completion_time": "2025-08-12T00:00:51.118710",
+  "total_experiments": 10,
+  "completed_experiments": 0,
+  "failed_experiments": 10,
+  "output_directory": "baseline_results",
+  "phases": [
+    "phase_1"
+  ]
+}

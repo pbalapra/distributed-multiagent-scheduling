@@ -1,0 +1,233 @@
+{
+  "experiment_id": "phase_1_0009_04",
+  "config": {
+    "experiment_id": "phase_1_0009_04",
+    "test_type": "TestType.PHASE_1_BASELINE",
+    "agent_type": "AgentType.HEURISTIC",
+    "consensus_protocol": "ConsensusProtocol.BYZANTINE_FAULT_TOLERANT",
+    "agent_count": 10,
+    "job_count": 15,
+    "fault_type": "FaultType.BYZANTINE",
+    "fault_intensity": 0.3,
+    "duration_seconds": 300,
+    "specialization_enabled": true,
+    "llm_temperature": 0.0,
+    "repetition": 4
+  },
+  "success_rate": 1.0,
+  "consensus_time_avg": 2.8562545776367187e-05,
+  "consensus_time_std": 1.3934745022013147e-06,
+  "throughput": 32530.79627714581,
+  "fault_detection_rate": 0.0,
+  "recovery_time_avg": 0.0,
+  "llm_response_time_avg": 0.0,
+  "llm_success_rate": 0.0,
+  "resource_utilization": 0.0,
+  "agent_performance": {
+    "Agent-01-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-02-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-03-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-04-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-05-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-06-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-07-Memory": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-08-Compute": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-09-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-10-Network": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    }
+  },
+  "timeline": [
+    {
+      "timestamp": 1754972992.390198,
+      "event": "job_processed",
+      "job_id": "job_001",
+      "success": true,
+      "consensus_time": 3.314018249511719e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3902311,
+      "event": "job_processed",
+      "job_id": "job_002",
+      "success": true,
+      "consensus_time": 2.8848648071289062e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3902621,
+      "event": "job_processed",
+      "job_id": "job_003",
+      "success": true,
+      "consensus_time": 2.7894973754882812e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390292,
+      "event": "job_processed",
+      "job_id": "job_004",
+      "success": true,
+      "consensus_time": 2.8848648071289062e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390323,
+      "event": "job_processed",
+      "job_id": "job_005",
+      "success": true,
+      "consensus_time": 2.9087066650390625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390353,
+      "event": "job_processed",
+      "job_id": "job_006",
+      "success": true,
+      "consensus_time": 2.7894973754882812e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3903842,
+      "event": "job_processed",
+      "job_id": "job_007",
+      "success": true,
+      "consensus_time": 2.9087066650390625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3904152,
+      "event": "job_processed",
+      "job_id": "job_008",
+      "success": true,
+      "consensus_time": 2.9087066650390625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3904462,
+      "event": "job_processed",
+      "job_id": "job_009",
+      "success": true,
+      "consensus_time": 2.8133392333984375e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390476,
+      "event": "job_processed",
+      "job_id": "job_010",
+      "success": true,
+      "consensus_time": 2.7894973754882812e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390506,
+      "event": "job_processed",
+      "job_id": "job_011",
+      "success": true,
+      "consensus_time": 2.8133392333984375e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3905358,
+      "event": "job_processed",
+      "job_id": "job_012",
+      "success": true,
+      "consensus_time": 2.6941299438476562e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.3905652,
+      "event": "job_processed",
+      "job_id": "job_013",
+      "success": true,
+      "consensus_time": 2.8371810913085938e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390595,
+      "event": "job_processed",
+      "job_id": "job_014",
+      "success": true,
+      "consensus_time": 2.8133392333984375e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972992.390624,
+      "event": "job_processed",
+      "job_id": "job_015",
+      "success": true,
+      "consensus_time": 2.6941299438476562e-05,
+      "decision": "n1"
+    }
+  ],
+  "error_log": [],
+  "start_time": "2025-08-12 00:29:52.390163",
+  "end_time": "2025-08-12 00:29:52.390625"
+}

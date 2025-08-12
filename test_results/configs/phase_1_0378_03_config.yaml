@@ -1,0 +1,15 @@
+agent_decision_mode: heuristic
+enable_monitoring: true
+experiment_id: phase_1_0378_03
+fault_intensity: heavy
+fault_scenarios:
+- byzantine
+job_arrival_pattern: medium
+methods:
+- negotiation
+num_agents: 15
+output_dir: test_results/unknown/raw_data
+save_detailed_logs: true
+simulation_time: 300
+specialization_level: 0.0
+workload_profile: mixed

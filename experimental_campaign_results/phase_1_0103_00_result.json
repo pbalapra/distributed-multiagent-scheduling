@@ -1,0 +1,273 @@
+{
+  "experiment_id": "phase_1_0103_00",
+  "config": {
+    "experiment_id": "phase_1_0103_00",
+    "test_type": "TestType.PHASE_1_BASELINE",
+    "agent_type": "AgentType.HEURISTIC",
+    "consensus_protocol": "ConsensusProtocol.MULTI_ROUND_NEGOTIATION",
+    "agent_count": 15,
+    "job_count": 15,
+    "fault_type": "FaultType.BYZANTINE",
+    "fault_intensity": 0.1,
+    "duration_seconds": 300,
+    "specialization_enabled": true,
+    "llm_temperature": 0.0,
+    "repetition": 0
+  },
+  "success_rate": 1.0,
+  "consensus_time_avg": 4.6412150065104164e-05,
+  "consensus_time_std": 1.7727970750934202e-06,
+  "throughput": 20493.342019543972,
+  "fault_detection_rate": 0.0,
+  "recovery_time_avg": 0.0,
+  "llm_response_time_avg": 0.0,
+  "llm_success_rate": 0.0,
+  "resource_utilization": 0.0,
+  "agent_performance": {
+    "Agent-01-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-02-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-03-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-04-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-05-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-06-Gpu": {
+      "proposals_made": 0,
+      "votes_cast": 0,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-07-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-08-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-09-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-10-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-11-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-12-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-13-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-14-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-15-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    }
+  },
+  "timeline": [
+    {
+      "timestamp": 1754972993.179362,
+      "event": "job_processed",
+      "job_id": "job_001",
+      "success": true,
+      "consensus_time": 5.1975250244140625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179414,
+      "event": "job_processed",
+      "job_id": "job_002",
+      "success": true,
+      "consensus_time": 4.76837158203125e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.1794639,
+      "event": "job_processed",
+      "job_id": "job_003",
+      "success": true,
+      "consensus_time": 4.792213439941406e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179513,
+      "event": "job_processed",
+      "job_id": "job_004",
+      "success": true,
+      "consensus_time": 4.7206878662109375e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179562,
+      "event": "job_processed",
+      "job_id": "job_005",
+      "success": true,
+      "consensus_time": 4.673004150390625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179611,
+      "event": "job_processed",
+      "job_id": "job_006",
+      "success": true,
+      "consensus_time": 4.601478576660156e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179658,
+      "event": "job_processed",
+      "job_id": "job_007",
+      "success": true,
+      "consensus_time": 4.601478576660156e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179706,
+      "event": "job_processed",
+      "job_id": "job_008",
+      "success": true,
+      "consensus_time": 4.506111145019531e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179754,
+      "event": "job_processed",
+      "job_id": "job_009",
+      "success": true,
+      "consensus_time": 4.57763671875e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.1798022,
+      "event": "job_processed",
+      "job_id": "job_010",
+      "success": true,
+      "consensus_time": 4.506111145019531e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179849,
+      "event": "job_processed",
+      "job_id": "job_011",
+      "success": true,
+      "consensus_time": 4.506111145019531e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179897,
+      "event": "job_processed",
+      "job_id": "job_012",
+      "success": true,
+      "consensus_time": 4.482269287109375e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.179945,
+      "event": "job_processed",
+      "job_id": "job_013",
+      "success": true,
+      "consensus_time": 4.601478576660156e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.1799932,
+      "event": "job_processed",
+      "job_id": "job_014",
+      "success": true,
+      "consensus_time": 4.601478576660156e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.180041,
+      "event": "job_processed",
+      "job_id": "job_015",
+      "success": true,
+      "consensus_time": 4.482269287109375e-05,
+      "decision": "n1"
+    }
+  ],
+  "error_log": [],
+  "start_time": "2025-08-12 00:29:53.179308",
+  "end_time": "2025-08-12 00:29:53.180042"
+}

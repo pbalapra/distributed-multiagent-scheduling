@@ -1,0 +1,11 @@
+{
+  "campaign_id": "llm_consensus_evaluation_2025",
+  "completion_time": "2025-08-11T23:53:59.203502",
+  "total_experiments": 600,
+  "completed_experiments": 0,
+  "failed_experiments": 600,
+  "output_directory": "test_results",
+  "phases": [
+    "phase_1"
+  ]
+}

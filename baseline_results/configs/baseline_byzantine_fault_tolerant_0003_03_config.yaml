@@ -1,0 +1,15 @@
+agent_decision_mode: heuristic
+enable_monitoring: false
+experiment_id: baseline_byzantine_fault_tolerant_0003_03
+fault_intensity: none
+fault_scenarios:
+- none
+job_arrival_pattern: medium
+methods:
+- byzantine_fault_tolerant
+num_agents: 5
+output_dir: baseline_results/unknown/raw_data
+save_detailed_logs: true
+simulation_time: 300
+specialization_level: 0.0
+workload_profile: mixed

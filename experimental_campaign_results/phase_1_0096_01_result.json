@@ -1,0 +1,233 @@
+{
+  "experiment_id": "phase_1_0096_01",
+  "config": {
+    "experiment_id": "phase_1_0096_01",
+    "test_type": "TestType.PHASE_1_BASELINE",
+    "agent_type": "AgentType.HEURISTIC",
+    "consensus_protocol": "ConsensusProtocol.MULTI_ROUND_NEGOTIATION",
+    "agent_count": 10,
+    "job_count": 15,
+    "fault_type": "FaultType.NONE",
+    "fault_intensity": 0.0,
+    "duration_seconds": 300,
+    "specialization_enabled": true,
+    "llm_temperature": 0.0,
+    "repetition": 1
+  },
+  "success_rate": 1.0,
+  "consensus_time_avg": 4.1437149047851565e-05,
+  "consensus_time_std": 2.660836796089068e-05,
+  "throughput": 22696.450216450216,
+  "fault_detection_rate": 0.0,
+  "recovery_time_avg": 0.0,
+  "llm_response_time_avg": 0.0,
+  "llm_success_rate": 0.0,
+  "resource_utilization": 0.0,
+  "agent_performance": {
+    "Agent-01-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-02-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-03-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-04-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-05-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-06-Gpu": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-07-Memory": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-08-Compute": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-09-Storage": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-10-Network": {
+      "proposals_made": 15,
+      "votes_cast": 15,
+      "llm_queries": 0,
+      "llm_successes": 0,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    }
+  },
+  "timeline": [
+    {
+      "timestamp": 1754972993.140036,
+      "event": "job_processed",
+      "job_id": "job_001",
+      "success": true,
+      "consensus_time": 3.814697265625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140074,
+      "event": "job_processed",
+      "job_id": "job_002",
+      "success": true,
+      "consensus_time": 3.409385681152344e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.1401112,
+      "event": "job_processed",
+      "job_id": "job_003",
+      "success": true,
+      "consensus_time": 3.409385681152344e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140146,
+      "event": "job_processed",
+      "job_id": "job_004",
+      "success": true,
+      "consensus_time": 3.361701965332031e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140182,
+      "event": "job_processed",
+      "job_id": "job_005",
+      "success": true,
+      "consensus_time": 3.409385681152344e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140218,
+      "event": "job_processed",
+      "job_id": "job_006",
+      "success": true,
+      "consensus_time": 3.2901763916015625e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140254,
+      "event": "job_processed",
+      "job_id": "job_007",
+      "success": true,
+      "consensus_time": 3.3855438232421875e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.14029,
+      "event": "job_processed",
+      "job_id": "job_008",
+      "success": true,
+      "consensus_time": 3.409385681152344e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140435,
+      "event": "job_processed",
+      "job_id": "job_009",
+      "success": true,
+      "consensus_time": 0.00014090538024902344,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.1404748,
+      "event": "job_processed",
+      "job_id": "job_010",
+      "success": true,
+      "consensus_time": 3.504753112792969e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140511,
+      "event": "job_processed",
+      "job_id": "job_011",
+      "success": true,
+      "consensus_time": 3.3855438232421875e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140548,
+      "event": "job_processed",
+      "job_id": "job_012",
+      "success": true,
+      "consensus_time": 3.504753112792969e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140584,
+      "event": "job_processed",
+      "job_id": "job_013",
+      "success": true,
+      "consensus_time": 3.361701965332031e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.14062,
+      "event": "job_processed",
+      "job_id": "job_014",
+      "success": true,
+      "consensus_time": 3.409385681152344e-05,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972993.140657,
+      "event": "job_processed",
+      "job_id": "job_015",
+      "success": true,
+      "consensus_time": 3.409385681152344e-05,
+      "decision": "n1"
+    }
+  ],
+  "error_log": [],
+  "start_time": "2025-08-12 00:29:53.139996",
+  "end_time": "2025-08-12 00:29:53.140658"
+}

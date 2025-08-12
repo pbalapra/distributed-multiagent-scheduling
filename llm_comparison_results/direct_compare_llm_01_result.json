@@ -1,0 +1,153 @@
+{
+  "experiment_id": "direct_compare_llm_01",
+  "config": {
+    "experiment_id": "direct_compare_llm_01",
+    "test_type": "TestType.LLM_COMPARISON",
+    "agent_type": "AgentType.LLM",
+    "consensus_protocol": "ConsensusProtocol.BYZANTINE_FAULT_TOLERANT",
+    "agent_count": 5,
+    "job_count": 10,
+    "fault_type": "FaultType.NONE",
+    "fault_intensity": 0.0,
+    "duration_seconds": 300,
+    "specialization_enabled": true,
+    "llm_temperature": 0.1,
+    "repetition": 0
+  },
+  "success_rate": 1.0,
+  "consensus_time_avg": 10.849795246124268,
+  "consensus_time_std": 0.1720267917503051,
+  "throughput": 0.09216697424523888,
+  "fault_detection_rate": 0.0,
+  "recovery_time_avg": 0.0,
+  "llm_response_time_avg": 0.0,
+  "llm_success_rate": 1.0,
+  "resource_utilization": 0.0,
+  "agent_performance": {
+    "Agent-01-Gpu": {
+      "proposals_made": 10,
+      "votes_cast": 10,
+      "llm_queries": 20,
+      "llm_successes": 20,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-02-Memory": {
+      "proposals_made": 10,
+      "votes_cast": 10,
+      "llm_queries": 20,
+      "llm_successes": 20,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-03-Compute": {
+      "proposals_made": 10,
+      "votes_cast": 10,
+      "llm_queries": 20,
+      "llm_successes": 20,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-04-Storage": {
+      "proposals_made": 10,
+      "votes_cast": 10,
+      "llm_queries": 20,
+      "llm_successes": 20,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    },
+    "Agent-05-Network": {
+      "proposals_made": 10,
+      "votes_cast": 10,
+      "llm_queries": 20,
+      "llm_successes": 20,
+      "consensus_participations": 0,
+      "fault_detections": 0
+    }
+  },
+  "timeline": [
+    {
+      "timestamp": 1754972284.3975291,
+      "event": "job_processed",
+      "job_id": "job_001",
+      "success": true,
+      "consensus_time": 11.068269729614258,
+      "decision": "n3"
+    },
+    {
+      "timestamp": 1754972295.311785,
+      "event": "job_processed",
+      "job_id": "job_002",
+      "success": true,
+      "consensus_time": 10.914182186126709,
+      "decision": "n3"
+    },
+    {
+      "timestamp": 1754972306.2092092,
+      "event": "job_processed",
+      "job_id": "job_003",
+      "success": true,
+      "consensus_time": 10.897347927093506,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972316.7559848,
+      "event": "job_processed",
+      "job_id": "job_004",
+      "success": true,
+      "consensus_time": 10.546696186065674,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972327.312172,
+      "event": "job_processed",
+      "job_id": "job_005",
+      "success": true,
+      "consensus_time": 10.55587387084961,
+      "decision": "n3"
+    },
+    {
+      "timestamp": 1754972338.10964,
+      "event": "job_processed",
+      "job_id": "job_006",
+      "success": true,
+      "consensus_time": 10.79743504524231,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972349.171396,
+      "event": "job_processed",
+      "job_id": "job_007",
+      "success": true,
+      "consensus_time": 11.061714172363281,
+      "decision": "n3"
+    },
+    {
+      "timestamp": 1754972360.02211,
+      "event": "job_processed",
+      "job_id": "job_008",
+      "success": true,
+      "consensus_time": 10.850664138793945,
+      "decision": "n3"
+    },
+    {
+      "timestamp": 1754972370.996614,
+      "event": "job_processed",
+      "job_id": "job_009",
+      "success": true,
+      "consensus_time": 10.974461078643799,
+      "decision": "n1"
+    },
+    {
+      "timestamp": 1754972381.8279529,
+      "event": "job_processed",
+      "job_id": "job_010",
+      "success": true,
+      "consensus_time": 10.831308126449585,
+      "decision": "n1"
+    }
+  ],
+  "error_log": [],
+  "start_time": "2025-08-12 00:17:53.329228",
+  "end_time": "2025-08-12 00:19:41.827967"
+}
