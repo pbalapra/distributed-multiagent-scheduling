@@ -1,250 +1,406 @@
-# Multi-Agent Fault Tolerance Demo
+# Hybrid LLM Fault Tolerance Demo
 
-This directory contains the **Hybrid LLM Fault Tolerance Demo** - an educational demonstration of multi-agent Byzantine fault-tolerant consensus with Large Language Model integration.
+This demo showcases the **Multi-Agent Fault Tolerance system with LLM Integration** - a complete demonstration of distributed consensus protocols enhanced with Large Language Model intelligence.
 
-## Overview
+## 🎯 Overview
 
-The `hybrid_llm_demo.py` script demonstrates a sophisticated multi-agent system that:
+The `hybrid_llm_demo.py` demonstrates:
 
-- **Multi-Agent Consensus**: Implements Byzantine Fault Tolerant (BFT) consensus among specialized HPC resource agents
-- **LLM Integration**: Uses SambaNova's Meta-Llama models for intelligent decision-making
-- **Fault Injection**: Simulates various failure modes including Byzantine attacks, crash failures, and network partitions
-- **Educational Transparency**: Shows detailed prompts, responses, and decision-making processes
-- **Graceful Fallbacks**: Handles API failures with realistic simulated responses
+- **5 Specialized Agents**: GPU, Memory, Compute, Storage, Network specialists
+- **Real SambaNova LLM Integration**: Meta-Llama-3-70B-Instruct for intelligent decisions
+- **Byzantine Fault Tolerance**: Malicious agent simulation and detection
+- **Complete Transparency**: Every LLM prompt and response displayed
+- **Automatic Recovery**: Self-healing system after fault periods
+- **Graceful Fallbacks**: Works with or without LLM credentials
 
-## Quick Start
+## 🚀 How to Run the Demo
 
-### Prerequisites
-
-1. **Environment Setup**:
-   ```bash
-   export SAMBASTUDIO_API_KEY="your-api-key-here"
-   export SAMBASTUDIO_URL="your-sambastudio-url"
-   ```
-
-2. **Dependencies**:
-   - Python 3.8+
-   - LangChain SambaNova integration
-   - Standard libraries: `asyncio`, `json`, `random`, `time`
-
-### Running the Demo
+### Method 1: Using main.py (Recommended)
 
 ```bash
-cd /Users/p12/projects/2025/multiagent/demos
-python hybrid_llm_demo.py
+# Activate virtual environment
+source multi-agent-dev/bin/activate
+
+# Run interactive demo (includes environment setup)
+python main.py --interactive
 ```
 
-## What You'll See
+### Method 2: Direct Execution
 
-The demo runs through several phases:
+```bash
+# Activate virtual environment
+source multi-agent-dev/bin/activate
 
-### Phase 1: System Initialization
-- **Agent Setup**: 5 specialized agents (GPU, Memory, Compute, Storage, General)
-- **Resource Allocation**: Each agent manages specific HPC resources
-- **Network Configuration**: Peer-to-peer communication setup
+# Load environment variables (for SambaNova integration)
+source ~/.bashrc
 
-### Phase 2: Healthy Operation
-- **Job Submission**: Scientific computing jobs requiring HPC resources
-- **Consensus Protocol**: Agents vote on job placement using LLM-driven decisions
-- **Resource Management**: Dynamic allocation and release of computational resources
-
-### Phase 3: Fault Injection
-Multiple fault types are demonstrated:
-
-- **Byzantine Faults**: Malicious agents providing false information
-- **Crash Failures**: Agents becoming unresponsive
-- **Network Partitions**: Communication failures between agents
-- **Slow Responses**: Performance degradation simulation
-
-### Phase 4: Recovery and Resilience
-- **Fault Detection**: System identifies compromised agents
-- **Consensus Under Attack**: BFT protocol maintains correctness despite faults
-- **Agent Recovery**: Failed agents rejoin the system
-- **Performance Analysis**: Success rates and efficiency metrics
-
-## Key Features
-
-### 🧠 LLM-Driven Decision Making
-
-The demo showcases how Large Language Models can enhance multi-agent systems:
-
-```python
-# Example: Agent evaluating job placement
-prompt = f"""
-As a {agent_type} specialist managing HPC resources, evaluate this job:
-Job: {job_name} requiring {cpu_cores} cores, {memory_gb}GB RAM
-Current utilization: {utilization}%
-Priority: {priority}
-
-Provide your decision as JSON: {{"vote": "accept/reject", "confidence": 0.0-1.0, "reasoning": "..."}}
-"""
+# Run the demo directly
+python demos/hybrid_llm_demo.py
 ```
 
-### 🛡️ Byzantine Fault Tolerance
+### Method 3: Fallback Mode (No SambaNova Credentials)
 
-Implements a robust consensus protocol that:
-- Tolerates up to ⌊(n-1)/3⌋ faulty agents
-- Validates responses using cryptographic principles
-- Maintains system integrity under attack
-
-### 📊 Educational Transparency
-
-Every step is logged with:
-- **Detailed Prompts**: Exact text sent to LLMs
-- **API Configurations**: Temperature, token limits, model parameters
-- **Response Analysis**: JSON parsing, validation, fallback handling
-- **Consensus Tracking**: Vote tallies, decision rationale, timeout handling
-
-### 🔄 Graceful Degradation
-
-The system handles various failure modes:
-- **API Unavailability**: Falls back to rule-based decisions
-- **Malformed Responses**: Intelligent parsing with error recovery
-- **Network Issues**: Retry mechanisms with exponential backoff
-- **Agent Failures**: Dynamic reconfiguration and load balancing
-
-## Sample Output
-
-```
-🚀 HYBRID LLM FAULT TOLERANCE DEMO
-==================================
-
-📊 Initializing Multi-Agent HPC System...
-✅ Agent GPU_SPECIALIST initialized - Managing 32 nodes with 8 GPUs each
-✅ Agent MEMORY_SPECIALIST initialized - Managing 16 nodes with 512GB RAM each
-✅ Agent COMPUTE_SPECIALIST initialized - Managing 64 nodes with 64 cores each
-...
-
-🔍 Phase 1: Healthy Operation
-Submitting job: AI-Training-001
-📤 PROMPT to GPU_SPECIALIST:
-[Detailed prompt showing job requirements and decision criteria]
-
-📥 RESPONSE from GPU_SPECIALIST:
-{"vote": "accept", "confidence": 0.95, "reasoning": "Excellent fit for our GPU cluster..."}
-
-✅ Consensus reached: Job allocated to GPU cluster with 4/5 votes
-
-⚠️  Phase 2: Fault Injection
-🔴 Injecting Byzantine fault into MEMORY_SPECIALIST
-🔴 Agent MEMORY_SPECIALIST now provides malicious responses
-...
-
-📊 FINAL RESULTS:
-Success Rate: 93.3% (28/30 jobs completed)
-Byzantine Tolerance: ✅ Maintained correctness under attack
-Recovery Time: 15.2s average
-LLM API Success: 87.5% (14/16 calls successful)
+```bash
+# Activate virtual environment and run without credentials
+source multi-agent-dev/bin/activate
+python demos/hybrid_llm_demo.py
 ```
 
-## Educational Value
+## 📊 Complete Demo Output with Explanations
 
-This demo is designed for:
+### System Initialization
 
-### Students & Researchers
-- Understanding distributed consensus algorithms
-- Learning Byzantine fault tolerance principles
-- Exploring LLM integration in multi-agent systems
-- Studying real-world fault handling strategies
-
-### System Architects
-- Evaluating LLM-enhanced decision making
-- Testing fault tolerance mechanisms
-- Analyzing performance under various failure modes
-- Understanding graceful degradation patterns
-
-### HPC Practitioners
-- Exploring intelligent resource allocation
-- Understanding multi-agent scheduling approaches
-- Learning fault-tolerant system design
-- Evaluating consensus-driven workflows
-
-## Configuration Options
-
-The demo can be customized by modifying parameters in the script:
-
-```python
-# System Configuration
-NUM_AGENTS = 5                    # Number of consensus agents
-FAULT_INJECTION_RATE = 0.3        # Probability of injecting faults
-CONSENSUS_TIMEOUT = 30            # Seconds to wait for votes
-LLM_TEMPERATURE = 0.3             # Creativity vs consistency
-MAX_TOKENS = 1000                 # LLM response length limit
-
-# Fault Types
-BYZANTINE_PROBABILITY = 0.4       # Malicious behavior rate
-CRASH_PROBABILITY = 0.3           # Agent failure rate
-NETWORK_PARTITION_RATE = 0.2      # Communication failure rate
-SLOW_RESPONSE_FACTOR = 3.0        # Response delay multiplier
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **API Authentication Errors (403 Forbidden)**
-   ```bash
-   # Verify environment variables
-   echo $SAMBASTUDIO_API_KEY
-   echo $SAMBASTUDIO_URL
-   
-   # Source your profile if needed
-   source ~/.bashrc  # or ~/.zshrc
-   ```
-
-2. **Empty LLM Responses**
-   - The demo gracefully handles this with fallback responses
-   - Check API rate limits and model availability
-   - Consider adjusting temperature settings
-
-3. **JSON Parsing Errors**
-   - Demo includes robust parsing with multiple strategies
-   - Fallback responses ensure continued operation
-   - Check prompt formatting for clarity
-
-### Performance Tuning
-
-- **Reduce Latency**: Lower `MAX_TOKENS` for faster responses
-- **Improve Quality**: Increase `LLM_TEMPERATURE` for more creative decisions
-- **Adjust Fault Rates**: Modify probability settings to test different scenarios
-- **Timeout Settings**: Balance between thoroughness and responsiveness
-
-## Technical Architecture
+The demo starts by checking SambaNova credentials and initializing the multi-agent system:
 
 ```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│  LLM Provider   │    │   Consensus      │    │  HPC Resource   │
-│  (SambaNova)    │────│   Protocol       │────│   Managers      │
-│                 │    │  (Byzantine FT)  │    │                 │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-         │                        │                       │
-         ▼                        ▼                       ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Fault Injection Framework                    │
-├─────────────────────────────────────────────────────────────────┤
-│  • Byzantine Attacks    • Network Partitions                   │
-│  • Crash Failures      • Performance Degradation               │
-│  • Message Corruption  • Recovery Simulation                   │
-└─────────────────────────────────────────────────────────────────┘
+✅ SambaNova LangChain integration initialized successfully
+🧠 HYBRID LLM FAULT TOLERANCE DEMONSTRATION
+======================================================================
+This demo demonstrates:
+• Real SambaNova API attempts with intelligent fallbacks
+• Complete LLM prompt and response visibility
+• Realistic agent specialization and reasoning
+• Byzantine attack simulations with LLM corruption
+• Fault injection, recovery, and system resilience
+• Multi-protocol consensus under adversarial conditions
 ```
 
-## Next Steps
-
-After running this demo, consider exploring:
-
-1. **Advanced Configurations**: Modify agent specializations and resource types
-2. **Custom Fault Scenarios**: Add new failure modes relevant to your domain
-3. **Performance Analysis**: Collect metrics for research or optimization
-4. **Integration**: Adapt the framework for real HPC environments
-5. **Scalability Testing**: Increase agent count and job complexity
-
-## Resources
-
-- **Source Code**: `hybrid_llm_demo.py` - Fully commented implementation
-- **LangChain Documentation**: [SambaNova Integration Guide](https://python.langchain.com/docs/integrations/llms/sambanova)
-- **Byzantine Fault Tolerance**: Academic papers on distributed consensus
-- **HPC Scheduling**: Literature on resource allocation algorithms
+**💡 What's happening**: The system detects SambaNova environment variables and initializes the LangChain integration for real LLM API calls.
 
 ---
 
-*This demo represents cutting-edge research in LLM-enhanced multi-agent systems for high-performance computing environments. It demonstrates practical applications of artificial intelligence in distributed systems while maintaining educational clarity and research rigor.*
+## 🏥 SCENARIO 1: HEALTHY SYSTEM BASELINE
+
+### Agent Status Display
+
+```
+🏥 SYSTEM STATUS
+============================================================
+System Health: [████████████████████] 5/5 (100%)
+
+  ● Alpha-GPU       │ gpu      │ weight: 1.3 │ LLM calls: 0
+  ● Beta-Memory     │ memory   │ weight: 1.2 │ LLM calls: 0
+  ● Gamma-Compute   │ compute  │ weight: 1.1 │ LLM calls: 0
+  ● Delta-Storage   │ storage  │ weight: 1.0 │ LLM calls: 0
+  ● Epsilon-Network │ network  │ weight: 0.9 │ LLM calls: 0
+```
+
+**💡 What's happening**: 
+- **5 agents** initialized with different specializations and voting weights
+- **Weight system**: GPU agent has highest weight (1.3), Network lowest (0.9)
+- **Health bar**: Visual indicator of system operational status
+- **LLM call counter**: Tracks how many times each agent used the LLM
+
+### Job Processing and LLM Consensus
+
+```
+🛡️ LLM CONSENSUS PROTOCOL
+============================================================
+JOB: AI Training Job: Deep learning model training requiring 4 GPU nodes with high memory bandwidth
+
+📋 PHASE 1: PROPOSAL COLLECTION
+----------------------------------------
+
+🤖 Alpha-GPU generating proposal...
+
+🧠 LLM QUERY FROM Alpha-GPU
+============================================================
+📝 PROMPT:
+You are Alpha-GPU, a gpu specialist in a distributed job scheduling system.
+
+JOB REQUEST:
+AI Training Job: Deep learning model training requiring 4 GPU nodes with high memory bandwidth
+
+AVAILABLE NODES:
+- n1 (GPU-Server-01): 32 CPUs, 256GB RAM, 4 GPUs, type=gpu
+- n2 (GPU-Server-02): 32 CPUs, 256GB RAM, 4 GPUs, type=gpu  
+- n3 (HighMem-01): 64 CPUs, 512GB RAM, 0 GPUs, type=memory
+- n4 (HighMem-02): 64 CPUs, 512GB RAM, 0 GPUs, type=memory
+- n5 (Compute-01): 128 CPUs, 128GB RAM, 0 GPUs, type=compute
+- n6 (Storage-01): 16 CPUs, 64GB RAM, 0 GPUs, type=storage
+
+As a gpu specialist, recommend the BEST node for this job.
+
+Respond with ONLY a JSON object:
+{"node_id": "nX", "score": 0.X, "reasoning": "why this node is optimal from your gpu perspective"}
+
+IMPORTANT: Respond with valid JSON only. Do not include explanatory text before or after the JSON.
+
+⚙️ Configuration:
+  Model: Meta-Llama-3-70B-Instruct
+  Temperature: 0.0
+  Max Tokens: 500
+
+⏳ Attempting SambaNova LangChain API...
+
+💬 REAL SAMBANOVA RESPONSE (1.22s):
+{"node_id": "n1", "score": 1.0, "reasoning": "4 GPUs available with high memory bandwidth"}
+
+✅ Proposal: n1 (score: 1.00) - 4 GPUs available with high memory bandwidth...
+```
+
+**💡 What's happening**:
+- **Specialized prompting**: Each agent gets a role-specific prompt as a GPU/Memory/Compute specialist
+- **Real LLM integration**: Shows actual API call to SambaNova with Meta-Llama-3-70B model
+- **Response timing**: Real network latency (1.22s) for authentic API call
+- **Intelligent selection**: LLM correctly identifies n1 as optimal for GPU-intensive job
+- **JSON structured output**: LLM provides machine-readable response for consensus protocol
+
+### Consensus Voting Phase
+
+```
+🗳️ PHASE 2: CONSENSUS VOTING
+----------------------------------------
+
+🗳️ Alpha-GPU casting vote...
+
+🧠 LLM QUERY FROM Alpha-GPU
+============================================================
+📝 PROMPT:
+You are Alpha-GPU, a gpu specialist in a consensus protocol.
+
+PROPOSAL SUMMARY:
+Top proposal: n1 (score: 1.00, from Alpha-GPU)
+
+As a gpu specialist, evaluate and vote on this proposal.
+
+Consider:
+1. Does this make sense from your gpu perspective?
+2. Are the resource allocations appropriate?
+3. Will this work well for the overall system?
+
+Respond with ONLY a JSON object:
+{"vote": "accept" or "reject", "confidence": 0.X, "reasoning": "explain your vote from your gpu expertise"}
+
+💬 REAL SAMBANOVA RESPONSE (1.18s):
+{"vote": "accept", "confidence": 0.9, "reasoning": "The proposal allocates sufficient GPU resources for efficient processing, ensuring optimal performance and minimizing latency."}
+
+👍 Vote: accept (conf: 0.90) - The proposal allocates sufficient GPU resources for efficient processing...
+```
+
+**💡 What's happening**:
+- **Two-phase consensus**: First agents propose, then they vote on the best proposal
+- **Specialist evaluation**: Each agent evaluates from their domain expertise perspective
+- **Confidence scoring**: LLM provides confidence levels (0.9 = 90% confident)
+- **Detailed reasoning**: Each vote includes specialist justification
+
+### Successful Consensus
+
+```
+📊 PHASE 3: CONSENSUS EVALUATION
+----------------------------------------
+  📊 Consensus Analysis:
+     Total possible weight: 5.5
+     Voting weight received: 5.5
+     Accept weight: 5.5
+     Required threshold (2/3): 3.7
+     Failed operations: 0
+  ✅ CONSENSUS ACHIEVED!
+     Decision: n1
+```
+
+**💡 What's happening**:
+- **Weighted voting**: Total system weight is 5.5 (sum of all agent weights)
+- **2/3 majority**: Byzantine fault tolerance requires 67% agreement (3.7/5.5)
+- **Unanimous acceptance**: All agents voted accept, achieving 5.5/5.5 weight
+- **Successful decision**: Job assigned to node n1 as recommended
+
+---
+
+## 💥 SCENARIO 2: FAULT INJECTION & RESILIENCE
+
+### Fault Injection
+
+```
+SCENARIO 2: FAULT INJECTION & RESILIENCE
+--------------------------------------------------
+  ⚠️ FAULT INJECTED: Beta-Memory → byzantine (recovery in 25.0s)
+  💀 FAULT INJECTED: Delta-Storage → crash (recovery in 20.0s)
+
+🏥 SYSTEM STATUS
+============================================================
+System Health: [████████████░░░░░░░░] 3/5 (60%)
+
+  ● Alpha-GPU       │ gpu      │ weight: 1.3 │ LLM calls: 2
+  ⚠ Beta-Memory     │ memory   │ weight: 1.2 │ LLM calls: 2 │ byzantine │ recovery: 24.0s
+  ● Gamma-Compute   │ compute  │ weight: 1.1 │ LLM calls: 2
+  ● Delta-Storage   │ storage  │ weight: 1.0 │ LLM calls: 2 │ crash │ recovery: 19.0s
+  ● Epsilon-Network │ network  │ weight: 0.9 │ LLM calls: 2
+```
+
+**💡 What's happening**:
+- **Byzantine fault**: Beta-Memory becomes malicious but continues participating
+- **Crash fault**: Delta-Storage completely fails and stops responding
+- **System degradation**: Health drops to 60% with 2 agents compromised
+- **Recovery timers**: Automatic recovery scheduled (25s for byzantine, 20s for crash)
+
+### Byzantine Attack in Action
+
+```
+🤖 Beta-Memory generating proposal...
+
+💬 REAL SAMBANOVA RESPONSE (1.37s):
+{"node_id": "n5", "score": 0.8, "reasoning": "Compute-01 has a large number of CPUs, which will help with parallel processing and speed up the data analytics job."}
+
+🔥 BYZANTINE CORRUPTION APPLIED
+✅ Proposal: n999 (score: 1.00) - Byzantine attack - directing to fake node...
+```
+
+**💡 What's happening**:
+- **Real LLM response**: Byzantine agent still gets genuine LLM response (n5)
+- **Malicious corruption**: System then corrupts the response to fake node n999
+- **Attack simulation**: Shows how compromised agents can provide false information
+- **Score manipulation**: Boosts malicious proposal score to 1.00 to make it attractive
+
+### Crash Failure Handling
+
+```
+🤖 Delta-Storage generating proposal...
+❌ Delta-Storage proposal failed: Agent Delta-Storage is crashed...
+
+🗳️ Delta-Storage casting vote...
+❌ Delta-Storage vote failed: Agent Delta-Storage is crashed...
+```
+
+**💡 What's happening**:
+- **Complete failure**: Crashed agent cannot participate in any protocol phase
+- **Graceful handling**: System continues without the failed agent
+- **No votes counted**: Crashed agent's weight (1.0) removed from consensus calculation
+
+### Consensus Under Attack
+
+```
+📊 PHASE 3: CONSENSUS EVALUATION
+----------------------------------------
+  📊 Consensus Analysis:
+     Total possible weight: 5.5
+     Voting weight received: 4.5
+     Accept weight: 4.5
+     Required threshold (2/3): 3.7
+     Failed operations: 2
+  ✅ CONSENSUS ACHIEVED!
+     Decision: n999
+```
+
+**💡 What's happening**:
+- **Reduced participation**: Only 4.5/5.5 weight available (crashed agent excluded)
+- **Threshold maintained**: Still need 2/3 of total system weight (3.7)
+- **Byzantine influence**: Malicious vote succeeds in corrupting consensus decision
+- **Educational demonstration**: Shows how Byzantine attacks can succeed when they reach threshold
+
+---
+
+## 🔄 SCENARIO 3: RECOVERY MONITORING
+
+### Automatic Recovery
+
+```
+SCENARIO 3: RECOVERY MONITORING
+----------------------------------------
+Monitoring automatic recovery...
+  ✅ RECOVERED: Delta-Storage from crash
+  ✅ RECOVERED: Beta-Memory from byzantine
+  ✅ All agents recovered after 14.0s
+
+🏥 SYSTEM STATUS
+============================================================
+System Health: [████████████████████] 5/5 (100%)
+
+  ● Alpha-GPU       │ gpu      │ weight: 1.3 │ LLM calls: 4
+  ● Beta-Memory     │ memory   │ weight: 1.2 │ LLM calls: 4
+  ● Gamma-Compute   │ compute  │ weight: 1.1 │ LLM calls: 4
+  ● Delta-Storage   │ storage  │ weight: 1.0 │ LLM calls: 2
+  ● Epsilon-Network │ network  │ weight: 0.9 │ LLM calls: 4
+```
+
+**💡 What's happening**:
+- **Automatic healing**: System recovers agents after their fault periods expire
+- **Full restoration**: Health returns to 100% with all 5 agents operational
+- **LLM call tracking**: Shows Delta-Storage has fewer calls (was crashed during scenario 2)
+- **Self-organizing**: No manual intervention required for recovery
+
+### Post-Recovery Consensus
+
+```
+📊 PHASE 3: CONSENSUS EVALUATION
+----------------------------------------
+  📊 Consensus Analysis:
+     Total possible weight: 5.5
+     Voting weight received: 5.5
+     Accept weight: 5.5
+     Required threshold (2/3): 3.7
+     Failed operations: 0
+  ✅ CONSENSUS ACHIEVED!
+     Decision: n1
+```
+
+**💡 What's happening**:
+- **Full participation**: All agents healthy and participating again
+- **Correct decisions**: Without Byzantine corruption, system makes optimal choices
+- **Zero failures**: All agents respond successfully to protocol phases
+- **Resilience demonstrated**: System fully operational after fault period
+
+---
+
+## 🎯 Key Educational Takeaways
+
+### 1. **LLM Integration Benefits**
+- **Intelligent reasoning**: Agents provide domain-specific expertise in proposals
+- **Contextual evaluation**: Voting considers system-wide implications
+- **Transparent decision-making**: Every prompt and response visible for learning
+
+### 2. **Byzantine Fault Tolerance**
+- **2/3 majority rule**: Requires 67% agreement to achieve consensus
+- **Attack simulation**: Shows how malicious agents can corrupt decisions
+- **Weighted voting**: Agent specialization affects voting power
+
+### 3. **System Resilience**
+- **Graceful degradation**: System continues operating with reduced capacity
+- **Automatic recovery**: Self-healing without manual intervention
+- **Fault detection**: Clear identification of compromised vs crashed agents
+
+### 4. **Real-World Applicability**
+- **HPC job scheduling**: Demonstrates practical resource allocation decisions
+- **Distributed systems**: Shows consensus protocols under adversarial conditions
+- **AI integration**: Proves LLM enhancement of traditional distributed algorithms
+
+## 🔧 Configuration Options
+
+You can modify the demo behavior by editing `hybrid_llm_demo.py`:
+
+```python
+# Number of agents and their specializations
+NUM_AGENTS = 5
+AGENT_TYPES = ["gpu", "memory", "compute", "storage", "network"]
+
+# Fault injection parameters
+FAULT_DURATION_RANGE = (15.0, 30.0)  # Recovery time in seconds
+BYZANTINE_CORRUPTION_RATE = 0.7      # Probability of corrupting responses
+
+# LLM configuration
+LLM_TEMPERATURE = 0.0                # Deterministic responses (0.0) vs creative (1.0)
+MAX_TOKENS = 500                     # Response length limit
+TIMEOUT_SECONDS = 30                 # API timeout
+```
+
+## 🚨 Troubleshooting
+
+### No SambaNova Credentials
+```
+⚠️ SambaNova credentials missing - using fallback only
+```
+**Solution**: Demo automatically uses intelligent fallbacks. For real LLM integration:
+```bash
+# Set up environment variables
+python main.py --setup-env
+```
+
+### API Rate Limits
+If you see timeout errors, the demo includes automatic retry logic and fallback responses.
+
+### Consensus Failures
+In fallback mode, consensus may fail because simulated responses don't provide proper vote formats. This is educational - it shows the importance of structured LLM responses.
+
+---
+
+*This demo represents a complete integration of Large Language Models with Byzantine Fault Tolerant distributed systems, providing both educational value and practical insights into next-generation HPC scheduling systems.*
