@@ -1,406 +1,282 @@
-# Hybrid LLM Fault Tolerance Demo
+# Distributed Agentic AI Consensus Demo
 
-This demo showcases the **Multi-Agent Fault Tolerance system with LLM Integration** - a complete demonstration of distributed consensus protocols enhanced with Large Language Model intelligence.
+## Overview
 
-## 🎯 Overview
+This demo showcases a **distributed agentic AI system** where autonomous AI agents manage massive-scale supercomputer resources through peer-to-peer consensus. The system operates without any central coordinator, demonstrating true decentralized decision-making at exascale computing levels.
 
-The `hybrid_llm_demo.py` demonstrates:
+## Key Features
 
-- **5 Specialized Agents**: GPU, Memory, Compute, Storage, Network specialists
-- **Real SambaNova LLM Integration**: Meta-Llama-3-70B-Instruct for intelligent decisions
-- **Byzantine Fault Tolerance**: Malicious agent simulation and detection
-- **Complete Transparency**: Every LLM prompt and response displayed
-- **Automatic Recovery**: Self-healing system after fault periods
-- **Graceful Fallbacks**: Works with or without LLM credentials
+### 🌐 Distributed Architecture
+- **6 autonomous supercomputer agents** (HPC_RESOURCE_00 through HPC_RESOURCE_05)
+- **Peer-to-peer mesh network** with no central authority
+- **Byzantine fault tolerance** with 2/3 majority consensus voting
+- **Real-time resource allocation** through competitive bidding
 
-## 🚀 How to Run the Demo
+### 🧠 AI-Enhanced Decision Making
+- **SambaNova LLM integration** (Meta-Llama-3-70B-Instruct) for intelligent bidding
+- **Contextual reasoning** about workload requirements and cluster capabilities
+- **Fallback heuristics** when LLM is unavailable
+- **Reputation-based weighted voting** system
 
-### Method 1: Using main.py (Recommended)
+### ⚡ Massive Scale Resources
+- **1,993 total compute nodes** across all clusters
+- **101,984 CPU cores** and **5,136 GPUs**
+- **1,108TB total memory** capacity
+- **Multi-petabyte storage** systems
+
+## Demo Architecture
+
+### Supercomputer Cluster Specifications
+
+| Cluster | Type | Nodes | CPU Cores | Memory (GB) | GPUs | Interconnect |
+|---------|------|-------|-----------|-------------|------|--------------|
+| HPC_RESOURCE_00 | hpc | 200 | 8,800 | 102,400 | 1,200 | InfiniBand EDR |
+| HPC_RESOURCE_01 | gpu | 320 | 20,480 | 163,840 | 1,280 | Cray Slingshot-11 |
+| HPC_RESOURCE_02 | memory | 512 | 24,576 | 524,288 | 0 | Tofu Interconnect D |
+| HPC_RESOURCE_03 | hybrid | 328 | 10,496 | 83,968 | 512 | InfiniBand HDR |
+| HPC_RESOURCE_04 | ai | 353 | 28,672 | 90,368 | 1,024 | InfiniBand HDR |
+| HPC_RESOURCE_05 | storage | 280 | 8,960 | 143,360 | 1,120 | Cray Slingshot-10 |
+
+### Job Scenarios (30-60 nodes each)
+
+1. **Exascale Climate Modeling** (40 nodes) - Weather Research & Forecasting
+2. **LLM Training** (60 nodes) - 1T parameter transformer with 3D parallelism  
+3. **Cosmological Simulation** (50 nodes) - 100B particle N-body simulation
+4. **Quantum Circuit Simulation** (32 nodes) - 45-qubit quantum circuit
+5. **Graph Analytics** (42 nodes) - Trillion-edge graph processing
+6. **Genomics Analysis** (38 nodes) - 100K whole genome population study
+7. **Fusion Plasma Simulation** (36 nodes) - ITER tokamak MHD simulation
+8. **Drug Discovery** (40 nodes) - 1M compound molecular docking
+
+## How to Run
 
 ```bash
-# Activate virtual environment
-source multi-agent-dev/bin/activate
+# Basic execution (uses heuristic bidding)
+python demos/distributed_agentic_ai_demo.py
 
-# Run interactive demo (includes environment setup)
-python main.py --interactive
+# With LLM integration (requires SambaNova API access)
+export SAMBASTUDIO_URL="your_sambanova_url"
+export SAMBASTUDIO_API_KEY="your_api_key"
+python demos/distributed_agentic_ai_demo.py
 ```
 
-### Method 2: Direct Execution
+## Demo Output Analysis
 
-```bash
-# Activate virtual environment
-source multi-agent-dev/bin/activate
-
-# Load environment variables (for SambaNova integration)
-source ~/.bashrc
-
-# Run the demo directly
-python demos/hybrid_llm_demo.py
+### Phase 1: Network Formation
+```
+🏛️ FORMING MASSIVE SUPERCOMPUTER NETWORK
+✅ Added HPC_RESOURCE_00: 200 nodes | 8,800 CPU cores | 102,400GB RAM | 1,200 GPUs
+✅ Added HPC_RESOURCE_01: 320 nodes | 20,480 CPU cores | 163,840GB RAM | 1,280 GPUs
+...
+🌐 Supercomputer network formed: 6 clusters connected
+📊 MASSIVE Total Network Capacity: 1,993 compute nodes, 101,984 CPU cores, 1,082TB memory
 ```
 
-### Method 3: Fallback Mode (No SambaNova Credentials)
+### Phase 2: Job Allocation Process
 
-```bash
-# Activate virtual environment and run without credentials
-source multi-agent-dev/bin/activate
-python demos/hybrid_llm_demo.py
+Each job goes through a **two-phase consensus protocol**:
+
+#### Bidding Phase
+```
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+📊 HPC_RESOURCE_00: bid=1.000, nodes=200, util=29.6%
+📊 HPC_RESOURCE_01: bid=1.000, nodes=320, util=17.1%
+...
 ```
 
-## 📊 Complete Demo Output with Explanations
+Agents calculate bid scores based on:
+- **Resource availability** (can they handle the node count?)
+- **Specialization match** (job type vs. cluster type)
+- **Current utilization** (workload balancing)
+- **Reputation score** (historical performance)
 
-### System Initialization
-
-The demo starts by checking SambaNova credentials and initializing the multi-agent system:
-
+#### Consensus Voting Phase
 ```
-✅ SambaNova LangChain integration initialized successfully
-🧠 HYBRID LLM FAULT TOLERANCE DEMONSTRATION
-======================================================================
-This demo demonstrates:
-• Real SambaNova API attempts with intelligent fallbacks
-• Complete LLM prompt and response visibility
-• Realistic agent specialization and reasoning
-• Byzantine attack simulations with LLM corruption
-• Fault injection, recovery, and system resilience
-• Multi-protocol consensus under adversarial conditions
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+⚖️ HPC_RESOURCE_00: weighted_score=1.000
+...
+🏆 PROPOSED WINNER: HPC_RESOURCE_00 (score: 1.000)
+🗳️ Requiring 4/6 votes for consensus...
+✅ HPC_RESOURCE_00: approve
+✅ CONSENSUS REACHED: 6/6 approved
 ```
 
-**💡 What's happening**: The system detects SambaNova environment variables and initializes the LangChain integration for real LLM API calls.
+Consensus requires **2/3 majority** (4 out of 6 votes) for Byzantine fault tolerance.
 
----
+### Phase 3: Resource Tracking
 
-## 🏥 SCENARIO 1: HEALTHY SYSTEM BASELINE
-
-### Agent Status Display
+After each allocation, the system shows **real-time occupancy**:
 
 ```
-🏥 SYSTEM STATUS
-============================================================
-System Health: [████████████████████] 5/5 (100%)
-
-  ● Alpha-GPU       │ gpu      │ weight: 1.3 │ LLM calls: 0
-  ● Beta-Memory     │ memory   │ weight: 1.2 │ LLM calls: 0
-  ● Gamma-Compute   │ compute  │ weight: 1.1 │ LLM calls: 0
-  ● Delta-Storage   │ storage  │ weight: 1.0 │ LLM calls: 0
-  ● Epsilon-Network │ network  │ weight: 0.9 │ LLM calls: 0
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00
+🖥️ Nodes: 40/200 (20.0% occupied)
+⚡ CPU: 8,800 cores total
+💾 Memory: 102,400GB total
+🚀 GPU: 1,200 total
+🏃 Running Jobs: 1
+   • job_001: Weather Research & Forecasting (WRF) (40 nodes, 480min)
 ```
 
-**💡 What's happening**: 
-- **5 agents** initialized with different specializations and voting weights
-- **Weight system**: GPU agent has highest weight (1.3), Network lowest (0.9)
-- **Health bar**: Visual indicator of system operational status
-- **LLM call counter**: Tracks how many times each agent used the LLM
+### Phase 4: Byzantine Fault Injection
 
-### Job Processing and LLM Consensus
+The demo demonstrates **fault tolerance** by injecting a Byzantine agent:
 
 ```
-🛡️ LLM CONSENSUS PROTOCOL
-============================================================
-JOB: AI Training Job: Deep learning model training requiring 4 GPU nodes with high memory bandwidth
+🚨 SCENARIO 2: BYZANTINE ATTACK ON SUPERCOMPUTERS
+🚨 Byzantine fault injected into HPC_RESOURCE_00 (reputation: 0.600)
 
-📋 PHASE 1: PROPOSAL COLLECTION
-----------------------------------------
-
-🤖 Alpha-GPU generating proposal...
-
-🧠 LLM QUERY FROM Alpha-GPU
-============================================================
-📝 PROMPT:
-You are Alpha-GPU, a gpu specialist in a distributed job scheduling system.
-
-JOB REQUEST:
-AI Training Job: Deep learning model training requiring 4 GPU nodes with high memory bandwidth
-
-AVAILABLE NODES:
-- n1 (GPU-Server-01): 32 CPUs, 256GB RAM, 4 GPUs, type=gpu
-- n2 (GPU-Server-02): 32 CPUs, 256GB RAM, 4 GPUs, type=gpu  
-- n3 (HighMem-01): 64 CPUs, 512GB RAM, 0 GPUs, type=memory
-- n4 (HighMem-02): 64 CPUs, 512GB RAM, 0 GPUs, type=memory
-- n5 (Compute-01): 128 CPUs, 128GB RAM, 0 GPUs, type=compute
-- n6 (Storage-01): 16 CPUs, 64GB RAM, 0 GPUs, type=storage
-
-As a gpu specialist, recommend the BEST node for this job.
-
-Respond with ONLY a JSON object:
-{"node_id": "nX", "score": 0.X, "reasoning": "why this node is optimal from your gpu perspective"}
-
-IMPORTANT: Respond with valid JSON only. Do not include explanatory text before or after the JSON.
-
-⚙️ Configuration:
-  Model: Meta-Llama-3-70B-Instruct
-  Temperature: 0.0
-  Max Tokens: 500
-
-⏳ Attempting SambaNova LangChain API...
-
-💬 REAL SAMBANOVA RESPONSE (1.22s):
-{"node_id": "n1", "score": 1.0, "reasoning": "4 GPUs available with high memory bandwidth"}
-
-✅ Proposal: n1 (score: 1.00) - 4 GPUs available with high memory bandwidth...
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+🚨 HPC_RESOURCE_00: BYZANTINE PENALTY applied
+⚖️ HPC_RESOURCE_00: weighted_score=0.300  # Severely penalized
+🛡️ PROTECTED: Byzantine supercomputer was rejected by consensus
 ```
 
-**💡 What's happening**:
-- **Specialized prompting**: Each agent gets a role-specific prompt as a GPU/Memory/Compute specialist
-- **Real LLM integration**: Shows actual API call to SambaNova with Meta-Llama-3-70B model
-- **Response timing**: Real network latency (1.22s) for authentic API call
-- **Intelligent selection**: LLM correctly identifies n1 as optimal for GPU-intensive job
-- **JSON structured output**: LLM provides machine-readable response for consensus protocol
+## LLM Integration Example
 
-### Consensus Voting Phase
+When SambaNova API is available, agents use intelligent reasoning:
 
 ```
-🗳️ PHASE 2: CONSENSUS VOTING
-----------------------------------------
+🧠 LLM QUERY FROM HPC_RESOURCE_04
+You are HPC_RESOURCE_04, managing a massive supercomputer cluster in a decentralized 
+resource allocation system.
 
-🗳️ Alpha-GPU casting vote...
+JOB REQUEST (MASSIVE SCALE):
+{
+  "job_type": "ai",
+  "node_count": 60,
+  "application": "Distributed PyTorch Training",
+  "model": "1 Trillion parameter transformer"
+}
 
-🧠 LLM QUERY FROM Alpha-GPU
-============================================================
-📝 PROMPT:
-You are Alpha-GPU, a gpu specialist in a consensus protocol.
+YOUR SUPERCOMPUTER CAPABILITIES:
+- Total Nodes: 353
+- CPU Cores: 28,672
+- Memory: 90,368 GB
+- GPUs: 1,024
+- Resource Type: ai
+- Interconnect: Mellanox InfiniBand HDR (200 Gbps)
 
-PROPOSAL SUMMARY:
-Top proposal: n1 (score: 1.00, from Alpha-GPU)
-
-As a gpu specialist, evaluate and vote on this proposal.
-
-Consider:
-1. Does this make sense from your gpu perspective?
-2. Are the resource allocations appropriate?
-3. Will this work well for the overall system?
-
-Respond with ONLY a JSON object:
-{"vote": "accept" or "reject", "confidence": 0.X, "reasoning": "explain your vote from your gpu expertise"}
-
-💬 REAL SAMBANOVA RESPONSE (1.18s):
-{"vote": "accept", "confidence": 0.9, "reasoning": "The proposal allocates sufficient GPU resources for efficient processing, ensuring optimal performance and minimizing latency."}
-
-👍 Vote: accept (conf: 0.90) - The proposal allocates sufficient GPU resources for efficient processing...
+💬 SAMBANOVA JSON (0.78s): {
+  "bid_score": 0.95, 
+  "reasoning": "Perfect match for AI workload with massive GPU resources and high-bandwidth interconnect optimized for distributed training"
+}
 ```
 
-**💡 What's happening**:
-- **Two-phase consensus**: First agents propose, then they vote on the best proposal
-- **Specialist evaluation**: Each agent evaluates from their domain expertise perspective
-- **Confidence scoring**: LLM provides confidence levels (0.9 = 90% confident)
-- **Detailed reasoning**: Each vote includes specialist justification
+## Results Summary
 
-### Successful Consensus
+The demo processes **8 massive multi-node jobs** with the following outcomes:
 
 ```
-📊 PHASE 3: CONSENSUS EVALUATION
-----------------------------------------
-  📊 Consensus Analysis:
-     Total possible weight: 5.5
-     Voting weight received: 5.5
-     Accept weight: 5.5
-     Required threshold (2/3): 3.7
-     Failed operations: 0
-  ✅ CONSENSUS ACHIEVED!
-     Decision: n1
+📊 MASSIVE DEMO SUMMARY - 8 SUPERCOMPUTER JOBS PROCESSED
+📈 Massive Job Allocation Results:
+   ✅ Successful: 8/8 (100.0%)
+   ⏱️ Average Consensus Time: 0.00s
+📊 Total Resources Allocated: 338 compute nodes
+
+📊 Performance by Scenario:
+   🟢 Normal Operations (Jobs 1-6): 6/6 successful
+   🔴 Byzantine Attack (Jobs 7-8): 2/2 successful
+
+🛡️ Fault Tolerance Results:
+   Byzantine supercomputer: HPC_RESOURCE_00
+   Network resilience: ✅ Maintained
 ```
 
-**💡 What's happening**:
-- **Weighted voting**: Total system weight is 5.5 (sum of all agent weights)
-- **2/3 majority**: Byzantine fault tolerance requires 67% agreement (3.7/5.5)
-- **Unanimous acceptance**: All agents voted accept, achieving 5.5/5.5 weight
-- **Successful decision**: Job assigned to node n1 as recommended
+## Key Innovations
 
----
+### 1. **True Decentralization**
+- No central scheduler or coordinator
+- Peer-to-peer decision making
+- Autonomous agent behavior
 
-## 💥 SCENARIO 2: FAULT INJECTION & RESILIENCE
+### 2. **AI-Enhanced Resource Management**
+- LLM-powered intelligent bidding
+- Contextual understanding of workloads
+- Adaptive decision making
 
-### Fault Injection
+### 3. **Exascale Demonstration**
+- Realistic supercomputer configurations
+- Multi-node job allocation (30-60 nodes each)
+- Petabyte-scale storage systems
 
+### 4. **Byzantine Fault Tolerance**
+- Handles malicious or malfunctioning agents
+- 2/3 majority consensus requirement
+- Reputation-based trust system
+
+### 5. **Real-time Resource Tracking**
+- Live occupancy monitoring
+- Running job status
+- Dynamic load balancing
+
+## Technical Architecture
+
+### Agent Components
+- **Bidding Engine**: Calculates competitive scores for job requests
+- **Consensus Protocol**: Implements Byzantine-tolerant voting
+- **Resource Manager**: Tracks allocated nodes and running jobs
+- **Peer Network**: Maintains mesh connectivity with other agents
+
+### LLM Integration
+- **Model**: Meta-Llama-3-70B-Instruct via SambaNova API
+- **Reasoning**: Context-aware bid calculation with detailed explanations
+- **Fallback**: Heuristic algorithms when LLM unavailable
+
+### Consensus Algorithm
+- **Voting Threshold**: 2/3 majority (4 out of 6 agents)
+- **Byzantine Penalties**: Malicious agents get severely reduced influence
+- **Reputation System**: Historical performance affects voting weight
+
+## Complete Demo Flow
+
+### 1. **Normal Operations (Jobs 1-6)**
 ```
-SCENARIO 2: FAULT INJECTION & RESILIENCE
---------------------------------------------------
-  ⚠️ FAULT INJECTED: Beta-Memory → byzantine (recovery in 25.0s)
-  💀 FAULT INJECTED: Delta-Storage → crash (recovery in 20.0s)
+🎯 Massive Job 1: Exascale Climate Modeling (WRF) - 40 nodes
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00 - 40/200 (20.0% occupied)
 
-🏥 SYSTEM STATUS
-============================================================
-System Health: [████████████░░░░░░░░] 3/5 (60%)
-
-  ● Alpha-GPU       │ gpu      │ weight: 1.3 │ LLM calls: 2
-  ⚠ Beta-Memory     │ memory   │ weight: 1.2 │ LLM calls: 2 │ byzantine │ recovery: 24.0s
-  ● Gamma-Compute   │ compute  │ weight: 1.1 │ LLM calls: 2
-  ● Delta-Storage   │ storage  │ weight: 1.0 │ LLM calls: 2 │ crash │ recovery: 19.0s
-  ● Epsilon-Network │ network  │ weight: 0.9 │ LLM calls: 2
-```
-
-**💡 What's happening**:
-- **Byzantine fault**: Beta-Memory becomes malicious but continues participating
-- **Crash fault**: Delta-Storage completely fails and stops responding
-- **System degradation**: Health drops to 60% with 2 agents compromised
-- **Recovery timers**: Automatic recovery scheduled (25s for byzantine, 20s for crash)
-
-### Byzantine Attack in Action
-
-```
-🤖 Beta-Memory generating proposal...
-
-💬 REAL SAMBANOVA RESPONSE (1.37s):
-{"node_id": "n5", "score": 0.8, "reasoning": "Compute-01 has a large number of CPUs, which will help with parallel processing and speed up the data analytics job."}
-
-🔥 BYZANTINE CORRUPTION APPLIED
-✅ Proposal: n999 (score: 1.00) - Byzantine attack - directing to fake node...
-```
-
-**💡 What's happening**:
-- **Real LLM response**: Byzantine agent still gets genuine LLM response (n5)
-- **Malicious corruption**: System then corrupts the response to fake node n999
-- **Attack simulation**: Shows how compromised agents can provide false information
-- **Score manipulation**: Boosts malicious proposal score to 1.00 to make it attractive
-
-### Crash Failure Handling
-
-```
-🤖 Delta-Storage generating proposal...
-❌ Delta-Storage proposal failed: Agent Delta-Storage is crashed...
-
-🗳️ Delta-Storage casting vote...
-❌ Delta-Storage vote failed: Agent Delta-Storage is crashed...
+🎯 Massive Job 2: LLM Training (1T parameters) - 60 nodes  
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00 - 100/200 (50.0% occupied)
 ```
 
-**💡 What's happening**:
-- **Complete failure**: Crashed agent cannot participate in any protocol phase
-- **Graceful handling**: System continues without the failed agent
-- **No votes counted**: Crashed agent's weight (1.0) removed from consensus calculation
+Shows intelligent load balancing as agents track resource usage.
 
-### Consensus Under Attack
-
+### 2. **Byzantine Attack (Jobs 7-8)**
 ```
-📊 PHASE 3: CONSENSUS EVALUATION
-----------------------------------------
-  📊 Consensus Analysis:
-     Total possible weight: 5.5
-     Voting weight received: 4.5
-     Accept weight: 4.5
-     Required threshold (2/3): 3.7
-     Failed operations: 2
-  ✅ CONSENSUS ACHIEVED!
-     Decision: n999
+🚨 Byzantine fault injected into HPC_RESOURCE_00 (reputation: 0.600)
+🎯 Massive Job 7: Fusion Plasma Simulation - 36 nodes (under Byzantine attack)
+🛡️ PROTECTED: Byzantine supercomputer was rejected by consensus
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_01 in 0.00s
 ```
 
-**💡 What's happening**:
-- **Reduced participation**: Only 4.5/5.5 weight available (crashed agent excluded)
-- **Threshold maintained**: Still need 2/3 of total system weight (3.7)
-- **Byzantine influence**: Malicious vote succeeds in corrupting consensus decision
-- **Educational demonstration**: Shows how Byzantine attacks can succeed when they reach threshold
+System successfully rejects compromised agent and maintains operations.
 
----
-
-## 🔄 SCENARIO 3: RECOVERY MONITORING
-
-### Automatic Recovery
-
+### 3. **Final Network Status**
 ```
-SCENARIO 3: RECOVERY MONITORING
-----------------------------------------
-Monitoring automatic recovery...
-  ✅ RECOVERED: Delta-Storage from crash
-  ✅ RECOVERED: Beta-Memory from byzantine
-  ✅ All agents recovered after 14.0s
-
-🏥 SYSTEM STATUS
-============================================================
-System Health: [████████████████████] 5/5 (100%)
-
-  ● Alpha-GPU       │ gpu      │ weight: 1.3 │ LLM calls: 4
-  ● Beta-Memory     │ memory   │ weight: 1.2 │ LLM calls: 4
-  ● Gamma-Compute   │ compute  │ weight: 1.1 │ LLM calls: 4
-  ● Delta-Storage   │ storage  │ weight: 1.0 │ LLM calls: 2
-  ● Epsilon-Network │ network  │ weight: 0.9 │ LLM calls: 4
+📊 MASSIVE NETWORK STATUS
+🏛️ Individual Supercomputer Status:
+   🚨 BYZANTINE HPC_RESOURCE_00: 200 nodes | Utilization: 59.6% | Reputation: 0.600
+   ✅ HEALTHY HPC_RESOURCE_01: 320 nodes | Utilization: 67.1% | Reputation: 1.000
+   ...
 ```
 
-**💡 What's happening**:
-- **Automatic healing**: System recovers agents after their fault periods expire
-- **Full restoration**: Health returns to 100% with all 5 agents operational
-- **LLM call tracking**: Shows Delta-Storage has fewer calls (was crashed during scenario 2)
-- **Self-organizing**: No manual intervention required for recovery
+Clear visualization of system health and resource distribution.
 
-### Post-Recovery Consensus
+## Applications
 
-```
-📊 PHASE 3: CONSENSUS EVALUATION
-----------------------------------------
-  📊 Consensus Analysis:
-     Total possible weight: 5.5
-     Voting weight received: 5.5
-     Accept weight: 5.5
-     Required threshold (2/3): 3.7
-     Failed operations: 0
-  ✅ CONSENSUS ACHIEVED!
-     Decision: n1
-```
+This distributed agentic AI system demonstrates applications for:
 
-**💡 What's happening**:
-- **Full participation**: All agents healthy and participating again
-- **Correct decisions**: Without Byzantine corruption, system makes optimal choices
-- **Zero failures**: All agents respond successfully to protocol phases
-- **Resilience demonstrated**: System fully operational after fault period
+- **Exascale computing resource management**
+- **Multi-cloud infrastructure coordination**
+- **Autonomous datacenter operations**
+- **Decentralized scientific computing**
+- **Fault-tolerant distributed systems**
 
----
+## Future Enhancements
 
-## 🎯 Key Educational Takeaways
-
-### 1. **LLM Integration Benefits**
-- **Intelligent reasoning**: Agents provide domain-specific expertise in proposals
-- **Contextual evaluation**: Voting considers system-wide implications
-- **Transparent decision-making**: Every prompt and response visible for learning
-
-### 2. **Byzantine Fault Tolerance**
-- **2/3 majority rule**: Requires 67% agreement to achieve consensus
-- **Attack simulation**: Shows how malicious agents can corrupt decisions
-- **Weighted voting**: Agent specialization affects voting power
-
-### 3. **System Resilience**
-- **Graceful degradation**: System continues operating with reduced capacity
-- **Automatic recovery**: Self-healing without manual intervention
-- **Fault detection**: Clear identification of compromised vs crashed agents
-
-### 4. **Real-World Applicability**
-- **HPC job scheduling**: Demonstrates practical resource allocation decisions
-- **Distributed systems**: Shows consensus protocols under adversarial conditions
-- **AI integration**: Proves LLM enhancement of traditional distributed algorithms
-
-## 🔧 Configuration Options
-
-You can modify the demo behavior by editing `hybrid_llm_demo.py`:
-
-```python
-# Number of agents and their specializations
-NUM_AGENTS = 5
-AGENT_TYPES = ["gpu", "memory", "compute", "storage", "network"]
-
-# Fault injection parameters
-FAULT_DURATION_RANGE = (15.0, 30.0)  # Recovery time in seconds
-BYZANTINE_CORRUPTION_RATE = 0.7      # Probability of corrupting responses
-
-# LLM configuration
-LLM_TEMPERATURE = 0.0                # Deterministic responses (0.0) vs creative (1.0)
-MAX_TOKENS = 500                     # Response length limit
-TIMEOUT_SECONDS = 30                 # API timeout
-```
-
-## 🚨 Troubleshooting
-
-### No SambaNova Credentials
-```
-⚠️ SambaNova credentials missing - using fallback only
-```
-**Solution**: Demo automatically uses intelligent fallbacks. For real LLM integration:
-```bash
-# Set up environment variables
-python main.py --setup-env
-```
-
-### API Rate Limits
-If you see timeout errors, the demo includes automatic retry logic and fallback responses.
-
-### Consensus Failures
-In fallback mode, consensus may fail because simulated responses don't provide proper vote formats. This is educational - it shows the importance of structured LLM responses.
-
----
-
-*This demo represents a complete integration of Large Language Models with Byzantine Fault Tolerant distributed systems, providing both educational value and practical insights into next-generation HPC scheduling systems.*
+- **Dynamic agent joining/leaving** (network topology changes)
+- **Multi-objective optimization** (cost, performance, energy)
+- **Hierarchical consensus** for larger networks
+- **Machine learning workload prediction**
+- **Cross-datacenter federation**
