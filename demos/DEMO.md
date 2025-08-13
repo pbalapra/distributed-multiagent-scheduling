@@ -2,7 +2,7 @@
 
 ## Overview
 
-This demo showcases a **distributed agentic AI system** where autonomous AI agents manage massive-scale supercomputer resources through peer-to-peer consensus. The system operates without any central coordinator, demonstrating true decentralized decision-making at exascale computing levels.
+This demo showcases a **distributed agentic AI system** where autonomous AI agents manage supercomputer resources through peer-to-peer consensus. The system operates without any central coordinator, demonstrating true decentralized decision-making at exascale computing levels.
 
 ## Key Features
 
@@ -18,7 +18,7 @@ This demo showcases a **distributed agentic AI system** where autonomous AI agen
 - **Fallback heuristics** when LLM is unavailable
 - **Reputation-based weighted voting** system
 
-### ⚡ Massive Scale Resources
+### ⚡ Large Scale Resources
 - **1,993 total compute nodes** across all clusters
 - **101,984 CPU cores** and **5,136 GPUs**
 - **1,108TB total memory** capacity
@@ -64,12 +64,12 @@ python demos/distributed_agentic_ai_demo.py
 
 ### Phase 1: Network Formation
 ```
-🏛️ FORMING MASSIVE SUPERCOMPUTER NETWORK
+🏛️ FORMING SUPERCOMPUTER NETWORK
 ✅ Added HPC_RESOURCE_00: 200 nodes | 8,800 CPU cores | 102,400GB RAM | 1,200 GPUs
 ✅ Added HPC_RESOURCE_01: 320 nodes | 20,480 CPU cores | 163,840GB RAM | 1,280 GPUs
 ...
 🌐 Supercomputer network formed: 6 clusters connected
-📊 MASSIVE Total Network Capacity: 1,993 compute nodes, 101,984 CPU cores, 1,082TB memory
+📊 Total Network Capacity: 1,993 compute nodes, 101,984 CPU cores, 1,082TB memory
 ```
 
 ### Phase 2: Job Allocation Process
@@ -78,7 +78,7 @@ Each job goes through a **two-phase consensus protocol**:
 
 #### Bidding Phase
 ```
-📋 PHASE 1: MASSIVE CLUSTER BIDDING
+📋 PHASE 1: CLUSTER BIDDING
 📊 HPC_RESOURCE_00: bid=1.000, nodes=200, util=29.6%
 📊 HPC_RESOURCE_01: bid=1.000, nodes=320, util=17.1%
 ...
@@ -137,10 +137,10 @@ When SambaNova API is available, agents use intelligent reasoning:
 
 ```
 🧠 LLM QUERY FROM HPC_RESOURCE_04
-You are HPC_RESOURCE_04, managing a massive supercomputer cluster in a decentralized 
+You are HPC_RESOURCE_04, managing a supercomputer cluster in a decentralized 
 resource allocation system.
 
-JOB REQUEST (MASSIVE SCALE):
+JOB REQUEST (LARGE SCALE):
 {
   "job_type": "ai",
   "node_count": 60,
@@ -158,17 +158,17 @@ YOUR SUPERCOMPUTER CAPABILITIES:
 
 💬 SAMBANOVA JSON (0.78s): {
   "bid_score": 0.95, 
-  "reasoning": "Perfect match for AI workload with massive GPU resources and high-bandwidth interconnect optimized for distributed training"
+  "reasoning": "Perfect match for AI workload with extensive GPU resources and high-bandwidth interconnect optimized for distributed training"
 }
 ```
 
 ## Results Summary
 
-The demo processes **8 massive multi-node jobs** with the following outcomes:
+The demo processes **8 large multi-node jobs** with the following outcomes:
 
 ```
-📊 MASSIVE DEMO SUMMARY - 8 SUPERCOMPUTER JOBS PROCESSED
-📈 Massive Job Allocation Results:
+📊 DEMO SUMMARY - 8 SUPERCOMPUTER JOBS PROCESSED
+📈 Job Allocation Results:
    ✅ Successful: 8/8 (100.0%)
    ⏱️ Average Consensus Time: 0.00s
 📊 Total Resources Allocated: 338 compute nodes
@@ -231,12 +231,12 @@ The demo processes **8 massive multi-node jobs** with the following outcomes:
 
 ### 1. **Normal Operations (Jobs 1-6)**
 ```
-🎯 Massive Job 1: Exascale Climate Modeling (WRF) - 40 nodes
-✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+🎯  Job 1: Exascale Climate Modeling (WRF) - 40 nodes
+✅  SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
 📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00 - 40/200 (20.0% occupied)
 
-🎯 Massive Job 2: LLM Training (1T parameters) - 60 nodes  
-✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+🎯  Job 2: LLM Training (1T parameters) - 60 nodes  
+✅  SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
 📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00 - 100/200 (50.0% occupied)
 ```
 
@@ -245,16 +245,16 @@ Shows intelligent load balancing as agents track resource usage.
 ### 2. **Byzantine Attack (Jobs 7-8)**
 ```
 🚨 Byzantine fault injected into HPC_RESOURCE_00 (reputation: 0.600)
-🎯 Massive Job 7: Fusion Plasma Simulation - 36 nodes (under Byzantine attack)
+🎯  Job 7: Fusion Plasma Simulation - 36 nodes (under Byzantine attack)
 🛡️ PROTECTED: Byzantine supercomputer was rejected by consensus
-✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_01 in 0.00s
+✅  SUCCESS: Allocated to HPC_RESOURCE_01 in 0.00s
 ```
 
 System successfully rejects compromised agent and maintains operations.
 
 ### 3. **Final Network Status**
 ```
-📊 MASSIVE NETWORK STATUS
+📊  NETWORK STATUS
 🏛️ Individual Supercomputer Status:
    🚨 BYZANTINE HPC_RESOURCE_00: 200 nodes | Utilization: 59.6% | Reputation: 0.600
    ✅ HEALTHY HPC_RESOURCE_01: 320 nodes | Utilization: 67.1% | Reputation: 1.000
