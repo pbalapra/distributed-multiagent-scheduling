@@ -79,15 +79,15 @@ Each job goes through a **two-phase consensus protocol**:
 #### Bidding Phase
 ```
 📋 PHASE 1: CLUSTER BIDDING
-📊 HPC_RESOURCE_00: bid=1.000, nodes=200, util=29.6%
-📊 HPC_RESOURCE_01: bid=1.000, nodes=320, util=17.1%
+📊 HPC_RESOURCE_00: bid=1.000, nodes=200, bg_util=15.2%
+📊 HPC_RESOURCE_01: bid=1.000, nodes=320, bg_util=3.4%
 ...
 ```
 
 Agents calculate bid scores based on:
 - **Resource availability** (can they handle the node count?)
 - **Specialization match** (job type vs. cluster type)
-- **Current utilization** (workload balancing)
+- **Background load** (existing system utilization)
 - **Reputation score** (historical performance)
 
 #### Consensus Voting Phase
@@ -105,17 +105,24 @@ Consensus requires **2/3 majority** (4 out of 6 votes) for Byzantine fault toler
 
 ### Phase 3: Resource Tracking
 
-After each allocation, the system shows **real-time occupancy**:
+After each allocation, the system shows **real-time occupancy** with clear separation of different usage types:
 
 ```
 📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00
-🖥️ Nodes: 40/200 (20.0% occupied)
+🖥️ Job Allocation: 40/200 nodes (20.0% by jobs)
+🔄 Background Load: 35 nodes (18.0%)
+📊 Total Occupancy: 75/200 nodes (37.5%)
 ⚡ CPU: 8,800 cores total
 💾 Memory: 102,400GB total
 🚀 GPU: 1,200 total
 🏃 Running Jobs: 1
    • job_001: Weather Research & Forecasting (WRF) (40 nodes, 480min)
 ```
+
+**Resource Usage Breakdown:**
+- **Job Allocation:** Nodes allocated to submitted demo jobs (starts at 0%)
+- **Background Load:** Existing cluster utilization (system processes, maintenance, monitoring)
+- **Total Occupancy:** Combined usage showing actual cluster capacity utilization
 
 ### Phase 4: Byzantine Fault Injection
 
@@ -150,11 +157,15 @@ JOB REQUEST (LARGE SCALE):
 
 YOUR SUPERCOMPUTER CAPABILITIES:
 - Total Nodes: 353
+- Available for Jobs: 353 nodes
 - CPU Cores: 28,672
 - Memory: 90,368 GB
 - GPUs: 1,024
 - Resource Type: ai
+- Background Load: 3.1% (system processes, maintenance)
+- Current Job Allocation: 0 nodes (0.0%)
 - Interconnect: Mellanox InfiniBand HDR (200 Gbps)
+- Storage: All-flash Lustre filesystem (35PB)
 
 💬 SAMBANOVA JSON (0.78s): {
   "bid_score": 0.95, 
@@ -231,13 +242,19 @@ The demo processes **8 large multi-node jobs** with the following outcomes:
 
 ### 1. **Normal Operations (Jobs 1-6)**
 ```
-🎯  Job 1: Exascale Climate Modeling (WRF) - 40 nodes
-✅  SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
-📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00 - 40/200 (20.0% occupied)
+🎯 Job 1: Exascale Climate Modeling (WRF) - 40 nodes
+✅ SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00
+🖥️ Job Allocation: 40/200 nodes (20.0% by jobs)
+🔄 Background Load: 35 nodes (18.0%)
+📊 Total Occupancy: 75/200 nodes (37.5%)
 
-🎯  Job 2: LLM Training (1T parameters) - 60 nodes  
-✅  SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
-📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00 - 100/200 (50.0% occupied)
+🎯 Job 2: LLM Training (1T parameters) - 60 nodes  
+✅ SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00
+🖥️ Job Allocation: 100/200 nodes (50.0% by jobs)
+🔄 Background Load: 35 nodes (18.0%)
+📊 Total Occupancy: 135/200 nodes (67.5%)
 ```
 
 Shows intelligent load balancing as agents track resource usage.
@@ -254,10 +271,12 @@ System successfully rejects compromised agent and maintains operations.
 
 ### 3. **Final Network Status**
 ```
-📊  NETWORK STATUS
+📊 NETWORK STATUS
 🏛️ Individual Supercomputer Status:
-   🚨 BYZANTINE HPC_RESOURCE_00: 200 nodes | Utilization: 59.6% | Reputation: 0.600
-   ✅ HEALTHY HPC_RESOURCE_01: 320 nodes | Utilization: 67.1% | Reputation: 1.000
+   🚨 BYZANTINE HPC_RESOURCE_00: 200 nodes | 8,800 cores | 102,400GB | 1,200 GPUs
+      └─ Jobs: 0/200 nodes | Background: 15.2% | Reputation: 0.600
+   ✅ HEALTHY HPC_RESOURCE_01: 320 nodes | 20,480 cores | 163,840GB | 1,280 GPUs
+      └─ Jobs: 188/320 nodes | Background: 3.4% | Reputation: 1.000
    ...
 ```
 

@@ -29,8 +29,8 @@ class MassiveAgent:
         self.allocated_nodes = 0
         self.suspected_agents = set()
         
-        # Market dynamics
-        self.utilization = random.uniform(0.0, 0.4)
+        # Market dynamics - background cluster utilization 
+        self.background_utilization = random.uniform(0.0, 0.2)  # Reduced to be more realistic
         
         # LLM availability
         self.llm_enabled = bool(os.getenv('SAMBASTUDIO_API_KEY'))
@@ -55,11 +55,13 @@ JOB REQUEST (MASSIVE SCALE):
 
 YOUR SUPERCOMPUTER CAPABILITIES:
 - Total Nodes: {self.capabilities.get('total_nodes', 0):,}
+- Available for Jobs: {self.capabilities.get('total_nodes', 0) - self.allocated_nodes:,} nodes
 - CPU Cores: {self.capabilities['cpu']:,}
 - Memory: {self.capabilities['memory']:,} GB
 - GPUs: {self.capabilities.get('gpu', 0):,}
 - Resource Type: {self.resource_type}
-- Current Utilization: {self.utilization:.1%}
+- Background Load: {self.background_utilization:.1%} (system processes, maintenance)
+- Current Job Allocation: {self.allocated_nodes} nodes ({(self.allocated_nodes/max(1,self.capabilities.get('total_nodes', 1)))*100:.1f}%)
 - Interconnect: {self.capabilities.get('interconnect', 'N/A')}
 - Storage: {self.capabilities.get('storage', 'N/A')}
 
@@ -206,7 +208,7 @@ IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
             score += 0.1  # Versatile types get small bonus
         
         # Utilization penalty
-        score -= self.utilization * 0.2
+        score -= self.background_utilization * 0.2
         
         # Reputation bonus
         score += (self.reputation - 1.0) * 0.1
@@ -256,12 +258,12 @@ class MassiveDecentralizedNetwork:
                 bids[agent.agent_id] = {
                     "score": bid_score,
                     "reputation": agent.reputation,
-                    "utilization": agent.utilization,
+                    "background_utilization": agent.background_utilization,
                     "nodes": agent.capabilities.get("total_nodes", agent.capabilities.get("nodes", 0))
                 }
                 print(f"   📊 {agent.agent_id}: bid={bid_score:.3f}, "
                       f"nodes={bids[agent.agent_id]['nodes']:,}, "
-                      f"util={agent.utilization:.1%}")
+                      f"bg_util={agent.background_utilization:.1%}")
             except Exception as e:
                 print(f"   ❌ {agent.agent_id}: bidding failed ({e})")
                 bids[agent.agent_id] = {"score": 0.0, "reputation": agent.reputation}
@@ -330,7 +332,7 @@ class MassiveDecentralizedNetwork:
             # Update winner's resource allocation
             for agent in self.agents:
                 if agent.agent_id == winner:
-                    agent.utilization = min(1.0, agent.utilization + 0.1)
+                    # No need to update background utilization - it stays constant
                     # Track allocated resources
                     job_id = f"job_{len(agent.running_jobs)+1:03d}"
                     agent.running_jobs[job_id] = {
@@ -368,9 +370,15 @@ class MassiveDecentralizedNetwork:
         total_memory = agent.capabilities["memory"]
         total_gpu = agent.capabilities.get("gpu", 0)
         
-        occupancy_pct = (agent.allocated_nodes / max(1, total_nodes)) * 100
+        # Calculate actual job occupancy (not background utilization)
+        job_occupancy_pct = (agent.allocated_nodes / max(1, total_nodes)) * 100
+        background_nodes = int(total_nodes * agent.background_utilization)
+        total_occupied_nodes = agent.allocated_nodes + background_nodes
+        total_occupancy_pct = (total_occupied_nodes / max(1, total_nodes)) * 100
         
-        print(f"🖥️ Nodes: {agent.allocated_nodes:,}/{total_nodes:,} ({occupancy_pct:.1f}% occupied)")
+        print(f"🖥️ Job Allocation: {agent.allocated_nodes:,}/{total_nodes:,} nodes ({job_occupancy_pct:.1f}% by jobs)")
+        print(f"🔄 Background Load: {background_nodes:,} nodes ({agent.background_utilization:.1%})")
+        print(f"📊 Total Occupancy: {total_occupied_nodes:,}/{total_nodes:,} nodes ({total_occupancy_pct:.1f}%)")
         print(f"⚡ CPU: {total_cpu:,} cores total")
         print(f"💾 Memory: {total_memory:,}GB total")
         if total_gpu > 0:
@@ -387,7 +395,7 @@ class MassiveDecentralizedNetwork:
     
     def show_network_status(self):
         """Display current network status"""
-        print(f"\n📊 MASSIVE NETWORK STATUS")
+        print(f"\n📊 NETWORK STATUS")
         print("=" * 60)
         
         total_nodes = sum(agent.capabilities.get("total_nodes", agent.capabilities.get("nodes", 0)) for agent in self.agents)
@@ -409,7 +417,9 @@ class MassiveDecentralizedNetwork:
             print(f"   {status} {agent.agent_id}:")
             print(f"      └─ {nodes:,} nodes | {agent.capabilities['cpu']:,} cores | "
                   f"{agent.capabilities['memory']:,}GB | {agent.capabilities.get('gpu', 0):,} GPUs")
-            print(f"      └─ Utilization: {agent.utilization:.1%} | Reputation: {agent.reputation:.3f}")
+            job_nodes = agent.allocated_nodes
+            total_nodes = agent.capabilities.get("total_nodes", 0)
+            print(f"      └─ Jobs: {job_nodes}/{total_nodes} nodes | Background: {agent.background_utilization:.1%} | Reputation: {agent.reputation:.3f}")
 
 async def run_massive_demo():
     """Run massive scale demonstration"""
