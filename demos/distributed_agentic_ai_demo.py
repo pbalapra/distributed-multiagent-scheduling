@@ -84,12 +84,13 @@ TASK: Calculate your bid score (0.0 to 1.0) for this massive multi-node job.
 
 CRITICAL CONSTRAINTS:
 1. If job requires GPUs and you have 0 GPUs, bid MUST be 0.0
-2. If effective available nodes < required nodes, bid MUST be < 0.3
+2. If effective available nodes < required nodes, bid MUST be 0.0 (job cannot be served)
 3. Apply resource type penalties:
-   - If your type matches job type: no penalty
    - If your type is 'ai' but job is 'hpc': reduce bid by 20-30% (preserve AI resources)
    - If your type is 'hpc' but job is 'ai': reduce bid by 10-20%
-   - If your type is 'hybrid': reduce bid by 5-10% (jack of all trades penalty)
+   - If your type is 'hybrid' but job is not 'hybrid': reduce bid by 5-10% (jack of all trades penalty)
+   - If your type is 'memory' but job is not 'memory': reduce bid by 10-15% (preserve high memory resources)
+   - If your type is 'storage' but job is not 'storage': reduce bid by 10-15% (preserve high storage resources)
 
 SCORING GUIDELINES:
 - 0.9-1.0 = Perfect match: correct resource type, low occupancy, job < 20% of cluster
@@ -235,7 +236,7 @@ IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
             if effective_available >= required_nodes * 2:
                 score += 0.1  # Has plenty of headroom
         else:
-            return 0.2  # Cannot meet node requirements
+            return 0.0  # Cannot meet node requirements - job cannot be served
         
         # GPU matching (if GPUs are needed)
         min_gpu_count = job_requirements.get("min_gpu_count", 0)
@@ -243,22 +244,24 @@ IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
             if available_gpu >= min_gpu_count:
                 score += 0.1
             else:
-                return 0.1  # GPU deficit
+                return 0.0  # GPU deficit - job cannot be served
         
         # Resource type match with specialization penalties
         job_type = job_requirements.get("job_type", "hpc")
         if job_type == self.resource_type:
             score += 0.2  # Perfect match
         elif self.resource_type == "ai" and job_type == "hpc":
-            score -= 0.2  # Preserve AI resources for AI jobs
+            score *= 0.75  # Reduce by 25% (preserve AI resources)
         elif self.resource_type == "hpc" and job_type == "ai":
-            score -= 0.1  # HPC can do AI but not optimal
-        elif self.resource_type == "hybrid":
-            score -= 0.05  # Jack of all trades penalty
+            score *= 0.85  # Reduce by 15% (HPC can do AI but not optimal)
+        elif self.resource_type == "hybrid" and job_type != "hybrid":
+            score *= 0.92  # Reduce by 8% (jack of all trades penalty)
+        elif self.resource_type == "memory" and job_type != "memory":
+            score *= 0.87  # Reduce by 13% (preserve high memory resources)
+        elif self.resource_type == "storage" and job_type != "storage":
+            score *= 0.87  # Reduce by 13% (preserve high storage resources)
         elif self.resource_type == "gpu" and job_type in ["ai", "gpu"]:
             score += 0.15  # GPU clusters good for AI/GPU jobs
-        elif self.resource_type == "memory" and job_type == "memory":
-            score += 0.15  # Memory-optimized for memory jobs
         
         # Total occupancy penalty (more aggressive)
         score -= total_occupancy * 0.3
