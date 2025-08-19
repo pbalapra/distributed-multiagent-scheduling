@@ -47,6 +47,13 @@ class MassiveAgent:
         print(f"\n🧠 LLM QUERY FROM {self.agent_id}")
         print("=" * 60)
         
+        # Calculate total occupancy
+        total_nodes = self.capabilities.get('total_nodes', 0)
+        available_nodes = total_nodes - self.allocated_nodes
+        background_nodes = int(total_nodes * self.background_utilization)
+        effective_available = available_nodes - background_nodes
+        total_occupancy = (self.allocated_nodes + background_nodes) / max(1, total_nodes)
+        
         # Create LLM prompt for massive scale
         prompt = f"""You are {self.agent_id}, managing a massive supercomputer cluster in a decentralized resource allocation system.
 
@@ -54,36 +61,51 @@ JOB REQUEST (MASSIVE SCALE):
 {json.dumps(job_requirements, indent=2)}
 
 YOUR SUPERCOMPUTER CAPABILITIES:
-- Total Nodes: {self.capabilities.get('total_nodes', 0):,}
-- Available for Jobs: {self.capabilities.get('total_nodes', 0) - self.allocated_nodes:,} nodes
+- Total Nodes: {total_nodes:,}
+- Currently Allocated to Jobs: {self.allocated_nodes:,} nodes
+- Background System Load: {background_nodes:,} nodes ({self.background_utilization:.1%})
+- TOTAL OCCUPANCY: {total_occupancy:.1%} (allocated + background)
+- EFFECTIVE AVAILABLE: {effective_available:,} nodes
 - CPU Cores: {self.capabilities['cpu']:,}
 - Memory: {self.capabilities['memory']:,} GB
 - GPUs: {self.capabilities.get('gpu', 0):,}
 - Resource Type: {self.resource_type}
-- Background Load: {self.background_utilization:.1%} (system processes, maintenance)
-- Current Job Allocation: {self.allocated_nodes} nodes ({(self.allocated_nodes/max(1,self.capabilities.get('total_nodes', 1)))*100:.1f}%)
 - Interconnect: {self.capabilities.get('interconnect', 'N/A')}
 - Storage: {self.capabilities.get('storage', 'N/A')}
 
-This job requires {job_requirements.get('node_count', 1)} nodes spanning multiple compute nodes.
+JOB ANALYSIS:
+- This job requires {job_requirements.get('node_count', 1)} nodes
+- Job type: {job_requirements.get('job_type', 'unknown')}
+- GPU requirement: {'YES - This job REQUIRES GPUs' if job_requirements.get('requires_gpu', False) else 'NO - This job does NOT require GPUs'}
+- Job size relative to your cluster: {(job_requirements.get('node_count', 1) / max(1, total_nodes)) * 100:.1f}% of total capacity
 
 TASK: Calculate your bid score (0.0 to 1.0) for this massive multi-node job.
 
-CONSIDER:
-1. Can your supercomputer handle {job_requirements.get('node_count', 1)} nodes simultaneously?
-2. How efficiently can your interconnect support this workload?
-3. Your specialization for {job_requirements.get('job_type', 'unknown')} workloads
-4. Current cluster utilization vs. job requirements
-5. Multi-node job scheduling and resource allocation efficiency
+CRITICAL CONSTRAINTS:
+1. If job requires GPUs and you have 0 GPUs, bid MUST be 0.0
+2. If effective available nodes < required nodes, bid MUST be < 0.3
+3. Apply resource type penalties:
+   - If your type matches job type: no penalty
+   - If your type is 'ai' but job is 'hpc': reduce bid by 20-30% (preserve AI resources)
+   - If your type is 'hpc' but job is 'ai': reduce bid by 10-20%
+   - If your type is 'hybrid': reduce bid by 5-10% (jack of all trades penalty)
 
 SCORING GUIDELINES:
-- 1.0 = Perfect supercomputer match, optimal for multi-node workload
-- 0.7-0.9 = Excellent match, strong multi-node capabilities
-- 0.5-0.7 = Good match, can handle the scale
-- 0.0-0.5 = Poor match or insufficient resources for multi-node requirements
+- 0.9-1.0 = Perfect match: correct resource type, low occupancy, job < 20% of cluster
+- 0.7-0.9 = Good match: can handle workload, reasonable occupancy
+- 0.5-0.7 = Acceptable: high occupancy OR type mismatch OR job > 30% of cluster
+- 0.2-0.5 = Poor match: very high occupancy OR significant type mismatch
+- 0.0-0.2 = Cannot handle: insufficient resources OR missing required GPUs
+
+CONSIDER:
+1. Total occupancy impact on performance
+2. Job size as fraction of your cluster (smaller fraction = better)
+3. Resource type specialization and preservation
+4. Interconnect suitability for workload type
+5. GPU availability for AI/ML workloads
 
 IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
-{{"bid_score": 0.85, "reasoning": "explain why your supercomputer is ideal for this massive multi-node job"}}"""
+{{"bid_score": 0.85, "reasoning": "explain your bid considering constraints and current occupancy"}}"""
 
         print(f"📝 PROMPT:")
         print(prompt)
@@ -180,35 +202,62 @@ IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
         # Base compatibility score
         score = 0.5
         
-        # Primary resource matching: nodes (simplified)
-        required_nodes = job_requirements.get("node_count", 1)
-        available_nodes = self.capabilities.get("total_nodes", self.capabilities.get("nodes", 1))
-        
-        if available_nodes >= required_nodes:
-            score += 0.4  # Can handle the node count
-            if available_nodes >= required_nodes * 2:
-                score += 0.2  # Has plenty of headroom
-        else:
-            score -= 0.5  # Cannot meet node requirements - major penalty
-        
-        # GPU matching
-        required_gpu = job_requirements.get("gpu_count", 0)
+        # Check GPU hard constraint first
+        requires_gpu = job_requirements.get("requires_gpu", False)
         available_gpu = self.capabilities.get("gpu", 0)
-        if required_gpu > 0:
-            if available_gpu >= required_gpu:
-                score += 0.2
+        if requires_gpu and available_gpu == 0:
+            return 0.0  # Cannot run GPU jobs without GPUs
+        
+        # Calculate total occupancy
+        total_nodes = self.capabilities.get("total_nodes", self.capabilities.get("nodes", 1))
+        background_nodes = int(total_nodes * self.background_utilization)
+        effective_available = total_nodes - self.allocated_nodes - background_nodes
+        total_occupancy = (self.allocated_nodes + background_nodes) / max(1, total_nodes)
+        
+        # Primary resource matching: nodes
+        required_nodes = job_requirements.get("node_count", 1)
+        
+        if effective_available >= required_nodes:
+            # Scale-based differentiation: smaller job fraction = better bid
+            job_fraction = required_nodes / max(1, total_nodes)
+            if job_fraction < 0.2:  # Job is < 20% of cluster
+                score += 0.4
+            elif job_fraction < 0.3:  # Job is < 30% of cluster
+                score += 0.3
             else:
-                score -= 0.3
+                score += 0.2  # Job is large relative to cluster
+            
+            # Headroom bonus
+            if effective_available >= required_nodes * 2:
+                score += 0.1  # Has plenty of headroom
+        else:
+            return 0.2  # Cannot meet node requirements
         
-        # Resource type specialization
-        job_type = job_requirements.get("job_type", "")
+        # GPU matching (if GPUs are needed)
+        min_gpu_count = job_requirements.get("min_gpu_count", 0)
+        if min_gpu_count > 0:
+            if available_gpu >= min_gpu_count:
+                score += 0.1
+            else:
+                return 0.1  # GPU deficit
+        
+        # Resource type match with specialization penalties
+        job_type = job_requirements.get("job_type", "hpc")
         if job_type == self.resource_type:
-            score += 0.3
-        elif self.resource_type == "hybrid" or self.resource_type == "ai":
-            score += 0.1  # Versatile types get small bonus
+            score += 0.2  # Perfect match
+        elif self.resource_type == "ai" and job_type == "hpc":
+            score -= 0.2  # Preserve AI resources for AI jobs
+        elif self.resource_type == "hpc" and job_type == "ai":
+            score -= 0.1  # HPC can do AI but not optimal
+        elif self.resource_type == "hybrid":
+            score -= 0.05  # Jack of all trades penalty
+        elif self.resource_type == "gpu" and job_type in ["ai", "gpu"]:
+            score += 0.15  # GPU clusters good for AI/GPU jobs
+        elif self.resource_type == "memory" and job_type == "memory":
+            score += 0.15  # Memory-optimized for memory jobs
         
-        # Utilization penalty
-        score -= self.background_utilization * 0.2
+        # Total occupancy penalty (more aggressive)
+        score -= total_occupancy * 0.3
         
         # Reputation bonus
         score += (self.reputation - 1.0) * 0.1
@@ -544,6 +593,7 @@ async def run_massive_demo():
                 "job_type": "hpc",
                 "node_count": 40,
                 "estimated_runtime": 480,
+                "requires_gpu": False,
                 "application": "Weather Research & Forecasting (WRF)",
                 "domain_size": "Global 1km resolution",
                 "simulation_time": "10-day forecast ensemble"
@@ -555,6 +605,8 @@ async def run_massive_demo():
                 "job_type": "ai",
                 "node_count": 60,
                 "estimated_runtime": 720,
+                "requires_gpu": True,
+                "min_gpu_count": 240,
                 "application": "Distributed PyTorch Training",
                 "model": "1 Trillion parameter transformer",
                 "technique": "3D parallelism (pipeline+tensor+data)"
@@ -566,6 +618,7 @@ async def run_massive_demo():
                 "job_type": "hybrid",
                 "node_count": 50,
                 "estimated_runtime": 600,
+                "requires_gpu": False,
                 "application": "GADGET-4 N-body simulation",
                 "particles": "100 billion dark matter particles",
                 "box_size": "1 Gpc/h comoving"
@@ -577,6 +630,7 @@ async def run_massive_demo():
                 "job_type": "memory",
                 "node_count": 32,
                 "estimated_runtime": 360,
+                "requires_gpu": False,
                 "application": "Qiskit quantum circuit simulation",
                 "qubits": "45-qubit quantum circuit",
                 "gate_depth": "10,000 quantum gates"
@@ -588,6 +642,7 @@ async def run_massive_demo():
                 "job_type": "storage",
                 "node_count": 42,
                 "estimated_runtime": 240,
+                "requires_gpu": False,
                 "application": "Distributed GraphX on Spark",
                 "graph_size": "1 trillion edges, 100 billion vertices",
                 "algorithm": "PageRank + Community Detection"
@@ -599,6 +654,7 @@ async def run_massive_demo():
                 "job_type": "memory",
                 "node_count": 38,
                 "estimated_runtime": 420,
+                "requires_gpu": False,
                 "application": "GATK population genetics pipeline",
                 "sample_size": "100,000 whole genomes",
                 "analysis": "GWAS + population structure"
@@ -610,6 +666,7 @@ async def run_massive_demo():
                 "job_type": "hpc",
                 "node_count": 36,
                 "estimated_runtime": 540,
+                "requires_gpu": False,
                 "application": "BOUT++ MHD simulation",
                 "plasma_size": "ITER tokamak geometry",
                 "physics": "3D MHD + turbulence"
@@ -621,6 +678,8 @@ async def run_massive_demo():
                 "job_type": "gpu",
                 "node_count": 40,
                 "estimated_runtime": 180,
+                "requires_gpu": True,
+                "min_gpu_count": 160,
                 "application": "AutoDock Vina GPU",
                 "library_size": "1 million compounds",
                 "target": "SARS-CoV-2 main protease"
