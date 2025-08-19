@@ -70,6 +70,7 @@ YOUR SUPERCOMPUTER CAPABILITIES:
 - Memory: {self.capabilities['memory']:,} GB
 - GPUs: {self.capabilities.get('gpu', 0):,}
 - Resource Type: {self.resource_type}
+{f"- Node Composition: {self.capabilities.get('node_composition', 'Homogeneous nodes')}" if 'node_composition' in self.capabilities else f"- Cores per node: {self.capabilities['cpu'] // max(1, total_nodes)} | Memory per node: {self.capabilities['memory'] // max(1, total_nodes)}GB"}
 - Interconnect: {self.capabilities.get('interconnect', 'N/A')}
 - Storage: {self.capabilities.get('storage', 'N/A')}
 
@@ -99,10 +100,13 @@ SCORING GUIDELINES:
 
 CONSIDER:
 1. Total occupancy impact on performance
-2. Job size as fraction of your cluster (smaller fraction = better)
+2. Job size as fraction of your cluster (smaller fraction = better)  
 3. Resource type specialization and preservation
 4. Interconnect suitability for workload type
 5. GPU availability for AI/ML workloads
+6. COMPUTE POWER: Your actual cores per node and heterogeneous architecture
+   - More cores per node = higher compute density = better performance per node
+   - Heterogeneous clusters may provide better performance if job matches node types
 
 IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
 {{"bid_score": 0.85, "reasoning": "explain your bid considering constraints and current occupancy"}}"""
@@ -523,10 +527,12 @@ async def run_massive_demo():
             "id": "HPC_RESOURCE_03", 
             "type": "hybrid", 
             "name": "HPC_RESOURCE_03",
-            "total_nodes": 328,  # 200 CPU + 128 GPU nodes
-            "cpu": 10496,   # (32×200) + (32×128)
-            "memory": 83968,   # 256GB × 328 nodes
-            "gpu": 512,     # 4 GPUs × 128 GPU nodes
+            "total_nodes": 256,  # 192 nodes with 32 cores + 2 GPUs, 64 nodes with 32 cores only
+            "cpu": 8192,    # 32 cores × 256 nodes
+            "memory": 65536,   # 256GB × 256 nodes
+            "gpu": 384,     # 2 GPUs × 192 GPU nodes
+            "cores_per_node": 32,
+            "node_composition": "192 GPU nodes (32 cores + 2 GPUs), 64 CPU-only nodes (32 cores)",
             "interconnect": "Mellanox InfiniBand HDR (200 Gbps)",
             "storage": "Parallel filesystem with flash storage (100PB)"
         },
@@ -534,10 +540,12 @@ async def run_massive_demo():
             "id": "HPC_RESOURCE_04", 
             "type": "ai", 
             "name": "HPC_RESOURCE_04",
-            "total_nodes": 353,  # 256 GPU + 96 CPU + 1 login
-            "cpu": 28672,   # (64×256) + (128×96) + (64×1)
-            "memory": 90368,   # 256GB × 353 nodes
+            "total_nodes": 384,  # 256 nodes with 96 cores + 4 GPUs, 128 nodes with 32 cores only
+            "cpu": 28672,   # (96×256) + (32×128)
+            "memory": 98304,   # 256GB × 384 nodes
             "gpu": 1024,    # 4 GPUs × 256 GPU nodes
+            "cores_per_node": "96 (GPU nodes) / 32 (CPU nodes)",
+            "node_composition": "256 GPU nodes (96 cores + 4 GPUs), 128 CPU-only nodes (32 cores)",
             "interconnect": "Mellanox InfiniBand HDR (200 Gbps)",
             "storage": "All-flash Lustre filesystem (35PB)"
         },
@@ -568,6 +576,16 @@ async def run_massive_demo():
         print(f"   ✅ Added {config['name']}")
         print(f"      └─ {config['total_nodes']:,} nodes | {config['cpu']:,} CPU cores | "
               f"{config['memory']:,}GB RAM | {config.get('gpu', 0):,} GPUs")
+        
+        # Show node composition for heterogeneous clusters
+        if 'node_composition' in config:
+            print(f"      └─ Composition: {config['node_composition']}")
+        else:
+            cores_per_node = config['cpu'] // config['total_nodes']
+            memory_per_node = config['memory'] // config['total_nodes']
+            gpus_per_node = config.get('gpu', 0) / config['total_nodes'] if config.get('gpu', 0) > 0 else 0
+            print(f"      └─ Per node: {cores_per_node} cores, {memory_per_node}GB RAM{f', {gpus_per_node:.1f} GPUs' if gpus_per_node > 0 else ''}")
+            
         print(f"      └─ Network: {config['interconnect']}")
         print(f"      └─ Storage: {config['storage']}")
     
