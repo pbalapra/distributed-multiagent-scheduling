@@ -1,0 +1,100 @@
+[
+        {
+            "name": "Exascale Climate Modeling (WRF)",
+            "requirements": {
+                "job_type": "hpc",
+                "node_count": 40,
+                "estimated_runtime": 480,
+                "requires_gpu": false,
+                "application": "Weather Research & Forecasting (WRF)",
+                "domain_size": "Global 1km resolution",
+                "simulation_time": "10-day forecast ensemble"
+            }
+        },
+        {
+            "name": "Large Language Model Training (1T parameters)",
+            "requirements": {
+                "job_type": "ai",
+                "node_count": 60,
+                "estimated_runtime": 720,
+                "requires_gpu": true,
+                "min_gpu_count": 240,
+                "application": "Distributed PyTorch Training",
+                "model": "1 Trillion parameter transformer",
+                "technique": "3D parallelism (pipeline+tensor+data)"
+            }
+        },
+        {
+            "name": "Cosmological N-Body Simulation",
+            "requirements": {
+                "job_type": "hybrid",
+                "node_count": 50,
+                "estimated_runtime": 600,
+                "requires_gpu": false,
+                "application": "GADGET-4 N-body simulation",
+                "particles": "100 billion dark matter particles",
+                "box_size": "1 Gpc/h comoving"
+            }
+        },
+        {
+            "name": "Quantum Circuit Simulation",
+            "requirements": {
+                "job_type": "memory",
+                "node_count": 32,
+                "estimated_runtime": 360,
+                "requires_gpu": false,
+                "application": "Qiskit quantum circuit simulation",
+                "qubits": "45-qubit quantum circuit",
+                "gate_depth": "10,000 quantum gates"
+            }
+        },
+        {
+            "name": "Massive Graph Analytics (Trillion-edge)",
+            "requirements": {
+                "job_type": "storage",
+                "node_count": 42,
+                "estimated_runtime": 240,
+                "requires_gpu": false,
+                "application": "Distributed GraphX on Spark",
+                "graph_size": "1 trillion edges, 100 billion vertices",
+                "algorithm": "PageRank + Community Detection"
+            }
+        },
+        {
+            "name": "Genomics Population Analysis (100K genomes)",
+            "requirements": {
+                "job_type": "memory",
+                "node_count": 38,
+                "estimated_runtime": 420,
+                "requires_gpu": false,
+                "application": "GATK population genetics pipeline",
+                "sample_size": "100,000 whole genomes",
+                "analysis": "GWAS + population structure"
+            }
+        },
+        {
+            "name": "Fusion Plasma Simulation (ITER scale)",
+            "requirements": {
+                "job_type": "hpc",
+                "node_count": 36,
+                "estimated_runtime": 540,
+                "requires_gpu": false,
+                "application": "BOUT++ MHD simulation",
+                "plasma_size": "ITER tokamak geometry",
+                "physics": "3D MHD + turbulence"
+            }
+        },
+        {
+            "name": "Drug Discovery Molecular Docking (1M compounds)",
+            "requirements": {
+                "job_type": "gpu",
+                "node_count": 40,
+                "estimated_runtime": 180,
+                "requires_gpu": true,
+                "min_gpu_count": 160,
+                "application": "AutoDock Vina GPU",
+                "library_size": "1 million compounds",
+                "target": "SARS-CoV-2 main protease"
+            }
+        }
+]

@@ -1,0 +1,507 @@
+🌐 Starting Massive Scale Decentralized Multi-Agent Consensus Demo...
+🧠 LLM Integration: ❌ DISABLED (using heuristics)
+🌐 MASSIVE SCALE DECENTRALIZED MULTI-AGENT CONSENSUS DEMO
+================================================================================
+⏰ Starting at: 2025-09-24 13:14:43
+
+🏛️ FORMING MASSIVE SUPERCOMPUTER NETWORK
+============================================================
+   ✅ Added HPC_RESOURCE_00
+      └─ 200 nodes | 8,800 CPU cores | 102,400GB RAM | 1,200 GPUs
+      └─ Per node: 44 cores, 512GB RAM, 6.0 GPUs
+      └─ Network: Mellanox InfiniBand EDR (100 Gbps)
+      └─ Storage: IBM Spectrum Scale (250PB)
+   ✅ Added HPC_RESOURCE_01
+      └─ 320 nodes | 20,480 CPU cores | 163,840GB RAM | 1,280 GPUs
+      └─ Per node: 64 cores, 512GB RAM, 4.0 GPUs
+      └─ Network: HPE Cray Slingshot-11 (200 Gbps)
+      └─ Storage: Lustre parallel filesystem (700PB)
+   ✅ Added HPC_RESOURCE_02
+      └─ 512 nodes | 24,576 CPU cores | 524,288GB RAM | 0 GPUs
+      └─ Per node: 48 cores, 1024GB RAM
+      └─ Network: Tofu Interconnect D (28 Gbps per link)
+      └─ Storage: Distributed storage system (150PB)
+   ✅ Added HPC_RESOURCE_03
+      └─ 256 nodes | 8,192 CPU cores | 65,536GB RAM | 384 GPUs
+      └─ Composition: 192 GPU nodes (32 cores + 2 GPUs), 64 CPU-only nodes (32 cores)
+      └─ Network: Mellanox InfiniBand HDR (200 Gbps)
+      └─ Storage: Parallel filesystem with flash storage (100PB)
+   ✅ Added HPC_RESOURCE_04
+      └─ 384 nodes | 28,672 CPU cores | 98,304GB RAM | 1,024 GPUs
+      └─ Composition: 256 GPU nodes (96 cores + 4 GPUs), 128 CPU-only nodes (32 cores)
+      └─ Network: Mellanox InfiniBand HDR (200 Gbps)
+      └─ Storage: All-flash Lustre filesystem (35PB)
+   ✅ Added HPC_RESOURCE_05
+      └─ 280 nodes | 8,960 CPU cores | 143,360GB RAM | 1,120 GPUs
+      └─ Per node: 32 cores, 512GB RAM, 4.0 GPUs
+      └─ Network: HPE Cray Slingshot-10 (200 Gbps)
+      └─ Storage: Distributed parallel storage (230PB)
+   🌐 Supercomputer network formed: 6 clusters connected
+   📊 MASSIVE Total Network Capacity:
+      └─ 1,952 compute nodes
+      └─ 99,680 CPU cores
+      └─ 1,097,728GB memory (1072.0TB)
+      └─ 5,008 GPUs
+
+================================================================================
+MASSIVE SCALE JOB ALLOCATION SCENARIOS
+================================================================================
+
+🌟 SCENARIO 1: NORMAL MASSIVE OPERATIONS (Jobs 1-6)
+============================================================
+
+🎯 Massive Job 1: Exascale Climate Modeling (WRF)
+   📊 Scale: 40 nodes
+
+🎯 SUBMITTING MASSIVE JOB: Weather Research & Forecasting (WRF)
+   📊 Requires: 40 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=1.000, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=0.999, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=0.854, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.907, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=0.706, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.830, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   ⚖️ HPC_RESOURCE_00: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_01: weighted_score=0.999
+   ⚖️ HPC_RESOURCE_02: weighted_score=0.854
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.907
+   ⚖️ HPC_RESOURCE_04: weighted_score=0.706
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.830
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_00 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   ✅ HPC_RESOURCE_00: approve
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 6/6 approved
+   🎯 Job allocated to HPC_RESOURCE_00
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_00 in 0.00s
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_00
+----------------------------------------
+🖥️ Job Allocation: 40/200 nodes (20.0% by jobs)
+🔄 Background Load: 25 nodes (12.8%)
+📊 Total Occupancy: 65/200 nodes (32.5%)
+⚡ CPU: 8,800 cores total
+💾 Memory: 102,400GB total
+🚀 GPU: 1,200 total
+🏃 Running Jobs: 1
+   • job_001: Weather Research & Forecasting (WRF) (40 nodes, 480min)
+
+🎯 Massive Job 2: Large Language Model Training (1T parameters)
+   📊 Scale: 60 nodes
+
+🎯 SUBMITTING MASSIVE JOB: Distributed PyTorch Training
+   📊 Requires: 60 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=0.667, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=1.000, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=0.000, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.907, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=1.000, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.830, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.667
+   ⚖️ HPC_RESOURCE_01: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_02: weighted_score=0.000
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.907
+   ⚖️ HPC_RESOURCE_04: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.830
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_01 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   ✅ HPC_RESOURCE_00: approve
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 6/6 approved
+   🎯 Job allocated to HPC_RESOURCE_01
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_01 in 0.00s
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_01
+----------------------------------------
+🖥️ Job Allocation: 60/320 nodes (18.8% by jobs)
+🔄 Background Load: 1 nodes (0.5%)
+📊 Total Occupancy: 61/320 nodes (19.1%)
+⚡ CPU: 20,480 cores total
+💾 Memory: 163,840GB total
+🚀 GPU: 1,280 total
+🏃 Running Jobs: 1
+   • job_001: Distributed PyTorch Training (60 nodes, 720min)
+
+🎯 Massive Job 3: Cosmological N-Body Simulation
+   📊 Scale: 50 nodes
+
+🎯 SUBMITTING MASSIVE JOB: GADGET-4 N-body simulation
+   📊 Requires: 50 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=0.802, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=0.943, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=0.854, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=1.000, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=0.956, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.830, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.802
+   ⚖️ HPC_RESOURCE_01: weighted_score=0.943
+   ⚖️ HPC_RESOURCE_02: weighted_score=0.854
+   ⚖️ HPC_RESOURCE_03: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_04: weighted_score=0.956
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.830
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_03 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   ✅ HPC_RESOURCE_00: approve
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 6/6 approved
+   🎯 Job allocated to HPC_RESOURCE_03
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_03 in 0.00s
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_03
+----------------------------------------
+🖥️ Job Allocation: 50/256 nodes (19.5% by jobs)
+🔄 Background Load: 11 nodes (4.5%)
+📊 Total Occupancy: 61/256 nodes (23.8%)
+⚡ CPU: 8,192 cores total
+💾 Memory: 65,536GB total
+🚀 GPU: 384 total
+🏃 Running Jobs: 1
+   • job_001: GADGET-4 N-body simulation (50 nodes, 600min)
+
+🎯 Massive Job 4: Quantum Circuit Simulation
+   📊 Scale: 32 nodes
+
+🎯 SUBMITTING MASSIVE JOB: Qiskit quantum circuit simulation
+   📊 Requires: 32 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=0.902, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=0.943, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=1.000, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.849, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=0.956, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.830, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.902
+   ⚖️ HPC_RESOURCE_01: weighted_score=0.943
+   ⚖️ HPC_RESOURCE_02: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.849
+   ⚖️ HPC_RESOURCE_04: weighted_score=0.956
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.830
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_02 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   ✅ HPC_RESOURCE_00: approve
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 6/6 approved
+   🎯 Job allocated to HPC_RESOURCE_02
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_02 in 0.00s
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_02
+----------------------------------------
+🖥️ Job Allocation: 32/512 nodes (6.2% by jobs)
+🔄 Background Load: 28 nodes (5.5%)
+📊 Total Occupancy: 60/512 nodes (11.7%)
+⚡ CPU: 24,576 cores total
+💾 Memory: 524,288GB total
+🏃 Running Jobs: 1
+   • job_001: Qiskit quantum circuit simulation (32 nodes, 360min)
+
+🎯 Massive Job 5: Massive Graph Analytics (Trillion-edge)
+   📊 Scale: 42 nodes
+
+🎯 SUBMITTING MASSIVE JOB: Distributed GraphX on Spark
+   📊 Requires: 42 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=0.802, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=0.943, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=0.835, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.849, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=0.956, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=1.000, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.802
+   ⚖️ HPC_RESOURCE_01: weighted_score=0.943
+   ⚖️ HPC_RESOURCE_02: weighted_score=0.835
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.849
+   ⚖️ HPC_RESOURCE_04: weighted_score=0.956
+   ⚖️ HPC_RESOURCE_05: weighted_score=1.000
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_05 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   ✅ HPC_RESOURCE_00: approve
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 6/6 approved
+   🎯 Job allocated to HPC_RESOURCE_05
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_05 in 0.00s
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_05
+----------------------------------------
+🖥️ Job Allocation: 42/280 nodes (15.0% by jobs)
+🔄 Background Load: 37 nodes (13.5%)
+📊 Total Occupancy: 79/280 nodes (28.2%)
+⚡ CPU: 8,960 cores total
+💾 Memory: 143,360GB total
+🚀 GPU: 1,120 total
+🏃 Running Jobs: 1
+   • job_001: Distributed GraphX on Spark (42 nodes, 240min)
+
+🎯 Massive Job 6: Genomics Population Analysis (100K genomes)
+   📊 Scale: 38 nodes
+
+🎯 SUBMITTING MASSIVE JOB: GATK population genetics pipeline
+   📊 Requires: 38 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=0.902, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=0.943, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=1.000, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.849, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=0.956, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.785, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.902
+   ⚖️ HPC_RESOURCE_01: weighted_score=0.943
+   ⚖️ HPC_RESOURCE_02: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.849
+   ⚖️ HPC_RESOURCE_04: weighted_score=0.956
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.785
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_02 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   ✅ HPC_RESOURCE_00: approve
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 6/6 approved
+   🎯 Job allocated to HPC_RESOURCE_02
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_02 in 0.00s
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_02
+----------------------------------------
+🖥️ Job Allocation: 70/512 nodes (13.7% by jobs)
+🔄 Background Load: 28 nodes (5.5%)
+📊 Total Occupancy: 98/512 nodes (19.1%)
+⚡ CPU: 24,576 cores total
+💾 Memory: 524,288GB total
+🏃 Running Jobs: 2
+   • job_001: Qiskit quantum circuit simulation (32 nodes, 360min)
+   • job_002: GATK population genetics pipeline (38 nodes, 420min)
+
+🚨 SCENARIO 2: BYZANTINE ATTACK ON SUPERCOMPUTERS (Jobs 7-8)
+============================================================
+🚨 Byzantine fault injected into HPC_RESOURCE_00 (reputation: 0.600)
+
+🎯 Massive Job 7: Fusion Plasma Simulation (ITER scale) (under Byzantine attack)
+   📊 Scale: 36 nodes
+
+🎯 SUBMITTING MASSIVE JOB: BOUT++ MHD simulation
+   📊 Requires: 36 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=1.000, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=0.943, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=0.813, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.849, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=0.706, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.785, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   🚨 HPC_RESOURCE_00: BYZANTINE PENALTY applied
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.300
+   ⚖️ HPC_RESOURCE_01: weighted_score=0.943
+   ⚖️ HPC_RESOURCE_02: weighted_score=0.813
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.849
+   ⚖️ HPC_RESOURCE_04: weighted_score=0.706
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.785
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_01 (score: 0.943)
+   🗳️ Requiring 4/6 votes for consensus...
+   🚨 HPC_RESOURCE_00: abstain (BYZANTINE)
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 5/6 approved
+   🎯 Job allocated to HPC_RESOURCE_01
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_01 in 0.00s
+🛡️ PROTECTED: Byzantine supercomputer was rejected by consensus
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_01
+----------------------------------------
+🖥️ Job Allocation: 96/320 nodes (30.0% by jobs)
+🔄 Background Load: 1 nodes (0.5%)
+📊 Total Occupancy: 97/320 nodes (30.3%)
+⚡ CPU: 20,480 cores total
+💾 Memory: 163,840GB total
+🚀 GPU: 1,280 total
+🏃 Running Jobs: 2
+   • job_001: Distributed PyTorch Training (60 nodes, 720min)
+   • job_002: BOUT++ MHD simulation (36 nodes, 540min)
+
+🎯 Massive Job 8: Drug Discovery Molecular Docking (1M compounds) (under Byzantine attack)
+   📊 Scale: 40 nodes
+
+🎯 SUBMITTING MASSIVE JOB: AutoDock Vina GPU
+   📊 Requires: 40 nodes
+
+📋 PHASE 1: MASSIVE CLUSTER BIDDING
+==================================================
+   📊 HPC_RESOURCE_00: bid=0.862, nodes=200, bg_util=12.8%
+   📊 HPC_RESOURCE_01: bid=1.000, nodes=320, bg_util=0.5%
+   📊 HPC_RESOURCE_02: bid=0.000, nodes=512, bg_util=5.5%
+   📊 HPC_RESOURCE_03: bid=0.941, nodes=256, bg_util=4.5%
+   📊 HPC_RESOURCE_04: bid=1.000, nodes=384, bg_util=14.7%
+   📊 HPC_RESOURCE_05: bid=0.872, nodes=280, bg_util=13.5%
+
+🗳️ PHASE 2: BYZANTINE-TOLERANT CONSENSUS
+==================================================
+   🚨 HPC_RESOURCE_00: BYZANTINE PENALTY applied
+   ⚖️ HPC_RESOURCE_00: weighted_score=0.259
+   ⚖️ HPC_RESOURCE_01: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_02: weighted_score=0.000
+   ⚖️ HPC_RESOURCE_03: weighted_score=0.941
+   ⚖️ HPC_RESOURCE_04: weighted_score=1.000
+   ⚖️ HPC_RESOURCE_05: weighted_score=0.872
+
+🏆 PROPOSED WINNER: HPC_RESOURCE_01 (score: 1.000)
+   🗳️ Requiring 4/6 votes for consensus...
+   🚨 HPC_RESOURCE_00: reject (BYZANTINE)
+   ✅ HPC_RESOURCE_01: approve
+   ✅ HPC_RESOURCE_02: approve
+   ✅ HPC_RESOURCE_03: approve
+   ✅ HPC_RESOURCE_04: approve
+   ✅ HPC_RESOURCE_05: approve
+
+✅ CONSENSUS REACHED: 5/6 approved
+   🎯 Job allocated to HPC_RESOURCE_01
+   ⏱️ Consensus time: 0.00s
+✅ MASSIVE SUCCESS: Allocated to HPC_RESOURCE_01 in 0.00s
+🛡️ PROTECTED: Byzantine supercomputer was rejected by consensus
+
+📈 RESOURCE OCCUPANCY: HPC_RESOURCE_01
+----------------------------------------
+🖥️ Job Allocation: 136/320 nodes (42.5% by jobs)
+🔄 Background Load: 1 nodes (0.5%)
+📊 Total Occupancy: 137/320 nodes (42.8%)
+⚡ CPU: 20,480 cores total
+💾 Memory: 163,840GB total
+🚀 GPU: 1,280 total
+🏃 Running Jobs: 3
+   • job_001: Distributed PyTorch Training (60 nodes, 720min)
+   • job_002: BOUT++ MHD simulation (36 nodes, 540min)
+   • job_003: AutoDock Vina GPU (40 nodes, 180min)
+
+📊 NETWORK STATUS
+============================================================
+🌐 Total Network Capacity:
+   📊 6 supercomputer clusters
+   🖥️ 1,952 compute nodes
+   ⚡ 99,680 CPU cores
+   💾 1,097,728GB memory
+   🚀 5,008 GPUs
+
+🏛️ Individual Supercomputer Status:
+   🚨 BYZANTINE HPC_RESOURCE_00:
+      └─ 200 nodes | 8,800 cores | 102,400GB | 1,200 GPUs
+      └─ Jobs: 40/200 nodes | Background: 12.8% | Reputation: 0.600
+   ✅ HEALTHY HPC_RESOURCE_01:
+      └─ 320 nodes | 20,480 cores | 163,840GB | 1,280 GPUs
+      └─ Jobs: 136/320 nodes | Background: 0.5% | Reputation: 1.000
+   ✅ HEALTHY HPC_RESOURCE_02:
+      └─ 512 nodes | 24,576 cores | 524,288GB | 0 GPUs
+      └─ Jobs: 70/512 nodes | Background: 5.5% | Reputation: 1.000
+   ✅ HEALTHY HPC_RESOURCE_03:
+      └─ 256 nodes | 8,192 cores | 65,536GB | 384 GPUs
+      └─ Jobs: 50/256 nodes | Background: 4.5% | Reputation: 1.000
+   ✅ HEALTHY HPC_RESOURCE_04:
+      └─ 384 nodes | 28,672 cores | 98,304GB | 1,024 GPUs
+      └─ Jobs: 0/384 nodes | Background: 14.7% | Reputation: 1.000
+   ✅ HEALTHY HPC_RESOURCE_05:
+      └─ 280 nodes | 8,960 cores | 143,360GB | 1,120 GPUs
+      └─ Jobs: 42/280 nodes | Background: 13.5% | Reputation: 1.000
+
+📊 MASSIVE DEMO SUMMARY - 8 SUPERCOMPUTER JOBS PROCESSED
+======================================================================
+📈 Massive Job Allocation Results:
+   ✅ Successful: 8/8 (100.0%)
+   ❌ Failed: 0/8
+   ⏱️ Average Consensus Time: 0.00s
+
+📊 Total Resources Allocated:
+   🖥️ 338 compute nodes
+
+📊 Performance by Massive Scale Scenario:
+   🟢 Normal Supercomputer Operations (Jobs 1-6): 6/6 successful
+   🔴 Byzantine Attack on Supercomputers (Jobs 7-8): 2/2 successful
+
+🛡️ Massive Scale Fault Tolerance:
+   Byzantine supercomputer: HPC_RESOURCE_00
+   Jobs under attack: 2
+   Network resilience: ✅ Maintained
+
+🎉 MASSIVE SCALE DEMO COMPLETED!
+   ✨ 6 supercomputers operated without central coordinator
+   🤝 Autonomous decisions for 338 compute nodes
+   🛡️ Byzantine fault tolerance at exascale
+   📊 8 massive multi-node jobs processed

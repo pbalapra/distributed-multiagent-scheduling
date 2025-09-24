@@ -14,6 +14,18 @@ import time
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any
 import os
+import sys
+
+# Initialize random seed for reproducibility (e.g., background utilization)
+random.seed(42) 
+
+# Create a parent folder for all logs, existing log file will be overwritten
+script_dir = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(script_dir, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+# Redirect log file outputs to the log directory
+logfile = open(os.path.join(LOG_DIR, "demo.txt"), "w")
+sys.stdout = logfile
 
 class MassiveAgent:
     """Massive scale decentralized agent for supercomputer-level demonstration"""
@@ -33,7 +45,7 @@ class MassiveAgent:
         self.background_utilization = random.uniform(0.0, 0.2)  # Reduced to be more realistic
         
         # LLM availability
-        self.llm_enabled = bool(os.getenv('SAMBASTUDIO_API_KEY'))
+        self.llm_enabled = False # bool(os.getenv('SAMBASTUDIO_API_KEY'))
         
     def calculate_bid(self, job_requirements: Dict[str, Any]) -> float:
         """Calculate bid score for a job"""
@@ -110,7 +122,7 @@ CONSIDER:
    - Heterogeneous clusters may provide better performance if job matches node types
 
 IMPORTANT: Respond with EXACTLY this JSON format, no extra text before or after:
-{{"bid_score": 0.85, "reasoning": "explain your bid considering constraints and current occupancy"}}"""
+{{"bid_score": <calculated_value>, "reasoning": "explain your bid considering constraints and current occupancy"}}"""
 
         print(f"📝 PROMPT:")
         print(prompt)
@@ -606,107 +618,11 @@ async def run_massive_demo():
     print(f"      └─ {total_network_memory:,}GB memory ({total_network_memory//1024:.1f}TB)")
     print(f"      └─ {total_network_gpu:,} GPUs")
     
-    # Create massive multi-node job scenarios (30-60 nodes each)
-    massive_scenarios = [
-        {
-            "name": "Exascale Climate Modeling (WRF)",
-            "requirements": {
-                "job_type": "hpc",
-                "node_count": 40,
-                "estimated_runtime": 480,
-                "requires_gpu": False,
-                "application": "Weather Research & Forecasting (WRF)",
-                "domain_size": "Global 1km resolution",
-                "simulation_time": "10-day forecast ensemble"
-            }
-        },
-        {
-            "name": "Large Language Model Training (1T parameters)",
-            "requirements": {
-                "job_type": "ai",
-                "node_count": 60,
-                "estimated_runtime": 720,
-                "requires_gpu": True,
-                "min_gpu_count": 240,
-                "application": "Distributed PyTorch Training",
-                "model": "1 Trillion parameter transformer",
-                "technique": "3D parallelism (pipeline+tensor+data)"
-            }
-        },
-        {
-            "name": "Cosmological N-Body Simulation",
-            "requirements": {
-                "job_type": "hybrid",
-                "node_count": 50,
-                "estimated_runtime": 600,
-                "requires_gpu": False,
-                "application": "GADGET-4 N-body simulation",
-                "particles": "100 billion dark matter particles",
-                "box_size": "1 Gpc/h comoving"
-            }
-        },
-        {
-            "name": "Quantum Circuit Simulation",
-            "requirements": {
-                "job_type": "memory",
-                "node_count": 32,
-                "estimated_runtime": 360,
-                "requires_gpu": False,
-                "application": "Qiskit quantum circuit simulation",
-                "qubits": "45-qubit quantum circuit",
-                "gate_depth": "10,000 quantum gates"
-            }
-        },
-        {
-            "name": "Massive Graph Analytics (Trillion-edge)",
-            "requirements": {
-                "job_type": "storage",
-                "node_count": 42,
-                "estimated_runtime": 240,
-                "requires_gpu": False,
-                "application": "Distributed GraphX on Spark",
-                "graph_size": "1 trillion edges, 100 billion vertices",
-                "algorithm": "PageRank + Community Detection"
-            }
-        },
-        {
-            "name": "Genomics Population Analysis (100K genomes)",
-            "requirements": {
-                "job_type": "memory",
-                "node_count": 38,
-                "estimated_runtime": 420,
-                "requires_gpu": False,
-                "application": "GATK population genetics pipeline",
-                "sample_size": "100,000 whole genomes",
-                "analysis": "GWAS + population structure"
-            }
-        },
-        {
-            "name": "Fusion Plasma Simulation (ITER scale)",
-            "requirements": {
-                "job_type": "hpc",
-                "node_count": 36,
-                "estimated_runtime": 540,
-                "requires_gpu": False,
-                "application": "BOUT++ MHD simulation",
-                "plasma_size": "ITER tokamak geometry",
-                "physics": "3D MHD + turbulence"
-            }
-        },
-        {
-            "name": "Drug Discovery Molecular Docking (1M compounds)",
-            "requirements": {
-                "job_type": "gpu",
-                "node_count": 40,
-                "estimated_runtime": 180,
-                "requires_gpu": True,
-                "min_gpu_count": 160,
-                "application": "AutoDock Vina GPU",
-                "library_size": "1 million compounds",
-                "target": "SARS-CoV-2 main protease"
-            }
-        }
-    ]
+    # Read massive multi-node job scenarios (30-60 nodes each)
+    
+    data_path = os.path.join(script_dir, 'data.json')
+    with open(data_path, 'r') as f:
+        massive_scenarios = json.load(f) 
     
     results = []
     
