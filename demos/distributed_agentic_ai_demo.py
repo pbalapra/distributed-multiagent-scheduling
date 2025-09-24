@@ -461,6 +461,25 @@ class MassiveDecentralizedNetwork:
                 runtime = job_info.get("estimated_runtime", 0)
                 print(f"   • {job_id}: {app} ({nodes} nodes, {runtime}min)")
     
+    
+    def validate_job_allocations(self):
+        """Validate job allocations and resource utilization for all agents."""
+        print("\n=== JOB-RESOURCE ALLOCATION STATUS ===")
+        for agent in self.agents:
+            total_nodes = agent.capabilities.get('total_nodes', agent.capabilities.get('nodes', 0))
+            utilization = (agent.allocated_nodes / max(1, total_nodes)) * 100
+            print(f"Agent {agent.agent_id}:")
+            print(f"  Background_nodes: {int(total_nodes * agent.background_utilization)} | {agent.background_utilization:.1%}")
+            print(f"  Allocated nodes: {agent.allocated_nodes}/{total_nodes} ({utilization:.1f}%)")
+            print(f"  Running jobs: {len(agent.running_jobs)}")
+            
+            if agent.allocated_nodes > total_nodes:
+                print(f"  ⚠️ Overcommitment detected!")
+            for job_id, job_info in agent.running_jobs.items():
+                req = job_info["requirements"]
+                print(f"    - {job_id}: {req.get('application', req.get('job_type', 'Unknown'))} ({req.get('node_count', 0)} nodes)")
+        print("=== END VALIDATION ===\n")
+    
     def show_network_status(self):
         """Display current network status"""
         print(f"\n📊 NETWORK STATUS")
@@ -734,6 +753,7 @@ async def run_massive_demo():
     print(f"   🛡️ Byzantine fault tolerance at exascale")
     print(f"   📊 {len(results)} massive multi-node jobs processed")
     
+    network.validate_job_allocations()
     return results
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 🧠 LLM Integration: ❌ DISABLED (using heuristics)
 🌐 MASSIVE SCALE DECENTRALIZED MULTI-AGENT CONSENSUS DEMO
 ================================================================================
-⏰ Starting at: 2025-09-24 13:14:43
+⏰ Starting at: 2025-09-24 15:20:42
 
 🏛️ FORMING MASSIVE SUPERCOMPUTER NETWORK
 ============================================================
@@ -505,3 +505,39 @@ MASSIVE SCALE JOB ALLOCATION SCENARIOS
    🤝 Autonomous decisions for 338 compute nodes
    🛡️ Byzantine fault tolerance at exascale
    📊 8 massive multi-node jobs processed
+
+=== JOB-RESOURCE ALLOCATION STATUS ===
+Agent HPC_RESOURCE_00:
+  Background_nodes: 25 | 12.8%
+  Allocated nodes: 40/200 (20.0%)
+  Running jobs: 1
+    - job_001: Weather Research & Forecasting (WRF) (40 nodes)
+Agent HPC_RESOURCE_01:
+  Background_nodes: 1 | 0.5%
+  Allocated nodes: 136/320 (42.5%)
+  Running jobs: 3
+    - job_001: Distributed PyTorch Training (60 nodes)
+    - job_002: BOUT++ MHD simulation (36 nodes)
+    - job_003: AutoDock Vina GPU (40 nodes)
+Agent HPC_RESOURCE_02:
+  Background_nodes: 28 | 5.5%
+  Allocated nodes: 70/512 (13.7%)
+  Running jobs: 2
+    - job_001: Qiskit quantum circuit simulation (32 nodes)
+    - job_002: GATK population genetics pipeline (38 nodes)
+Agent HPC_RESOURCE_03:
+  Background_nodes: 11 | 4.5%
+  Allocated nodes: 50/256 (19.5%)
+  Running jobs: 1
+    - job_001: GADGET-4 N-body simulation (50 nodes)
+Agent HPC_RESOURCE_04:
+  Background_nodes: 56 | 14.7%
+  Allocated nodes: 0/384 (0.0%)
+  Running jobs: 0
+Agent HPC_RESOURCE_05:
+  Background_nodes: 37 | 13.5%
+  Allocated nodes: 42/280 (15.0%)
+  Running jobs: 1
+    - job_001: Distributed GraphX on Spark (42 nodes)
+=== END VALIDATION ===
+
